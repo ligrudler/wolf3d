@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parser.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 21:01:22 by grudler           #+#    #+#             */
-/*   Updated: 2019/11/12 02:47:05 by grudler          ###   ########.fr       */
+/*   Updated: 2019/11/15 11:36:41 by lgrudler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf3d.h"
+#include "Includes/wolf3d.h"
 
 int		check_column_line(char *str, t_mlx *mlx)
 {
