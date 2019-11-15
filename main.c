@@ -6,29 +6,31 @@
 /*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:51:44 by grudler           #+#    #+#             */
-/*   Updated: 2019/11/15 11:36:04 by lgrudler         ###   ########.fr       */
+/*   Updated: 2019/11/15 12:26:27 by lgrudler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Includes/wolf3d.h"
 
+int		init_window()
+
 int		main(int argc, char **argv)
 {
 	int fd;
-	t_mlx mlx;
+	t_pars pars;
 	int i = 0;
 	int j = 0;
 
 	if (argc == 2)
 	{
 		fd = open(argv[1], O_RDONLY);
-		ft_parser(fd, &mlx);
-		while (j < mlx.nb_lin) // Test parsing
+		ft_parser(fd, &pars);
+		while (j < pars.nb_lin) // Test parsing
 		{
 			i = 0;
-			while (i < mlx.nb_col)
+			while (i < pars.nb_col)
 			{
-				printf("%d", mlx.map[j][i]);
+				printf("%d", pars.map[j][i]);
 				i++;
 			}
 			printf("%c", '\n');
