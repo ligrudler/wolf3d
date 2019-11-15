@@ -6,13 +6,12 @@
 /*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:51:44 by grudler           #+#    #+#             */
-/*   Updated: 2019/11/15 17:59:20 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/11/15 18:07:28 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 	
 	#include "Includes/wolf3d.h"
-
 	#include "/Volumes/Storage/goinfre/qlouisia/wolf/lib/SDL2-2.0.10/include/SDL.h"
 
 int beautifull_window(){
@@ -73,23 +72,24 @@ int beautifull_window(){
 	   return (0);
 	}
 
-	int main(int argc, char **argv)
-	{	
-		int fd;
-	t_mlx mlx;
+
+int		main(int argc, char **argv)
+{
+	int fd;
+	t_pars pars;
 	int i = 0;
 	int j = 0;
 	beautifull_window();
 	if (argc == 2)
 	{
 		fd = open(argv[1], O_RDONLY);
-		ft_parser(fd, &mlx);
-		while (j < mlx.nb_lin) // Test parsing
+		ft_parser(fd, &pars);
+		while (j < pars.nb_lin) // Test parsing
 		{
 			i = 0;
-			while (i < mlx.nb_col)
+			while (i < pars.nb_col)
 			{
-				printf("%d", mlx.map[j][i]);
+				printf("%d", pars.map[j][i]);
 				i++;
 			}
 			printf("%c", '\n');

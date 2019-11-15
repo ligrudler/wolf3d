@@ -6,7 +6,7 @@
 /*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:43:42 by grudler           #+#    #+#             */
-/*   Updated: 2019/11/15 17:59:30 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/11/15 18:08:06 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,15 @@
 # define WINY 800
 
 
-typedef struct	s_mlx
+typedef struct	s_pars
 {
 	int **map;
 	int x_map;
 	int y_map;
 	int	nb_col;
 	int	nb_lin;
-}		t_mlx;
+}		t_pars;
 
-int		ft_parser(int fd, t_mlx *mlx);
+int		ft_parser(int fd, t_pars *pars);
 
 #endif
