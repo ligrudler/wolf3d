@@ -3,74 +3,69 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:51:44 by grudler           #+#    #+#             */
-/*   Updated: 2019/11/15 18:07:28 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/11/20 15:55:17 by lgrudler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-	
-	#include "Includes/wolf3d.h"
-	#include "/Volumes/Storage/goinfre/qlouisia/wolf/lib/SDL2-2.0.10/include/SDL.h"
 
-int beautifull_window(){
-		SDL_Window *fenetre;
-	   SDL_Event evenements;
-	   int terminer = 0 ;
-	   SDL_Renderer *renderer;
-	   SDL_Point    point[800];
-	   int i;
-	   i = 0;
-	   
-	   // Initialisation de la SDL
-	   
-	   if(SDL_Init(SDL_INIT_VIDEO) < 0)
-	   {
-		   SDL_Quit();	
-		   return (-1);
-	   }
-	   
-	   
-	   // Création de la fenêtre
+#include "Includes/wolf3d.h"
 
-	   fenetre = SDL_CreateWindow("Test SDL 2.0", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, SDL_WINDOW_SHOWN);
+int beautifull_window()
+{
+	int		terminer;
+	int		i;
+	t_sdl	sdl;
 
-	   if(fenetre == 0)
-	   {
-		   SDL_Quit();
+	terminer = 0;
+	i = 0;
 
-		   return -1;
-	   }
-	   
-	   if (!(renderer = SDL_CreateRenderer(fenetre, -1, SDL_RENDERER_SOFTWARE)))
-	  ft_error();
-   SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
-   while (i < 800)
-   {
-	  point[i].x = i;
-	  point[i].y = 400;
-	  i++;
-   }
-   SDL_RenderDrawPoints(renderer, point, 800);
-  SDL_RenderPresent(renderer);
-	   // On quitte la SDL
-	   // Boucle principale
-	   
-	   while(!terminer)
-	   {
-	   SDL_WaitEvent(&evenements);
-		   
-	   if(evenements.window.event == SDL_WINDOWEVENT_CLOSE)
-		   terminer = 1;
-	   }
-	   
+	// Initialisation de la SDL
 
-	   
-	   SDL_DestroyWindow(fenetre);
-	   SDL_Quit();
-	   return (0);
+	if(SDL_Init(SDL_INIT_VIDEO) < 0)
+	{
+		SDL_Quit();
+		return (-1);
 	}
+
+	// Création de la fenêtre
+
+	sdl.fenetre = SDL_CreateWindow("Test SDL 2.0", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, SDL_WINDOW_SHOWN);
+
+	if(sdl.fenetre == 0)
+	{
+		SDL_Quit();
+
+		return -1;
+	}
+
+	if (!(sdl.renderer = SDL_CreateRenderer(sdl.fenetre, -1, SDL_RENDERER_SOFTWARE)))
+		ft_error();
+	SDL_SetRenderDrawColor(sdl.renderer, 255, 0, 0, 255);
+	while (i < 800)
+	{
+		sdl.point[i].x = i;
+		sdl.point[i].y = 400;
+		i++;
+	}
+	SDL_RenderDrawPoints(sdl.renderer, sdl.point, 800);
+	SDL_RenderPresent(sdl.renderer);
+	// On quitte la SDL
+	// Boucle principale
+
+	while(!terminer)
+	{
+		SDL_WaitEvent(&sdl.evenements);
+
+		if(sdl.evenements.window.event == SDL_WINDOWEVENT_CLOSE)
+			terminer = 1;
+	}
+	SDL_DestroyWindow(sdl.fenetre);
+	SDL_Quit();
+	return (0);
+}
 
 
 int		main(int argc, char **argv)
@@ -98,6 +93,6 @@ int		main(int argc, char **argv)
 		return (0);
 	}
 	ft_putstr("ERROR, MAIN ARGV"); //temp
-	
-	    return 0;
-	}
+
+	return 0;
+}
