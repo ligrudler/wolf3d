@@ -6,11 +6,11 @@
 /*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 21:01:22 by grudler           #+#    #+#             */
-/*   Updated: 2019/11/15 12:26:27 by lgrudler         ###   ########.fr       */
+/*   Updated: 2019/11/20 17:36:45 by lgrudler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Includes/wolf3d.h"
+#include "../Includes/wolf3d.h"
 
 int		check_column_line(char *str, t_pars *pars)
 {

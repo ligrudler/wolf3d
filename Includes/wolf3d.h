@@ -6,7 +6,7 @@
 /*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:43:42 by grudler           #+#    #+#             */
-/*   Updated: 2019/11/20 15:55:36 by lgrudler         ###   ########.fr       */
+/*   Updated: 2019/11/20 17:36:49 by lgrudler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef struct	s_sdl
 	SDL_Window *fenetre;
 	SDL_Event evenements;
 	SDL_Renderer *renderer;
-	SDL_Point    point[800];
+	SDL_Point    point[WINX/2];
 }				t_sdl;
 
 int		ft_parser(int fd, t_pars *pars);
