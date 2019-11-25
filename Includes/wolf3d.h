@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:43:42 by grudler           #+#    #+#             */
-/*   Updated: 2019/11/20 17:36:49 by lgrudler         ###   ########.fr       */
+/*   Updated: 2019/11/25 02:43:53 by grudler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,10 @@ typedef struct	s_sdl
 	SDL_Event evenements;
 	SDL_Renderer *renderer;
 	SDL_Point    point[WINX/2];
+	char		key[SDL_NUM_SCANCODES];
+	int			end;
+	Uint32		type;
+	SDL_Scancode scancode;
 }				t_sdl;
 
 int		ft_parser(int fd, t_pars *pars);
