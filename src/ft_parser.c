@@ -6,7 +6,7 @@
 /*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 21:01:22 by grudler           #+#    #+#             */
-/*   Updated: 2019/11/26 19:59:57 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/11/26 20:30:17 by grudler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int 	check_close_map(t_pars *check)
 {
 	int line;
 	int column;
-	
+
 	line = 0;
 	while (line < check->nb_lin)
 	{
@@ -145,5 +145,6 @@ int		ft_parser(int fd, t_pars *pars)
 		ft_error();
 	}
 	create_map(str, pars);
+	free(str);
 	return (0);
 }

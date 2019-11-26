@@ -6,7 +6,7 @@
 /*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:51:44 by grudler           #+#    #+#             */
-/*   Updated: 2019/11/26 20:00:34 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/11/26 20:31:01 by grudler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ int		main(int argc, char **argv)
 		ft_parser(fd, &pars);
 		init_sdl(&sdl);
 		draw(&sdl);
-		 // while (!(sdl.end))
-		 // 	event(&sdl);
+		while (!(sdl.end))
+			event(&sdl);
 		SDL_DestroyRenderer(sdl.renderer);
 		SDL_DestroyWindow(sdl.fenetre);
 		SDL_Quit();
