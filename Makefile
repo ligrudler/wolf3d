@@ -6,7 +6,7 @@
 #    By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/20 16:56:04 by lgrudler          #+#    #+#              #
-#    Updated: 2019/11/20 18:16:45 by lgrudler         ###   ########.fr        #
+#    Updated: 2019/11/26 19:59:25 by qlouisia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,10 +27,11 @@ MAGENTA= \033[35m
 ################################################################################
 NAME= wolf3d
 CC= gcc
-CFLAGS= -Wall -Wextra -Werror
+CFLAGS= #-Wall -Wextra -Werror
 SRC_DIR= src/
 SRC= main.c\
-	ft_parser.c
+	ft_parser.c\
+	exit.c 
 SRCS= $(addprefix $(SRC_DIR),$(SRC))
 OBJ_DIR= obj/
 OBJ= $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRCS))

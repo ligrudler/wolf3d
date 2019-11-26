@@ -3,14 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parser.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 21:01:22 by grudler           #+#    #+#             */
-/*   Updated: 2019/11/20 17:36:45 by lgrudler         ###   ########.fr       */
+/*   Updated: 2019/11/26 19:59:57 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/wolf3d.h"
+
+
+int 	check_close_map(t_pars *check)
+{
+	int line;
+	int column;
+	
+	line = 0;
+	while (line < check->nb_lin)
+	{
+		column = 0;
+		while ( column < check->nb_col)
+		{
+			if (line == 0 && check->map[0][column] == 0)
+				return (0);
+			else if  (line == check->nb_lin -1 && check->map[line][column] == 0)
+				return(0);
+			else if ((column == 0 || column == check->nb_col - 1 ) && check->map[line][column] == 0)
+				return (0);
+			column++;
+		}
+		line++;
+	}
+	ft_putstr("Map VALID");
+	return(1);
+}
 
 int		check_column_line(char *str, t_pars *pars)
 {
@@ -92,6 +118,8 @@ int		create_map(char *str, t_pars *pars) // il faudrait penser a bien tout free 
 		i++;
 	}
 	stock_in_map(str, pars);
+	if (!check_close_map(pars))
+		ft_putstr("Map NOT CLOSED");
 	return (1);
 }
 

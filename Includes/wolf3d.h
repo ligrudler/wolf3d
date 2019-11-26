@@ -6,7 +6,7 @@
 /*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:43:42 by grudler           #+#    #+#             */
-/*   Updated: 2019/11/25 02:43:53 by grudler          ###   ########.fr       */
+/*   Updated: 2019/11/26 19:34:57 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,5 @@ typedef struct	s_sdl
 }				t_sdl;
 
 int		ft_parser(int fd, t_pars *pars);
-
+int 	free_tpars(t_pars *map, int size);
 #endif
