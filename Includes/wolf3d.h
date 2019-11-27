@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:43:42 by grudler           #+#    #+#             */
-/*   Updated: 2019/11/27 17:39:07 by lgrudler         ###   ########.fr       */
+/*   Updated: 2019/11/27 20:50:45 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,15 @@ typedef struct	s_sdl
 	int			end;
 	Uint32		type;
 	SDL_Scancode scancode;
-	t_line		line;
 }				t_sdl;
 
 int		ft_parser(int fd, t_pars *pars);
 int 	free_tpars(t_pars *map, int size);
-int	ft_drawline(t_sdl *sdl);
-void	init_bres(t_sdl *sdl);
+int	ft_drawline(t_pt s1, t_pt s2, t_sdl *sdl);
+void	init_bres(t_line *bre, t_pt *p1, t_pt *p2);
 void	draw(t_sdl *sdl);
 int init_sdl(t_sdl *sdl);
 void	event(t_sdl *sdl);
+void draw_rect(t_sdl *sdl, t_pt *p1, t_pt *p2);
+void set_point(t_pt *point, double x, double y);
 #endif

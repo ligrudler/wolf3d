@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:51:44 by grudler           #+#    #+#             */
-/*   Updated: 2019/11/27 17:51:07 by lgrudler         ###   ########.fr       */
+/*   Updated: 2019/11/27 20:31:29 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../Includes/wolf3d.h"
 
@@ -26,17 +25,35 @@ void	event(t_sdl *sdl)
 		sdl->end = 1;
 }
 
+/*
 void	draw(t_sdl *sdl)
 {
 	int		i;
-
+	
 	i = 0;
 	SDL_SetRenderDrawColor(sdl->renderer, 255, 255, 0, 0);
-	sdl->line.p1.x = 100;
-	sdl->line.p1.y = 100;
-	sdl->line.p2.x = 400;
-	sdl->line.p2.y = 400;
-	ft_drawline(sdl);
+	while (i < 400)
+	{
+		sdl->line.p1.x = 100;
+		sdl->line.p1.y = 100 + i;
+		sdl->line.p2.x = 400;
+		sdl->line.p2.y = 400 + i;
+		i++;
+		ft_drawline(sdl);
+	}
+	SDL_RenderPresent(sdl->renderer);
+	event(sdl);
+}
+*/
+void	draw(t_sdl *sdl)
+{
+	t_pt p1;
+	t_pt p2;
+	SDL_SetRenderDrawColor(sdl->renderer, 255, 255, 0, 0);
+	set_point(&p1,200,200);
+	set_point(&p2,220,220);
+	// ft_drawline(&p1, &p2, sdl);
+	draw_rect(sdl, &p1, &p2);
 	SDL_RenderPresent(sdl->renderer);
 	event(sdl);
 }
