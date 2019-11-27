@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:51:44 by grudler           #+#    #+#             */
-/*   Updated: 2019/11/26 20:31:01 by grudler          ###   ########.fr       */
+/*   Updated: 2019/11/27 17:51:07 by lgrudler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,11 @@ void	draw(t_sdl *sdl)
 
 	i = 0;
 	SDL_SetRenderDrawColor(sdl->renderer, 255, 255, 0, 0);
-	while (i < 400)
-	{
-		sdl->point[i].x = i;
-		sdl->point[i].y = 2 * i + 400 ;
-		i++;
-	}
-	SDL_RenderDrawPoints(sdl->renderer, sdl->point, 400);
+	sdl->line.p1.x = 100;
+	sdl->line.p1.y = 100;
+	sdl->line.p2.x = 400;
+	sdl->line.p2.y = 400;
+	ft_drawline(sdl);
 	SDL_RenderPresent(sdl->renderer);
 	event(sdl);
 }
@@ -77,7 +75,6 @@ int		main(int argc, char **argv)
 		SDL_DestroyWindow(sdl.fenetre);
 		SDL_Quit();
 		free_tpars(&pars,pars.nb_lin);
-		while(1);
 		return (0);
 	}
 	ft_putstr("ERROR, MAIN ARGV"); //temp

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:43:42 by grudler           #+#    #+#             */
-/*   Updated: 2019/11/26 20:30:19 by grudler          ###   ########.fr       */
+/*   Updated: 2019/11/27 17:39:07 by lgrudler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,23 @@
 # define WINX 800
 # define WINY 800
 
+typedef struct	s_pt
+{
+	int x;
+	int y;
+}				t_pt;
+
+typedef struct	s_line
+{
+	t_pt	p1;
+	t_pt	p2;
+	int		err;
+	int		dx;
+	int		dy;
+	int		sx;
+	int		sy;
+	int		e2;
+}				t_line;
 
 typedef struct	s_pars
 {
@@ -44,8 +61,14 @@ typedef struct	s_sdl
 	int			end;
 	Uint32		type;
 	SDL_Scancode scancode;
+	t_line		line;
 }				t_sdl;
 
 int		ft_parser(int fd, t_pars *pars);
 int 	free_tpars(t_pars *map, int size);
+int	ft_drawline(t_sdl *sdl);
+void	init_bres(t_sdl *sdl);
+void	draw(t_sdl *sdl);
+int init_sdl(t_sdl *sdl);
+void	event(t_sdl *sdl);
 #endif
