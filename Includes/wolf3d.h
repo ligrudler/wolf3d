@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:43:42 by grudler           #+#    #+#             */
-/*   Updated: 2019/11/27 20:50:45 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/12/03 20:16:34 by grudler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,39 @@
 # define BUFF_SIZE 10
 # define WINX 800
 # define WINY 800
+
+typedef struct	s_raycast
+{
+	double	posx;
+	double	posy;
+	double	dirX;
+	double	dirY;
+	double	planX;
+	double	planY;
+
+	double	time;
+	double	oldtime;
+
+	double	cameraX;
+	double	raydirX;
+	double	raydirY;
+
+	int	mapX;
+	int	mapY;
+	double	sidedistX;
+	double	sidedistY;
+	double	deltadistX;
+	double	deltadistY;
+	double	raylenght;
+	int		stepX;
+	int		stepY;
+	int		hit;
+	int		side;
+
+	int		lineheight;
+	int		lowpix;
+	int		highpix;
+}				t_raycast;
 
 typedef struct	s_pt
 {
@@ -61,10 +94,12 @@ typedef struct	s_sdl
 	int			end;
 	Uint32		type;
 	SDL_Scancode scancode;
+	t_pars		pars;
+	t_raycast	rcst;
 }				t_sdl;
 
-int		ft_parser(int fd, t_pars *pars);
-int 	free_tpars(t_pars *map, int size);
+int		ft_parser(int fd, t_sdl *sdl);
+int 	free_tpars(t_sdl *map, int size);
 int	ft_drawline(t_pt s1, t_pt s2, t_sdl *sdl);
 void	init_bres(t_line *bre, t_pt *p1, t_pt *p2);
 void	draw(t_sdl *sdl);
@@ -72,4 +107,7 @@ int init_sdl(t_sdl *sdl);
 void	event(t_sdl *sdl);
 void draw_rect(t_sdl *sdl, t_pt *p1, t_pt *p2);
 void set_point(t_pt *point, double x, double y);
+void	raycast(t_sdl *sdl);
+void	init_raycast(t_sdl *sdl);
+
 #endif

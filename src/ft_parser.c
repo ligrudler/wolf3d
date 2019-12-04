@@ -6,29 +6,29 @@
 /*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 21:01:22 by grudler           #+#    #+#             */
-/*   Updated: 2019/11/26 20:30:17 by grudler          ###   ########.fr       */
+/*   Updated: 2019/12/03 18:44:54 by grudler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/wolf3d.h"
 
 
-int 	check_close_map(t_pars *check)
+int 	check_close_map(t_sdl *check)
 {
 	int line;
 	int column;
 
 	line = 0;
-	while (line < check->nb_lin)
+	while (line < check->pars.nb_lin)
 	{
 		column = 0;
-		while ( column < check->nb_col)
+		while ( column < check->pars.nb_col)
 		{
-			if (line == 0 && check->map[0][column] == 0)
+			if (line == 0 && check->pars.map[0][column] == 0)
 				return (0);
-			else if  (line == check->nb_lin -1 && check->map[line][column] == 0)
+			else if  (line == check->pars.nb_lin -1 && check->pars.map[line][column] == 0)
 				return(0);
-			else if ((column == 0 || column == check->nb_col - 1 ) && check->map[line][column] == 0)
+			else if ((column == 0 || column == check->pars.nb_col - 1 ) && check->pars.map[line][column] == 0)
 				return (0);
 			column++;
 		}
@@ -38,7 +38,7 @@ int 	check_close_map(t_pars *check)
 	return(1);
 }
 
-int		check_column_line(char *str, t_pars *pars)
+int		check_column_line(char *str, t_sdl *sdl)
 {
 	int i;
 	int tmp;
@@ -46,84 +46,84 @@ int		check_column_line(char *str, t_pars *pars)
 
 	i = -1;
 	tmp = 0;
-	pars->nb_col = 0;
-	pars->nb_lin = 0;
+	sdl->pars.nb_col = 0;
+	sdl->pars.nb_lin = 0;
 	while (str[++i])
 	{
-		tmp = pars->nb_col;
-		pars->nb_col = 0;
+		tmp = sdl->pars.nb_col;
+		sdl->pars.nb_col = 0;
 		while (str[i] && str[i] != '\n')
 		{
 			if (ft_isdigit(str[i]))
 			{
-				pars->nb_col++;
+				sdl->pars.nb_col++;
 				check = 1;
 			}
 			i++;
 		}
-		if (check == 1 && tmp != 0 && tmp != pars->nb_col) // pour l'instant ne gere que les map avec le meme nombre de colonne
+		if (check == 1 && tmp != 0 && tmp != sdl->pars.nb_col) // pour l'instant ne gere que les map avec le meme nombre de colonne
 			return (0);
 		else if (check == 1)
 		{
-			pars->nb_lin++;
+			sdl->pars.nb_lin++;
 			check = 0;
 		}
 		else if (check == 0)
-			pars->nb_col = tmp;
+			sdl->pars.nb_col = tmp;
 	}
 	return (1);
 }
 
-void	stock_in_map(char *str, t_pars *pars)
+void	stock_in_map(char *str, t_sdl *sdl)
 {
 	int i;
 
-	pars->x_map = 0; // jai fais dans le sens x en abcisse donc nb colonne et y en ordonnee dc nb ligne
-	pars->y_map = 0;
+	sdl->pars.x_map = 0; // jai fais dans le sens x en abcisse donc nb colonne et y en ordonnee dc nb ligne
+	sdl->pars.y_map = 0;
 	i = 0;
 
-	while (pars->y_map < pars->nb_lin && str[i])
+	while (sdl->pars.y_map < sdl->pars.nb_lin && str[i])
 	{
-		pars->x_map = 0;
-		while (pars->x_map < pars->nb_col && str[i])
+		sdl->pars.x_map = 0;
+		while (sdl->pars.x_map < sdl->pars.nb_col && str[i])
 		{
 			if (ft_isdigit(str[i]))
 			{
-				pars->map[pars->y_map][pars->x_map] = ft_atoi(&str[i]);
-				pars->x_map++;
+				sdl->pars.map[sdl->pars.y_map][sdl->pars.x_map] = ft_atoi(&str[i]);
+				sdl->pars.x_map++;
 			}
 			i++;
 		}
-		pars->y_map++;
+		sdl->pars.y_map++;
 		i++;
 	}
 }
 
-int		create_map(char *str, t_pars *pars) // il faudrait penser a bien tout free (str ex) dans les retour erreur de malloc
+int		create_map(char *str, t_sdl *sdl) // il faudrait penser a bien tout free (str ex) dans les retour erreur de malloc
 {
 	int i;
 
 	i = 0;
-	if (check_column_line(str, pars) == 0)
+	if (check_column_line(str, sdl) == 0)
 	{
 		ft_putstr("ERROR NB COLONNE");
 		ft_error();
 	}
-	if(!(pars->map = (int**)malloc(sizeof(int*) * pars->nb_lin)))
+	if(!(sdl->pars.map = (int**)malloc(sizeof(int*) * sdl->pars.nb_lin)))
 		return (0);
-	while (i < pars->nb_lin)
+	while (i < sdl->pars.nb_lin)
 	{
-		if(!(pars->map[i] = (int*)malloc(sizeof(int) * pars->nb_col)))
+		if(!(sdl->pars.map[i] = (int*)malloc(sizeof(int) * sdl->pars.nb_col)))
 			return (0);
 		i++;
 	}
-	stock_in_map(str, pars);
-	if (!check_close_map(pars))
+	stock_in_map(str, sdl);
+	if (!check_close_map(sdl))
 		ft_putstr("Map NOT CLOSED");
 	return (1);
 }
 
-int		ft_parser(int fd, t_pars *pars)
+int		ft_parser(int fd, t_sdl *sdl)
 {
 	char	buff[BUFF_SIZE + 1];
 	char	*str;
@@ -144,7 +144,7 @@ int		ft_parser(int fd, t_pars *pars)
 		ft_putstr("STRING NULL\n");
 		ft_error();
 	}
-	create_map(str, pars);
+	create_map(str, sdl);
 	free(str);
 	return (0);
 }
