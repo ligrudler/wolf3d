@@ -6,7 +6,7 @@
 /*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:43:42 by grudler           #+#    #+#             */
-/*   Updated: 2019/12/03 20:16:34 by grudler          ###   ########.fr       */
+/*   Updated: 2019/12/05 00:23:57 by grudler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 # define BUFF_SIZE 10
 # define WINX 800
 # define WINY 800
+# define MOVE 1.01
+# define MOVEDIR 100000
 
 typedef struct	s_raycast
 {

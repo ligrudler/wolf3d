@@ -6,7 +6,7 @@
 /*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 15:35:26 by grudler           #+#    #+#             */
-/*   Updated: 2019/12/04 16:27:31 by grudler          ###   ########.fr       */
+/*   Updated: 2019/12/05 00:43:16 by grudler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	init_raycast(t_sdl *sdl)
 {
-	sdl->rcst.posx = 22; // postion x du joueur
-	sdl->rcst.posy = 12;
+	sdl->rcst.posx = 10; // postion x du joueur
+	sdl->rcst.posy = 13;
 	sdl->rcst.dirX = -1; // direction du joueur (ou regarde le joueur)
 	sdl->rcst.dirY = 0;
 	sdl->rcst.planX = 0; // plan de la camera (ce quon affiche a lecran) Fov de 66 ici
@@ -27,7 +27,6 @@ void	raycast(t_sdl *sdl)
 	int			x;
 
 	x = 0;
-	init_raycast(sdl);
 
 // boucle ou on parcourt tous les x de l'ecran pour savoir pour chaque x, quelle est la hauteur de la droite verticale a dessiner et ou elle se situe
 	while (x < WINX)
@@ -36,8 +35,8 @@ void	raycast(t_sdl *sdl)
 		sdl->rcst.raydirX = sdl->rcst.dirX + sdl->rcst.planX * sdl->rcst.cameraX; //direction des rayons
 		sdl->rcst.raydirY = sdl->rcst.dirY + sdl->rcst.planY * sdl->rcst.cameraX;
 
-		sdl->rcst.mapX = (int)sdl->rcst.posx; // coordonées du carré actuel ou se trouve le rayon
-		sdl->rcst.mapY = (int)sdl->rcst.posy;
+		sdl->rcst.mapX = (int)sdl->rcst.posy; // coordonées du carré actuel ou se trouve le rayon
+		sdl->rcst.mapY = (int)sdl->rcst.posx;
 
 		sdl->rcst.deltadistX = fabs(1 / sdl->rcst.raydirX); // distance que le rayon doit traverser pour aller d'un x-side au prochain x ou y-side (calcul simplifié trouvé apres pythagore)
 		sdl->rcst.deltadistY = fabs(1 / sdl->rcst.raydirY);
@@ -46,22 +45,22 @@ void	raycast(t_sdl *sdl)
 		if (sdl->rcst.raydirX < 0)
 		{
 			sdl->rcst.stepX = -1; // direction du rayon , de -1 à 1 en fonction si le sideDist est plutot a gauche ou a droite
-			sdl->rcst.sidedistX = (sdl->rcst.posx - sdl->rcst.mapX) * sdl->rcst.deltadistX; // distance que le rayon doit traverser pour aller de sa position de base a son tout premier x-side ou y-side
+			sdl->rcst.sidedistX = (double)((sdl->rcst.posy - sdl->rcst.mapX) * sdl->rcst.deltadistX); // distance que le rayon doit traverser pour aller de sa position de base a son tout premier x-side ou y-side
 		}
 		else
 		{
 			sdl->rcst.stepX = 1;
-			sdl->rcst.sidedistX = (sdl->rcst.mapX + 1 - sdl->rcst.posx) * sdl->rcst.deltadistX;
+			sdl->rcst.sidedistX = (double)((sdl->rcst.mapX + 1 - sdl->rcst.posy) * sdl->rcst.deltadistX);
 		}
 		if (sdl->rcst.raydirY < 0)
 		{
 			sdl->rcst.stepY = -1;
-			sdl->rcst.sidedistY = (sdl->rcst.posy - sdl->rcst.mapY) * sdl->rcst.deltadistY;
+			sdl->rcst.sidedistY = (double)((sdl->rcst.posx - sdl->rcst.mapY) * sdl->rcst.deltadistY);
 		}
 		else
 		{
 			sdl->rcst.stepY = 1;
-			sdl->rcst.sidedistY = (sdl->rcst.mapY + 1 - sdl->rcst.posy) * sdl->rcst.deltadistY;
+			sdl->rcst.sidedistY = (double)((sdl->rcst.mapY + 1 - sdl->rcst.posx) * sdl->rcst.deltadistY);
 		}
 
 //focntion permettant de regarder si les sides coincident avec un mur ou pas et si cest le mur est toucheé en x ou en y side, la boucle s'arrete si un mur est toucheé
@@ -86,12 +85,13 @@ void	raycast(t_sdl *sdl)
 
 // Calcul de la longueur total du rayon
 		if (sdl->rcst.side == 0)
-			sdl->rcst.raylenght = (sdl->rcst.mapX - sdl->rcst.posx + (1 - sdl->rcst.stepX) / 2) / sdl->rcst.raydirX;
+			sdl->rcst.raylenght = (sdl->rcst.mapX - sdl->rcst.posy + (1 - sdl->rcst.stepX) / 2) / sdl->rcst.raydirX;
 		else
-			sdl->rcst.raylenght = (sdl->rcst.mapY - sdl->rcst.posy + (1 - sdl->rcst.stepY) / 2) / sdl->rcst.raydirY;
+			sdl->rcst.raylenght = (sdl->rcst.mapY - sdl->rcst.posx + (1 - sdl->rcst.stepY) / 2) / sdl->rcst.raydirY;
 
 // Calcul de la hauteur attendu de la droite verticale pour le x courrant
-		sdl->rcst.lineheight = WINY / sdl->rcst.raylenght;
+		sdl->rcst.lineheight = (int)(WINY / sdl->rcst.raylenght);
+
 // caclul le pixel du haut et le pixel du bas de la droite verticale
 		sdl->rcst.lowpix = -sdl->rcst.lineheight / 2 + WINY / 2;
 		if (sdl->rcst.lowpix < 0)
@@ -115,9 +115,7 @@ void	raycast(t_sdl *sdl)
 			SDL_RenderDrawPoint(sdl->renderer, x, y);
 			y++;
 		}
-		SDL_RenderPresent(sdl->renderer);
-		event(sdl);
-
 		x++;
 	}
+	SDL_RenderPresent(sdl->renderer);
 }
