@@ -6,7 +6,7 @@
 /*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:43:42 by grudler           #+#    #+#             */
-/*   Updated: 2020/01/06 14:27:57 by grudler          ###   ########.fr       */
+/*   Updated: 2020/01/06 14:35:00 by grudler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ void draw_rect(t_sdl *sdl, t_pt *p1, t_pt *p2);
 void set_point(t_pt *point, double x, double y);
 void	raycast(t_sdl *sdl);
 void	init_raycast(t_sdl *sdl);
+void	draw(t_sdl *sdl);
 void	draw_sky_ground(t_sdl *sdl);
 
 

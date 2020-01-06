@@ -6,7 +6,7 @@
 #    By: grudler <grudler@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/20 16:56:04 by lgrudler          #+#    #+#              #
-#    Updated: 2020/01/06 11:26:27 by grudler          ###   ########.fr        #
+#    Updated: 2020/01/06 14:35:22 by grudler          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,8 +32,7 @@ SRC_DIR= src/
 SRC= main.c\
 	ft_parser.c\
 	exit.c\
-	utils.c\
-	geometry.c\
+	draw.c\
 	raycast.c\
 	key_event.c
 SRCS= $(addprefix $(SRC_DIR),$(SRC))

@@ -6,7 +6,7 @@
 /*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/06 11:25:38 by grudler           #+#    #+#             */
-/*   Updated: 2020/01/06 14:28:17 by grudler          ###   ########.fr       */
+/*   Updated: 2020/01/06 14:34:44 by grudler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ void	horizontal_deplacement(t_sdl *sdl)
 		SDL_SetRenderDrawColor(sdl->renderer, 0, 0, 0, 0);
 		if (SDL_RenderClear(sdl->renderer) != 0)
 			ft_error();
-		draw_sky_ground(sdl);
-		raycast(sdl);
 	}
 	if (sdl->key[SDL_SCANCODE_D])
 	{
@@ -39,8 +37,6 @@ void	horizontal_deplacement(t_sdl *sdl)
 		SDL_SetRenderDrawColor(sdl->renderer, 0, 0, 0, 0);
 		if (SDL_RenderClear(sdl->renderer) != 0)
 			ft_error();
-		draw_sky_ground(sdl);
-		raycast(sdl);
 	}
 }
 
@@ -56,8 +52,6 @@ void	vertical_deplacement(t_sdl *sdl)
 		SDL_SetRenderDrawColor(sdl->renderer, 0, 0, 0, 0);
 		if (SDL_RenderClear(sdl->renderer) != 0)
 			ft_error();
-		draw_sky_ground(sdl);
-		raycast(sdl);
 	}
 	if (sdl->key[SDL_SCANCODE_S] && sdl->rcst.posy > 0 && sdl->rcst.posx >= 0)
 	{
@@ -69,8 +63,6 @@ void	vertical_deplacement(t_sdl *sdl)
 		SDL_SetRenderDrawColor(sdl->renderer, 0, 0, 0, 0);
 		if (SDL_RenderClear(sdl->renderer) != 0)
 			ft_error();
-		draw_sky_ground(sdl);
-		raycast(sdl);
 	}
 
 }
@@ -88,4 +80,5 @@ void	event(t_sdl *sdl)
 		sdl->end = 1;
 	vertical_deplacement(sdl);
 	horizontal_deplacement(sdl);
+	draw(sdl);
 }
