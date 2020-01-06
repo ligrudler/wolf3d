@@ -6,68 +6,11 @@
 /*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:51:44 by grudler           #+#    #+#             */
-/*   Updated: 2019/12/05 00:42:15 by grudler          ###   ########.fr       */
+/*   Updated: 2020/01/06 11:25:53 by grudler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/wolf3d.h"
-
-void	event(t_sdl *sdl)
-{
-	while (SDL_PollEvent(&sdl->evenements))
-	{
-		if (sdl->evenements.type == SDL_KEYDOWN)
-			sdl->key[sdl->evenements.key.keysym.scancode] = 1;
-		if (sdl->evenements.type == SDL_KEYUP)
-			sdl->key[sdl->evenements.key.keysym.scancode] = 0;
-	}
-	if (sdl->key[SDL_SCANCODE_ESCAPE])
-		sdl->end = 1;
-	if (sdl->key[SDL_SCANCODE_S] && sdl->rcst.posy <= 24 && sdl->rcst.posx < 24)
-	{
-		if (sdl->pars.map[(int)(sdl->rcst.posy * MOVE)][(int)sdl->rcst.posx] == 0)
-			sdl->rcst.posy *= MOVE;
-		SDL_SetRenderDrawColor(sdl->renderer, 0, 0, 0, 0);
-		if (SDL_RenderClear(sdl->renderer) != 0)
-			ft_error();
-		raycast(sdl);
-	}
-	if (sdl->key[SDL_SCANCODE_W] && sdl->rcst.posy > 0 && sdl->rcst.posx >= 0)
-	{
-		if (sdl->pars.map[(int)(sdl->rcst.posy / MOVE)][(int)sdl->rcst.posx] == 0)
-			sdl->rcst.posy /= MOVE;
-		SDL_SetRenderDrawColor(sdl->renderer, 0, 0, 0, 0);
-		if (SDL_RenderClear(sdl->renderer) != 0)
-			ft_error();
-		raycast(sdl);
-	}
-	if (sdl->key[SDL_SCANCODE_D])
-	{
-		double oldDirX = sdl->rcst.dirX;
-		sdl->rcst.dirX = sdl->rcst.dirX * cos(-MOVEDIR) - sdl->rcst.dirY * sin(-MOVEDIR);
-		sdl->rcst.dirY = oldDirX * sin(-MOVEDIR) + sdl->rcst.dirY * cos(-MOVEDIR);
-		double oldPlaneX = sdl->rcst.planX;
-		sdl->rcst.planX = sdl->rcst.planX * cos(-MOVEDIR) - sdl->rcst.planY * sin(-MOVEDIR);
-		sdl->rcst.planY = oldPlaneX * sin(-MOVEDIR) + sdl->rcst.planY * cos(-MOVEDIR);
-		SDL_SetRenderDrawColor(sdl->renderer, 0, 0, 0, 0);
-		if (SDL_RenderClear(sdl->renderer) != 0)
-			ft_error();
-		raycast(sdl);
-	}
-	if (sdl->key[SDL_SCANCODE_A])
-	{
-		double oldDirX = sdl->rcst.dirX;
-		sdl->rcst.dirX = sdl->rcst.dirX * cos(MOVEDIR) - sdl->rcst.dirY * sin(MOVEDIR);
-		sdl->rcst.dirY = oldDirX * sin(MOVEDIR) + sdl->rcst.dirY * cos(MOVEDIR);
-		double oldPlaneX = sdl->rcst.planX;
-		sdl->rcst.planX = sdl->rcst.planX * cos(MOVEDIR) - sdl->rcst.planY * sin(MOVEDIR);
-		sdl->rcst.planY = oldPlaneX * sin(MOVEDIR) + sdl->rcst.planY * cos(MOVEDIR);
-		SDL_SetRenderDrawColor(sdl->renderer, 0, 0, 0, 0);
-		if (SDL_RenderClear(sdl->renderer) != 0)
-			ft_error();
-		raycast(sdl);
-	}
-}
 
 int init_sdl(t_sdl *sdl)
 {
