@@ -6,7 +6,7 @@
 /*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:51:44 by grudler           #+#    #+#             */
-/*   Updated: 2020/01/06 11:25:53 by grudler          ###   ########.fr       */
+/*   Updated: 2020/01/06 14:29:06 by grudler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int		main(int argc, char **argv)
 		ft_parser(fd, &sdl);
 		init_sdl(&sdl);
 		init_raycast(&sdl);
+		draw_sky_ground(&sdl);
 		raycast(&sdl);
 		while (!(sdl.end))
 			event(&sdl);
