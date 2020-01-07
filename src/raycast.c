@@ -6,7 +6,7 @@
 /*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 15:35:26 by grudler           #+#    #+#             */
-/*   Updated: 2020/01/06 13:28:35 by grudler          ###   ########.fr       */
+/*   Updated: 2020/01/06 16:25:59 by grudler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,8 @@ void	raycast(t_sdl *sdl)
 //focntion permettant de regarder si les sides coincident avec un mur ou pas et si cest le mur est toucheé en x ou en y side, la boucle s'arrete si un mur est toucheé
 		sdl->rcst.hit = 0; // check si un mur est touché
 		while(sdl->rcst.hit == 0)
-		{			if (sdl->rcst.sidedistX < sdl->rcst.sidedistY)
+		{
+			if (sdl->rcst.sidedistX < sdl->rcst.sidedistY)
 			{
 				sdl->rcst.sidedistX += sdl->rcst.deltadistX;
 				sdl->rcst.mapX += sdl->rcst.stepX;
@@ -78,7 +79,7 @@ void	raycast(t_sdl *sdl)
 				sdl->rcst.mapY += sdl->rcst.stepY;
 				sdl->rcst.side = 1;
 			}
-			if (sdl->pars.map[sdl->rcst.mapY][sdl->rcst.mapX] > 0) // ICCCi
+			if (sdl->pars.map[sdl->rcst.mapY][sdl->rcst.mapX] > 0)
 				sdl->rcst.hit = 1;
 		}
 
@@ -116,5 +117,4 @@ void	raycast(t_sdl *sdl)
 		}
 		x++;
 	}
-	SDL_RenderPresent(sdl->renderer);
 }

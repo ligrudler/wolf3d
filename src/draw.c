@@ -16,6 +16,7 @@ void	draw(t_sdl *sdl)
 {
 	draw_sky_ground(sdl);
 	raycast(sdl);
+	SDL_RenderPresent(sdl->renderer);
 }
 
 void	draw_sky_ground(t_sdl *sdl)

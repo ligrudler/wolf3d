@@ -6,7 +6,7 @@
 /*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/06 11:25:38 by grudler           #+#    #+#             */
-/*   Updated: 2020/01/06 14:34:44 by grudler          ###   ########.fr       */
+/*   Updated: 2020/01/06 20:40:33 by grudler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ void	vertical_deplacement(t_sdl *sdl)
 		if (SDL_RenderClear(sdl->renderer) != 0)
 			ft_error();
 	}
-
 }
 
 void	event(t_sdl *sdl)
