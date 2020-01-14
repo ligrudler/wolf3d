@@ -6,7 +6,7 @@
 /*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/06 11:25:38 by grudler           #+#    #+#             */
-/*   Updated: 2020/01/06 20:40:33 by grudler          ###   ########.fr       */
+/*   Updated: 2020/01/14 15:33:53 by grudler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	horizontal_deplacement(t_sdl *sdl)
 {
-	if (sdl->key[SDL_SCANCODE_A])
+	if (sdl->key[SDL_SCANCODE_LEFT])
 	{
 		double oldDirX = sdl->rcst.dirX;
 		sdl->rcst.dirX = sdl->rcst.dirX * cos(-MOVEDIR) - sdl->rcst.dirY * sin(-MOVEDIR);
@@ -26,7 +26,7 @@ void	horizontal_deplacement(t_sdl *sdl)
 		if (SDL_RenderClear(sdl->renderer) != 0)
 			ft_error();
 	}
-	if (sdl->key[SDL_SCANCODE_D])
+	if (sdl->key[SDL_SCANCODE_RIGHT])
 	{
 		double oldDirX = sdl->rcst.dirX;
 		sdl->rcst.dirX = sdl->rcst.dirX * cos(MOVEDIR) - sdl->rcst.dirY * sin(MOVEDIR);
@@ -42,7 +42,7 @@ void	horizontal_deplacement(t_sdl *sdl)
 
 void	vertical_deplacement(t_sdl *sdl)
 {
-	if (sdl->key[SDL_SCANCODE_W] && sdl->rcst.posy <= 24 && sdl->rcst.posx < 24)
+	if (sdl->key[SDL_SCANCODE_UP] && sdl->rcst.posy <= 24 && sdl->rcst.posx < 24)
 	{
 		if ((sdl->pars.map[(int)(sdl->rcst.posy + sdl->rcst.dirY * MOVE)][(int)sdl->rcst.posx] == 0) && (sdl->pars.map[(int)sdl->rcst.posy][(int)(sdl->rcst.posx + sdl->rcst.dirX * MOVE)] == 0))
 		{
@@ -53,7 +53,7 @@ void	vertical_deplacement(t_sdl *sdl)
 		if (SDL_RenderClear(sdl->renderer) != 0)
 			ft_error();
 	}
-	if (sdl->key[SDL_SCANCODE_S] && sdl->rcst.posy > 0 && sdl->rcst.posx >= 0)
+	if (sdl->key[SDL_SCANCODE_DOWN] && sdl->rcst.posy > 0 && sdl->rcst.posx >= 0)
 	{
 		if ((sdl->pars.map[(int)(sdl->rcst.posy - sdl->rcst.dirY * MOVE)][(int)sdl->rcst.posx] == 0) && (sdl->pars.map[(int)sdl->rcst.posy][(int)(sdl->rcst.posx - sdl->rcst.dirX * MOVE)] == 0))
 		{
@@ -79,5 +79,4 @@ void	event(t_sdl *sdl)
 		sdl->end = 1;
 	vertical_deplacement(sdl);
 	horizontal_deplacement(sdl);
-	draw(sdl);
 }

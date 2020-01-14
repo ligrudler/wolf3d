@@ -6,7 +6,7 @@
 /*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:43:42 by grudler           #+#    #+#             */
-/*   Updated: 2020/01/06 14:35:00 by grudler          ###   ########.fr       */
+/*   Updated: 2020/01/14 16:24:08 by grudler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,22 @@
 # define WINY 800
 # define MOVE 0.1
 # define MOVEDIR 0.05
+# define MAX_FPS 60
+
+typedef struct	s_timer
+{
+	uint32_t		time;
+	uint32_t		oldtime;
+	uint32_t		frame_number;
+}				t_timer;
+
+typedef struct	s_fps
+{
+	unsigned int lastTime;
+	unsigned int currentTime;
+	double		currentFPS;
+	unsigned int	framelimit;
+}				t_fps;
 
 typedef struct	s_raycast
 {
@@ -98,6 +114,8 @@ typedef struct	s_sdl
 	SDL_Scancode scancode;
 	t_pars		pars;
 	t_raycast	rcst;
+
+	t_fps fps;
 }				t_sdl;
 
 int		ft_parser(int fd, t_sdl *sdl);
@@ -113,6 +131,9 @@ void	raycast(t_sdl *sdl);
 void	init_raycast(t_sdl *sdl);
 void	draw(t_sdl *sdl);
 void	draw_sky_ground(t_sdl *sdl);
+void	fps_counter(t_sdl *sdl);
+void	fps_limit(t_sdl *sdl);
+int		fps_limit_delay(t_sdl *sdl);
 
 
 #endif

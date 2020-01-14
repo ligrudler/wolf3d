@@ -6,7 +6,7 @@
 /*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:51:44 by grudler           #+#    #+#             */
-/*   Updated: 2020/01/06 14:33:59 by grudler          ###   ########.fr       */
+/*   Updated: 2020/01/14 16:24:05 by grudler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,12 @@ int		main(int argc, char **argv)
 		ft_parser(fd, &sdl);
 		init_sdl(&sdl);
 		init_raycast(&sdl);
-		draw(&sdl);
 		while (!(sdl.end))
+		{
 			event(&sdl);
+			fps_limit(&sdl);
+			draw(&sdl);
+		}
 		SDL_DestroyRenderer(sdl.renderer);
 		SDL_DestroyWindow(sdl.fenetre);
 		SDL_Quit();

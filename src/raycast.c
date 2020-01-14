@@ -6,7 +6,7 @@
 /*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 15:35:26 by grudler           #+#    #+#             */
-/*   Updated: 2020/01/06 16:25:59 by grudler          ###   ########.fr       */
+/*   Updated: 2020/01/14 16:24:07 by grudler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,20 @@ void	init_raycast(t_sdl *sdl)
 	sdl->rcst.dirY = -1;
 	sdl->rcst.planX = 0.66; // plan de la camera (ce quon affiche a lecran) Fov de 66 ici
 	sdl->rcst.planY = 0;
+
+	sdl->fps.lastTime = 0;
+	sdl->fps.framelimit = 0;
 }
 
 void	raycast(t_sdl *sdl)
 {
 	int			x;
+	/*double lastTime;
+	double currentTime;
+	double		currentFPS;*/
 
 	x = 0;
+	//lastTime = SDL_GetTicks();
 
 // boucle ou on parcourt tous les x de l'ecran pour savoir pour chaque x, quelle est la hauteur de la droite verticale a dessiner et ou elle se situe
 	while (x < WINX)
@@ -117,4 +124,11 @@ void	raycast(t_sdl *sdl)
 		}
 		x++;
 	}
+	//fps_counter(sdl);
+	/* Calcul FPS
+		currentTime = SDL_GetTicks();
+		if ((currentTime - lastTime) != 0)
+			currentFPS = 1000 / (currentTime - lastTime);
+		lastTime = currentTime;
+		printf("fps = %f\n", currentFPS);*/
 }
