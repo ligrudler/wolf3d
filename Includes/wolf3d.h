@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:43:42 by grudler           #+#    #+#             */
-/*   Updated: 2020/01/14 16:24:08 by grudler          ###   ########.fr       */
+/*   Updated: 2020/01/20 11:37:25 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define MOVE 0.1
 # define MOVEDIR 0.05
 # define MAX_FPS 60
+# define ARGB 372645892 // equivalent de SDL_PIXELFORMAT_ARGB8888 
 
 typedef struct	s_timer
 {
@@ -73,6 +74,7 @@ typedef struct	s_raycast
 	int		lineheight;
 	int		lowpix;
 	int		highpix;
+	uint32_t color;
 }				t_raycast;
 
 typedef struct	s_pt
@@ -110,6 +112,8 @@ typedef struct	s_sdl
 	SDL_Point    point[WINX/2];
 	char		key[SDL_NUM_SCANCODES];
 	int			end;
+	SDL_Texture *texture;
+	Uint32 *img;
 	Uint32		type;
 	SDL_Scancode scancode;
 	t_pars		pars;
@@ -134,6 +138,9 @@ void	draw_sky_ground(t_sdl *sdl);
 void	fps_counter(t_sdl *sdl);
 void	fps_limit(t_sdl *sdl);
 int		fps_limit_delay(t_sdl *sdl);
+void put_pixels(t_sdl* sdl, uint32_t color, int x, int y);
+uint32_t	convert_argb(unsigned int a, unsigned int r, unsigned int g,
+	unsigned int b);
 
 
 #endif

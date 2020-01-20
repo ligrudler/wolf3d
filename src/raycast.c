@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 15:35:26 by grudler           #+#    #+#             */
-/*   Updated: 2020/01/14 16:24:07 by grudler          ###   ########.fr       */
+/*   Updated: 2020/01/20 11:36:34 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,18 +108,18 @@ void	raycast(t_sdl *sdl)
 			sdl->rcst.highpix = WINY - 1;
 
 // Changement de couleur si le rayon touche en x ou en y side
-		if (sdl->rcst.side == 1)
-			SDL_SetRenderDrawColor(sdl->renderer, 255, 255, 0, 0);
+if (sdl->rcst.side == 1)
+			sdl->rcst.color = convert_argb(255, 255, 0, 0);
 		else
-			SDL_SetRenderDrawColor(sdl->renderer, 255, 0, 0, 255);
+			sdl->rcst.color = convert_argb(255, 0, 0, 255);
 
-// Dessine la droite verticale
+		// Dessine la droite verticale
 		int y;
 
 		y = sdl->rcst.lowpix;
 		while (y <= sdl->rcst.highpix)
 		{
-			SDL_RenderDrawPoint(sdl->renderer, x, y);
+			put_pixels(sdl, sdl->rcst.color, x, y);
 			y++;
 		}
 		x++;
