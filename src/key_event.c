@@ -6,7 +6,7 @@
 /*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/06 11:25:38 by grudler           #+#    #+#             */
-/*   Updated: 2020/01/21 19:48:00 by grudler          ###   ########.fr       */
+/*   Updated: 2020/01/21 19:55:19 by grudler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,13 @@ void	event(t_sdl *sdl)
 		if (sdl->evenements.type == SDL_KEYUP)
 			sdl->key[sdl->evenements.key.keysym.scancode] = 0;
 	}
+	if (sdl->evenements.type == SDL_QUIT)
+		sdl->end = 1;
 	if (sdl->key[SDL_SCANCODE_ESCAPE])
 		sdl->end = 1;
 	if (sdl->key[SDL_SCANCODE_SPACE])
 		init_raycast(sdl);
+
 	vertical_deplacement(sdl);
 	horizontal_deplacement(sdl);
 	SDL_SetRenderDrawColor(sdl->renderer, 0, 0, 0, 0);
