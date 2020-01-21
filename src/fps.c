@@ -6,7 +6,7 @@
 /*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 15:01:43 by grudler           #+#    #+#             */
-/*   Updated: 2020/01/14 16:24:03 by grudler          ###   ########.fr       */
+/*   Updated: 2020/01/21 19:34:06 by grudler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	fps_counter(t_sdl *sdl)
 	if (sdl->fps.currentTime != 0)
 		sdl->fps.currentFPS = 1000 / (sdl->fps.currentTime);
 	sdl->fps.lastTime = getticks;
-	printf("fps = %f\n", sdl->fps.currentFPS);
+	//printf("fps = %f\n", sdl->fps.currentFPS);
 }
 
 void	fps_limit(t_sdl *sdl)

@@ -6,7 +6,7 @@
 /*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:51:44 by grudler           #+#    #+#             */
-/*   Updated: 2020/01/14 16:24:05 by grudler          ###   ########.fr       */
+/*   Updated: 2020/01/21 19:19:42 by grudler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,17 @@ int init_sdl(t_sdl *sdl)
 
 	terminer = 0;
 	if(SDL_Init(SDL_INIT_VIDEO) < 0)
-		ft_error();
+	{
+		SDL_Log("Unable to initialize SDL: %s", SDL_GetError());
+		return (1);
+	}
 	if (!(sdl->fenetre = SDL_CreateWindow("Wolf3d", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WINX, WINY, SDL_WINDOW_SHOWN)))
 		ft_error();
 	if (!(sdl->renderer = SDL_CreateRenderer(sdl->fenetre, -1, SDL_RENDERER_SOFTWARE)))
+		ft_error();
+	if (!(sdl->img = (uint32_t*)malloc(WINX * (WINY + 1) * sizeof(uint32_t))))
+		ft_error(); // nettoyage et free � cr�er
+	if (! (sdl->texture = SDL_CreateTexture(sdl->renderer, ARGB, 1, WINX, WINY)))
 		ft_error();
 	return (0);
 }

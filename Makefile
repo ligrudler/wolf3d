@@ -6,7 +6,7 @@
 #    By: grudler <grudler@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/20 16:56:04 by lgrudler          #+#    #+#              #
-#    Updated: 2020/01/07 15:13:57 by grudler          ###   ########.fr        #
+#    Updated: 2020/01/21 19:13:05 by grudler          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,8 @@ SRC= main.c\
 	draw.c\
 	raycast.c\
 	key_event.c\
-	fps.c
+	fps.c\
+	display.c
 SRCS= $(addprefix $(SRC_DIR),$(SRC))
 OBJ_DIR= obj/
 OBJ= $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRCS))
