@@ -3,14 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:51:44 by grudler           #+#    #+#             */
-/*   Updated: 2020/01/21 19:19:42 by grudler          ###   ########.fr       */
+/*   Updated: 2020/01/22 14:54:27 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/wolf3d.h"
+
+// fonction pour initialiser les textures
+// Penser a virer les printfs 
+int init_texture (t_sdl *sdl)
+{
+	sdl->surf = SDL_LoadBMP("./ressources/Blue4.bmp");
+	if (sdl->surf)
+	{
+		// image = SDL_ConvertSurfaceFormat(image, SDL_PIXELFORMAT_ARGB8888, 0);
+		// sdl->test_texture = SDL_CreateTextureFromSurface(sdl->renderer, image);
+		// if (sdl->test_texture)
+		// {
+			printf("texture cree\n");
+			return (1);
+		// }
+		// else
+		// 	printf("error text\n");
+	}
+	else
+		printf("echec de chargement du sprite (%s)\n", SDL_GetError());
+	return (0);
+
+}
 
 int init_sdl(t_sdl *sdl)
 {
@@ -29,6 +52,8 @@ int init_sdl(t_sdl *sdl)
 	if (!(sdl->img = (uint32_t*)malloc(WINX * (WINY + 1) * sizeof(uint32_t))))
 		ft_error(); // nettoyage et free � cr�er
 	if (! (sdl->texture = SDL_CreateTexture(sdl->renderer, ARGB, 1, WINX, WINY)))
+		ft_error();
+	if (! (init_texture(sdl)))
 		ft_error();
 	return (0);
 }

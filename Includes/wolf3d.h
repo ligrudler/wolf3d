@@ -6,7 +6,7 @@
 /*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:43:42 by grudler           #+#    #+#             */
-/*   Updated: 2020/01/26 17:15:28 by grudler          ###   ########.fr       */
+/*   Updated: 2020/01/26 17:24:46 by grudler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ typedef struct	s_sdl
 	SDL_Scancode scancode;
 	t_pars		pars;
 	t_raycast	rcst;
+	SDL_Surface *surf;
 
 	t_fps fps;
 }				t_sdl;
