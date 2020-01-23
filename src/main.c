@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:51:44 by grudler           #+#    #+#             */
-/*   Updated: 2020/01/23 15:23:13 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/01/23 17:43:58 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,21 +52,11 @@ int init_sdl(t_sdl *sdl)
 	printf("WINDOW Create\n");
 	if (! (init_texture(sdl)))
 		ft_error();
+	// Creer la surface de travail
 	sdl->img = SDL_CreateRGBSurfaceWithFormat(0, WINX, WINY, 32, SDL_PIXELFORMAT_ARGB32);
     if (sdl->img == NULL) {
-        SDL_Log("SDL_CreateRGBSurfaceWithFormat() failed: %s", SDL_GetError());
+        ft_error();
 	}
-
-	/*
-	if (!(sdl->renderer = SDL_CreateRenderer(sdl->fenetre, -1, SDL_RENDERER_SOFTWARE)))
-		ft_error();
-	if (!(sdl->img = (uint32_t*)malloc(WINX * (WINY + 1) * sizeof(uint32_t))))
-		ft_error(); // nettoyage et free � cr�er
-	if (! (sdl->texture = SDL_CreateTexture(sdl->renderer, ARGB, 1, WINX, WINY)))
-		ft_error();
-	if (! (init_texture(sdl)))
-		ft_error();
-	*/
 	return (0);
 }
 
@@ -88,10 +78,11 @@ int		main(int argc, char **argv)
 		while (!(sdl.end))
 		{
 			event(&sdl);
-			//fps_limit(&sdl);
+			//fps_limit(&sdl); // affichage de FPS 
 			draw(&sdl);
 		}
-		// need destroy img struct, free memory
+		SDL_FreeSurface((&sdl)->img);
+		SDL_FreeSurface((&sdl)->screen);
 		SDL_DestroyWindow(sdl.fenetre);
 		SDL_Quit();
 		free_tpars(&sdl, sdl.pars.nb_lin);

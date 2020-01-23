@@ -12,22 +12,9 @@
 
 #include "../Includes/wolf3d.h"
 
-void PutPixel32_nolock(SDL_Surface * surface, int x, int y, Uint32 color)
-{
-    Uint8 * pixel = (Uint8*)surface->pixels;
-    pixel += (y * surface->pitch) + (x * sizeof(Uint32));
-    *((Uint32*)pixel) = color;
-}
-
 
 void put_pixels(t_sdl* sdl, uint32_t color, int x, int y)
 {
-	//if( SDL_MUSTLOCK(sdl->img) )
-      //  SDL_LockSurface(sdl->img);
-    //PutPixel32_nolock(sdl->img, x, y, color);
-    //if( SDL_MUSTLOCK(sdl->img) )
-     //   SDL_UnlockSurface(sdl->img);
-	
 	uint32_t *pixels;
 
 	pixels = (uint32_t *)sdl->img->pixels;
@@ -35,7 +22,6 @@ void put_pixels(t_sdl* sdl, uint32_t color, int x, int y)
 	{
 		pixels[x + WINY * y] = color;
  	}
-
 }
 
 uint32_t	convert_argb(unsigned int a, unsigned int r, unsigned int g,
@@ -56,6 +42,23 @@ uint32_t	convert_argb(unsigned int a, unsigned int r, unsigned int g,
 	return (nb);
 }
 
+void clear_screen(t_sdl *sdl)
+{
+
+	uint32_t *pixels;
+	int i;
+	int n;
+
+	n = WINY * WINX;
+	i = 0;
+	pixels = (uint32_t *)sdl->img->pixels;
+	while(i < n)
+	{
+		pixels[i] = 0;
+		i++;
+	 }
+}
+
 void update_screen(t_sdl* sdl)
 {
 /*
@@ -71,19 +74,14 @@ void update_screen(t_sdl* sdl)
 		pixel[i] = 0;
 		i++;
 	}*/
-	SDL_FillRect(sdl->screen, NULL, 0); // Need to recreate this function
+	//SDL_FillRect(sdl->screen, NULL, 0); // Need to recreate this function
 	SDL_BlitSurface(sdl->img, NULL, sdl->screen, NULL);
 	SDL_UpdateWindowSurface(sdl->fenetre);
-
-	/*
-	SDL_UpdateTexture(sdl->texture, NULL, sdl->img, WINX * sizeof(uint32_t));
-	SDL_RenderCopy(sdl->renderer, sdl->texture, NULL, NULL);
-	SDL_RenderPresent(sdl->renderer);
-	*/
 }
 
 void	draw(t_sdl *sdl)
 {
+	clear_screen(sdl);
 	draw_sky_ground(sdl);
 	raycast(sdl);
 	//draw_picture(sdl);
@@ -98,14 +96,12 @@ void	draw_sky_ground(t_sdl *sdl)
 	uint32_t color;
 
 	j = 0;
-	//SDL_SetRenderDrawColor(sdl->renderer, 0, 0, 255, 0);
 	color = convert_argb(255, 135, 206, 255);
 	while (j <= WINY /*/ 2*/)
 	{
 		i = 0;
 		while (i < WINX)
 		{
-			//SDL_RenderDrawPoint(sdl->renderer, i, j);
 			put_pixels(sdl, color, i, j);
 			i++;
 		}
@@ -118,7 +114,6 @@ void	draw_sky_ground(t_sdl *sdl)
 		i = 0;
 		while (i < WINX)
 		{
-			//SDL_RenderDrawPoint(sdl->renderer, i, j);
 			put_pixels(sdl, color, i, j);
 			i++;
 		}
