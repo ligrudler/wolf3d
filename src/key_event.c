@@ -6,7 +6,7 @@
 /*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/06 11:25:38 by grudler           #+#    #+#             */
-/*   Updated: 2020/01/26 17:15:20 by grudler          ###   ########.fr       */
+/*   Updated: 2020/01/26 17:25:28 by grudler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,8 @@ void	event(t_sdl *sdl)
 
 	vertical_deplacement(sdl);
 	horizontal_deplacement(sdl);
-	SDL_SetRenderDrawColor(sdl->renderer, 0, 0, 0, 0);
+
+	/*SDL_SetRenderDrawColor(sdl->renderer, 0, 0, 0, 0);
 	if (SDL_RenderClear(sdl->renderer) != 0)
-		ft_error();
+		ft_error();*/
 }

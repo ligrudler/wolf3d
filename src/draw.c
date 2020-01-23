@@ -12,11 +12,28 @@
 
 #include "../Includes/wolf3d.h"
 
+void PutPixel32_nolock(SDL_Surface * surface, int x, int y, Uint32 color)
+{
+    Uint8 * pixel = (Uint8*)surface->pixels;
+    pixel += (y * surface->pitch) + (x * sizeof(Uint32));
+    *((Uint32*)pixel) = color;
+}
+
+
 void put_pixels(t_sdl* sdl, uint32_t color, int x, int y)
 {
+	//if( SDL_MUSTLOCK(sdl->img) )
+      //  SDL_LockSurface(sdl->img);
+    //PutPixel32_nolock(sdl->img, x, y, color);
+    //if( SDL_MUSTLOCK(sdl->img) )
+     //   SDL_UnlockSurface(sdl->img);
+	
+	uint32_t *pixels;
+
+	pixels = (uint32_t *)sdl->img->pixels;
 	if ((x > 0 && x < WINX) && (y > 0 && x < WINY))
 	{
-		sdl->img[x + WINY * y] = color;
+		pixels[x + WINY * y] = color;
  	}
 
 }
@@ -34,17 +51,35 @@ uint32_t	convert_argb(unsigned int a, unsigned int r, unsigned int g,
 		g = 0xff;
 	if (b > 0xff)
 		b = 0xff;
-	nb = ((a << 24) | (r << 16) | (g << 8) | (b));
+	//nb = ((a << 24) | (r << 16) | (g << 8) | (b));
+	nb = ((b << 24) | (g << 16) | (r << 8) | (a));
 	return (nb);
 }
 
 void update_screen(t_sdl* sdl)
 {
+/*
+	int n;
+	int i;
+	Uint8 * pixel = (Uint8*)sdl->img->pixels;
 
+	n = WINX * WINY;
+	i = 0;
+
+	while (i < n)
+	{
+		pixel[i] = 0;
+		i++;
+	}*/
+	SDL_FillRect(sdl->screen, NULL, 0); // Need to recreate this function
+	SDL_BlitSurface(sdl->img, NULL, sdl->screen, NULL);
+	SDL_UpdateWindowSurface(sdl->fenetre);
+
+	/*
 	SDL_UpdateTexture(sdl->texture, NULL, sdl->img, WINX * sizeof(uint32_t));
 	SDL_RenderCopy(sdl->renderer, sdl->texture, NULL, NULL);
 	SDL_RenderPresent(sdl->renderer);
-
+	*/
 }
 
 void	draw(t_sdl *sdl)

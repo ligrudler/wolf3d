@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 15:35:26 by grudler           #+#    #+#             */
-/*   Updated: 2020/01/22 14:53:55 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/01/22 17:32:08 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,6 @@ void	raycast(t_sdl *sdl)
 		y = sdl->rcst.lowpix;
 		while (y <= sdl->rcst.highpix)
 		{
-			sdl->rcst.color = (uint32_t)sdl->surf->pixels[0];
 			put_pixels(sdl, sdl->rcst.color, x, y);
 			y++;
 		}

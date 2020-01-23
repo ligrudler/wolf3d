@@ -14,6 +14,7 @@
 
 #include "../Includes/wolf3d.h"
 // need to delete
+/*
 void draw_picture(t_sdl* sdl)
 {
 	SDL_Surface* image = SDL_LoadBMP("d:\\Dev\\health.bmp");
@@ -33,3 +34,4 @@ void draw_picture(t_sdl* sdl)
 	else
 		printf("echec de chargement du sprite (%s)\n", SDL_GetError());
 }
+*/
