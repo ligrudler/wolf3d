@@ -6,7 +6,7 @@
 /*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:43:42 by grudler           #+#    #+#             */
-/*   Updated: 2020/01/21 19:48:09 by grudler          ###   ########.fr       */
+/*   Updated: 2020/01/26 17:15:28 by grudler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@
 # define BUFF_SIZE 10
 # define WINX 800
 # define WINY 800
-# define MOVE 0.09
+# define HITBOX 0.3
+# define MOVE 0.05
 # define MOVEDIR 0.05
 # define MAX_FPS 60
 # define ARGB 372645892 // equivalent de SDL_PIXELFORMAT_ARGB8888

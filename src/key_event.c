@@ -6,7 +6,7 @@
 /*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/06 11:25:38 by grudler           #+#    #+#             */
-/*   Updated: 2020/01/21 19:55:19 by grudler          ###   ########.fr       */
+/*   Updated: 2020/01/26 17:15:20 by grudler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,26 +36,24 @@ void	horizontal_deplacement(t_sdl *sdl)
 
 void	vertical_deplacement(t_sdl *sdl)
 {
-	double y;
-	if (sdl->rcst.dirY < 0)
-		y = sdl->rcst.posy - 0.1;
-	else if (sdl->rcst.dirY >= 0)
-		y = sdl->rcst.posy + 0.1;
-
 	if (sdl->key[SDL_SCANCODE_UP])
 	{
-		if ((sdl->pars.map[(int)(y + sdl->rcst.dirY * MOVE)][(int)sdl->rcst.posx] == 0) && (sdl->pars.map[(int)y][(int)(sdl->rcst.posx + sdl->rcst.dirX * MOVE)] == 0))
+		if (sdl->pars.map[(int)(sdl->rcst.posy + sdl->rcst.dirY * HITBOX)][(int)(sdl->rcst.posx + sdl->rcst.dirX * HITBOX)] == 0)
 		{
-			sdl->rcst.posy += sdl->rcst.dirY * MOVE;
-			sdl->rcst.posx += sdl->rcst.dirX * MOVE;
+			if(sdl->pars.map[(int)(sdl->rcst.posy)][(int)(sdl->rcst.posx + sdl->rcst.dirX * HITBOX)] == 0)
+				sdl->rcst.posx += sdl->rcst.dirX * MOVE;
+			if(sdl->pars.map[(int)(sdl->rcst.posy + sdl->rcst.dirY * HITBOX)][(int)(sdl->rcst.posx)] == 0)
+				sdl->rcst.posy += sdl->rcst.dirY * MOVE;
 		}
 	}
 	if (sdl->key[SDL_SCANCODE_DOWN])
 	{
-		if ((sdl->pars.map[(int)(y - sdl->rcst.dirY * MOVE)][(int)sdl->rcst.posx] == 0) && (sdl->pars.map[(int)y][(int)(sdl->rcst.posx - sdl->rcst.dirX * MOVE)] == 0))
+		if (sdl->pars.map[(int)(sdl->rcst.posy - sdl->rcst.dirY * HITBOX)][(int)(sdl->rcst.posx - sdl->rcst.dirX * HITBOX)] == 0)
 		{
-			sdl->rcst.posy -= sdl->rcst.dirY * MOVE;
-			sdl->rcst.posx -= sdl->rcst.dirX * MOVE;
+			if(sdl->pars.map[(int)(sdl->rcst.posy)][(int)(sdl->rcst.posx - sdl->rcst.dirX * HITBOX)] == 0)
+				sdl->rcst.posx -= sdl->rcst.dirX * MOVE;
+			if(sdl->pars.map[(int)(sdl->rcst.posy - sdl->rcst.dirY * HITBOX)][(int)(sdl->rcst.posx)] == 0)
+				sdl->rcst.posy -= sdl->rcst.dirY * MOVE;
 		}
 	}
 }
