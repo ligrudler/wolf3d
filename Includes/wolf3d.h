@@ -6,7 +6,7 @@
 /*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:43:42 by grudler           #+#    #+#             */
-/*   Updated: 2020/01/26 17:15:28 by grudler          ###   ########.fr       */
+/*   Updated: 2020/01/26 17:25:32 by grudler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,16 +102,17 @@ typedef struct	s_sdl
 {
 	SDL_Window *fenetre;
 	SDL_Event evenements;
-	SDL_Renderer *renderer;
 	SDL_Point    point[WINX/2];
 	char		key[SDL_NUM_SCANCODES];
 	int			end;
-	SDL_Texture *texture;
-	Uint32 *img;
+//	Uint32 *img;
 	Uint32		type;
 	SDL_Scancode scancode;
 	t_pars		pars;
 	t_raycast	rcst;
+	SDL_Surface *surf;
+	SDL_Surface *img;
+	SDL_Surface *screen; // Surface affichant l'ecran
 
 	t_fps fps;
 }				t_sdl;
