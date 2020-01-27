@@ -6,7 +6,7 @@
 #    By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/20 16:56:04 by lgrudler          #+#    #+#              #
-#    Updated: 2020/01/22 17:33:41 by qlouisia         ###   ########.fr        #
+#    Updated: 2020/01/27 11:11:15 by qlouisia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ MAGENTA= \033[35m
 ################################################################################
 NAME= wolf3d
 CC= gcc
-CFLAGS= -g3 #-Wall -Wextra -Werror -g3
+CFLAGS= -g3 #-Wall -Wextra -Werror 
 SRC_DIR= src/
 SRC= main.c\
 	ft_parser.c\
