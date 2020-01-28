@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 15:35:26 by grudler           #+#    #+#             */
-/*   Updated: 2020/01/22 17:32:08 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/01/28 13:07:53 by grudler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,11 +104,29 @@ void	raycast(t_sdl *sdl)
 			sdl->rcst.highpix = WINY - 1;
 
 // Changement de couleur si le rayon touche en x ou en y side
-		if (sdl->rcst.side == 1)
-			sdl->rcst.color = convert_argb(255, 255, 0, 0);
-		else
-			sdl->rcst.color = convert_argb(255, 0, 0, 255);
 
+	if (sdl->rcst.dirX > 0)
+	{
+		if ((int)sdl->rcst.posx >= sdl->rcst.mapX && sdl->rcst.side == 0)
+			sdl->rcst.color = convert_argb(255, 0, 0, 0);
+		else if (sdl->rcst.side == 0)
+			sdl->rcst.color = convert_argb(255, 255, 255, 255);
+		if ((int)sdl->rcst.posy <= sdl->rcst.mapY && sdl->rcst.side == 1)
+			sdl->rcst.color = convert_argb(255, 0, 0, 255);
+		else if (sdl->rcst.side == 1)
+			sdl->rcst.color = convert_argb(255, 255, 0, 0);
+	}
+	else
+	{
+		if ((int)sdl->rcst.posx < sdl->rcst.mapX && sdl->rcst.side == 0)
+			sdl->rcst.color = convert_argb(255, 255, 255, 255);
+		else if (sdl->rcst.side == 0)
+			sdl->rcst.color = convert_argb(255, 0, 0, 0);
+		if ((int)sdl->rcst.posy > sdl->rcst.mapY && sdl->rcst.side == 1)
+			sdl->rcst.color = convert_argb(255, 255, 0, 0);
+		else if (sdl->rcst.side == 1)
+			sdl->rcst.color = convert_argb(255, 0, 0, 255);
+	}
 // Dessine la droite verticale
 		int y;
 
@@ -120,4 +138,5 @@ void	raycast(t_sdl *sdl)
 		}
 		x++;
 	}
+
 }

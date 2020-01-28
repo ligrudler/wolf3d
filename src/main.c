@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:51:44 by grudler           #+#    #+#             */
-/*   Updated: 2020/01/23 17:43:58 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/01/28 13:04:32 by grudler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/wolf3d.h"
 
 // fonction pour initialiser les textures
-// Penser a virer les printfs 
+// Penser a virer les printfs
 int init_texture (t_sdl *sdl)
 {
 	sdl->surf = SDL_LoadBMP("./ressources/Blue4.bmp");
@@ -63,7 +63,7 @@ int init_sdl(t_sdl *sdl)
 
 int		main(int argc, char **argv)
 {
-	
+
 	int fd;
 	t_sdl sdl;
 
@@ -78,7 +78,7 @@ int		main(int argc, char **argv)
 		while (!(sdl.end))
 		{
 			event(&sdl);
-			//fps_limit(&sdl); // affichage de FPS 
+			//fps_limit(&sdl); // affichage de FPS
 			draw(&sdl);
 		}
 		SDL_FreeSurface((&sdl)->img);
@@ -91,5 +91,5 @@ int		main(int argc, char **argv)
 	ft_putstr("ERROR, MAIN ARGV"); //temp
 
 	return (0);
-	
+
 }
