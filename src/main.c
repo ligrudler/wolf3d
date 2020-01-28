@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:51:44 by grudler           #+#    #+#             */
-/*   Updated: 2020/01/23 17:43:58 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/01/28 13:08:17 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,22 @@ int init_texture (t_sdl *sdl)
 		// if (sdl->test_texture)
 		// {
 			printf("texture cree\n");
+			 sdl->surf = SDL_ConvertSurfaceFormat(sdl->surf,SDL_PIXELFORMAT_ARGB8888,0);
+			 sdl->img = SDL_ConvertSurfaceFormat(sdl->img,SDL_PIXELFORMAT_ARGB8888,0);
+			SDL_PixelFormat* pixelFormat = sdl->surf->format;
+			Uint32 pixelFormatEnum = pixelFormat->format;
+			const char* surfacePixelFormatName = SDL_GetPixelFormatName(pixelFormatEnum);
+			SDL_Log("The surface surf pixelformat is %s\n", surfacePixelFormatName);
+
+			SDL_PixelFormat* pixelFormat2 = sdl->screen->format;
+			Uint32 pixelFormatEnum2 = pixelFormat2->format;
+			const char* surfacePixelFormatName2 = SDL_GetPixelFormatName(pixelFormatEnum2);
+			SDL_Log("The surface screen pixelformat is %s\n", surfacePixelFormatName2);
+			
+			SDL_PixelFormat* pixelFormat3 = sdl->img->format;
+			Uint32 pixelFormatEnum3 = pixelFormat3->format;
+			const char* surfacePixelFormatName3 = SDL_GetPixelFormatName(pixelFormatEnum3);
+			SDL_Log("The surface img pixelformat is %s\n", surfacePixelFormatName3);
 			return (1);
 		// }
 		// else
@@ -50,13 +66,13 @@ int init_sdl(t_sdl *sdl)
 	// Creer la surface pour afficher la fenetre
 	sdl->screen = SDL_GetWindowSurface(sdl->fenetre);
 	printf("WINDOW Create\n");
-	if (! (init_texture(sdl)))
-		ft_error();
 	// Creer la surface de travail
 	sdl->img = SDL_CreateRGBSurfaceWithFormat(0, WINX, WINY, 32, SDL_PIXELFORMAT_ARGB32);
     if (sdl->img == NULL) {
         ft_error();
 	}
+	if (! (init_texture(sdl)))
+		ft_error();
 	return (0);
 }
 

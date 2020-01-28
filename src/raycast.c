@@ -6,11 +6,21 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 15:35:26 by grudler           #+#    #+#             */
-/*   Updated: 2020/01/22 17:32:08 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/01/28 13:09:01 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/wolf3d.h"
+
+// a bouger 
+Uint32 getpixel(SDL_Surface *surface, int x, int y)
+{
+    //int bpp = surface->format->BytesPerPixel;
+    /* Here p is the address to the pixel we want to retrieve */
+    Uint8 *p = (Uint8 *)surface->pixels + y * surface->pitch + x * 4;  // 4=bpp
+ 
+    return *(Uint32 *)p;
+}
 
 void	init_raycast(t_sdl *sdl)
 {
@@ -104,11 +114,21 @@ void	raycast(t_sdl *sdl)
 			sdl->rcst.highpix = WINY - 1;
 
 // Changement de couleur si le rayon touche en x ou en y side
+		// test pour recuperer pixels
+		uint32_t *pixels;
+		pixels = (uint32_t *)sdl->surf->pixels;
+		sdl->rcst.color = getpixel(sdl->surf,0,0);
+		//
 		if (sdl->rcst.side == 1)
-			sdl->rcst.color = convert_argb(255, 255, 0, 0);
+		{
+		sdl->rcst.color = getpixel(sdl->surf,0,0);
+			//sdl->rcst.color = convert_argb(255, 255, 225, 200);
+		}
 		else
-			sdl->rcst.color = convert_argb(255, 0, 0, 255);
-
+		{
+		sdl->rcst.color = getpixel(sdl->surf,10,10);
+			//sdl->rcst.color = convert_argb(255, 0, 0, 255);
+		}
 // Dessine la droite verticale
 		int y;
 

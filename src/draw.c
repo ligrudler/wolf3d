@@ -37,8 +37,8 @@ uint32_t	convert_argb(unsigned int a, unsigned int r, unsigned int g,
 		g = 0xff;
 	if (b > 0xff)
 		b = 0xff;
-	//nb = ((a << 24) | (r << 16) | (g << 8) | (b));
-	nb = ((b << 24) | (g << 16) | (r << 8) | (a));
+	nb = ((a << 24) | (r << 16) | (g << 8) | (b));
+	//nb = ((b << 24) | (g << 16) | (r << 8) | (a));
 	return (nb);
 }
 
@@ -61,20 +61,6 @@ void clear_screen(t_sdl *sdl)
 
 void update_screen(t_sdl* sdl)
 {
-/*
-	int n;
-	int i;
-	Uint8 * pixel = (Uint8*)sdl->img->pixels;
-
-	n = WINX * WINY;
-	i = 0;
-
-	while (i < n)
-	{
-		pixel[i] = 0;
-		i++;
-	}*/
-	//SDL_FillRect(sdl->screen, NULL, 0); // Need to recreate this function
 	SDL_BlitSurface(sdl->img, NULL, sdl->screen, NULL);
 	SDL_UpdateWindowSurface(sdl->fenetre);
 }
