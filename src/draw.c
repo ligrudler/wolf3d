@@ -24,24 +24,6 @@ void put_pixels(t_sdl* sdl, uint32_t color, int x, int y)
  	}
 }
 
-uint32_t	convert_argb(unsigned int a, unsigned int r, unsigned int g,
-	unsigned int b)
-{
-	unsigned int nb;
-
-	if (a > 0xff)
-		a = 0xff;
-	if (r > 0xff)
-		r = 0xff;
-	if (g > 0xff)
-		g = 0xff;
-	if (b > 0xff)
-		b = 0xff;
-	//nb = ((a << 24) | (r << 16) | (g << 8) | (b));
-	nb = ((b << 24) | (g << 16) | (r << 8) | (a));
-	return (nb);
-}
-
 void clear_screen(t_sdl *sdl)
 {
 
@@ -79,16 +61,6 @@ void update_screen(t_sdl* sdl)
 	SDL_UpdateWindowSurface(sdl->fenetre);
 }
 
-void	draw(t_sdl *sdl)
-{
-	clear_screen(sdl);
-	draw_sky_ground(sdl);
-	raycast(sdl);
-	//draw_picture(sdl);
-	update_screen(sdl);
-
-}
-
 void	draw_sky_ground(t_sdl *sdl)
 {
 	int i;
@@ -118,5 +90,27 @@ void	draw_sky_ground(t_sdl *sdl)
 			i++;
 		}
 		j++;
+	}
+}
+
+void	draw(t_sdl *sdl)
+{
+	clear_screen(sdl);
+	draw_sky_ground(sdl);
+	raycast(sdl);
+	//draw_picture(sdl);
+	update_screen(sdl);
+
+}
+
+void	draw_vertical_line(t_sdl *sdl, int x)
+{
+	int y;
+
+	y = sdl->rcst.lowpix;
+	while (y <= sdl->rcst.highpix)
+	{
+		put_pixels(sdl, sdl->rcst.color, x, y);
+		y++;
 	}
 }

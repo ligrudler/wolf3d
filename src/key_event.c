@@ -6,7 +6,7 @@
 /*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/06 11:25:38 by grudler           #+#    #+#             */
-/*   Updated: 2020/01/26 17:25:28 by grudler          ###   ########.fr       */
+/*   Updated: 2020/01/28 14:02:20 by grudler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	event(t_sdl *sdl)
 	if (sdl->key[SDL_SCANCODE_ESCAPE])
 		sdl->end = 1;
 	if (sdl->key[SDL_SCANCODE_SPACE])
-		init_raycast(sdl);
+		init_variables(sdl);
 
 	vertical_deplacement(sdl);
 	horizontal_deplacement(sdl);

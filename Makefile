@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+         #
+#    By: grudler <grudler@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/20 16:56:04 by lgrudler          #+#    #+#              #
-#    Updated: 2020/01/27 11:11:15 by qlouisia         ###   ########.fr        #
+#    Updated: 2020/01/28 14:13:42 by grudler          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ MAGENTA= \033[35m
 ################################################################################
 NAME= wolf3d
 CC= gcc
-CFLAGS= -g3 #-Wall -Wextra -Werror 
+CFLAGS= -g3 #-Wall -Wextra -Werror
 SRC_DIR= src/
 SRC= main.c\
 	ft_parser.c\
@@ -36,7 +36,9 @@ SRC= main.c\
 	raycast.c\
 	key_event.c\
 	fps.c\
-	display.c
+	display.c\
+	init.c\
+	color.c
 SRCS= $(addprefix $(SRC_DIR),$(SRC))
 OBJ_DIR= obj/
 OBJ= $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRCS))

@@ -6,7 +6,7 @@
 /*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:51:44 by grudler           #+#    #+#             */
-/*   Updated: 2020/01/28 13:04:32 by grudler          ###   ########.fr       */
+/*   Updated: 2020/01/28 14:02:17 by grudler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int		main(int argc, char **argv)
 		fd = open(argv[1], O_RDONLY);
 		ft_parser(fd, &sdl);
 		init_sdl(&sdl);
-		init_raycast(&sdl);
+		init_variables(&sdl);
 		printf("end initialization\n");
 		while (!(sdl.end))
 		{
