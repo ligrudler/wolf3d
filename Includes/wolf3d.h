@@ -6,7 +6,7 @@
 /*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:43:42 by grudler           #+#    #+#             */
-/*   Updated: 2020/01/26 17:25:32 by grudler          ###   ########.fr       */
+/*   Updated: 2020/01/28 14:17:14 by grudler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ typedef struct	s_raycast
 	double	raylenght;
 	int		stepX;
 	int		stepY;
-	int		hit;
 	int		side;
 
 	int		lineheight;
@@ -127,7 +126,7 @@ void	event(t_sdl *sdl);
 void draw_rect(t_sdl *sdl, t_pt *p1, t_pt *p2);
 void set_point(t_pt *point, double x, double y);
 void	raycast(t_sdl *sdl);
-void	init_raycast(t_sdl *sdl);
+void	init_variables(t_sdl *sdl);
 void	draw(t_sdl *sdl);
 void	draw_sky_ground(t_sdl *sdl);
 void	fps_counter(t_sdl *sdl);
@@ -135,6 +134,12 @@ void	fps_limit(t_sdl *sdl);
 int		fps_limit_delay(t_sdl *sdl);
 void put_pixels(t_sdl* sdl, uint32_t color, int x, int y);
 uint32_t	convert_argb(unsigned int a, unsigned int r, unsigned int g, unsigned int b);
+int		get_color(t_sdl *sdl);
+void	draw_vertical_line(t_sdl *sdl, int x);
+void	init_raycast(t_sdl *sdl, int x);
+
+
+
 
 
 #endif
