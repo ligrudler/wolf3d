@@ -24,6 +24,15 @@ void put_pixels(t_sdl* sdl, uint32_t color, int x, int y)
  	}
 }
 
+Uint32 getpixel(SDL_Surface *surface, int x, int y)
+{
+    //int bpp = surface->format->BytesPerPixel;
+    /* Here p is the address to the pixel we want to retrieve */
+    Uint8 *p = (Uint8 *)surface->pixels + y * surface->pitch + x * 4;  // 4=bpp
+ 
+    return *(Uint32 *)p;
+}
+
 void clear_screen(t_sdl *sdl)
 {
 
@@ -92,6 +101,33 @@ void	draw(t_sdl *sdl)
 void	draw_vertical_line(t_sdl *sdl, int x)
 {
 	int y;
+	long scale;
+	long index_frac;
+	int text_index;
+	uint32_t *pixels;
+
+	index_frac = 0;
+	text_index = 0;
+	scale = (64 << 16) / sdl->rcst.lineheight ;
+	y = sdl->rcst.lowpix;
+	while (y <= sdl->rcst.highpix)
+	{
+		text_index += (index_frac >> 16);
+		pixels = (uint32_t *)sdl->surf->pixels;
+		sdl->rcst.color = pixels[text_index];
+		//getpixel(sdl->surf,)
+		put_pixels(sdl, sdl->rcst.color, x, y);
+		index_frac += scale;      // advance index by scale-factor
+  		index_frac &= 66535;      // mask out the whole part and just keep t
+
+		y++;
+	}
+}
+
+/*
+void	draw_vertical_line(t_sdl *sdl, int x)
+{
+	int y;
 
 	y = sdl->rcst.lowpix;
 	while (y <= sdl->rcst.highpix)
@@ -100,3 +136,4 @@ void	draw_vertical_line(t_sdl *sdl, int x)
 		y++;
 	}
 }
+*/
