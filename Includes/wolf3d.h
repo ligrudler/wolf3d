@@ -6,7 +6,7 @@
 /*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:43:42 by grudler           #+#    #+#             */
-/*   Updated: 2020/01/28 14:17:14 by grudler          ###   ########.fr       */
+/*   Updated: 2020/01/30 12:43:30 by grudler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 # define WINX 800
 # define WINY 800
 # define HITBOX 0.3
-# define MOVE 0.05
 # define MOVEDIR 0.05
 # define MAX_FPS 60
 # define ARGB 372645892 // equivalent de SDL_PIXELFORMAT_ARGB8888
@@ -104,6 +103,7 @@ typedef struct	s_sdl
 	SDL_Point    point[WINX/2];
 	char		key[SDL_NUM_SCANCODES];
 	int			end;
+	double			move;
 //	Uint32 *img;
 	Uint32		type;
 	SDL_Scancode scancode;

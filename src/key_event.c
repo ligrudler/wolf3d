@@ -6,7 +6,7 @@
 /*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/06 11:25:38 by grudler           #+#    #+#             */
-/*   Updated: 2020/01/28 14:02:20 by grudler          ###   ########.fr       */
+/*   Updated: 2020/01/30 12:44:57 by grudler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ void	vertical_deplacement(t_sdl *sdl)
 		if (sdl->pars.map[(int)(sdl->rcst.posy + sdl->rcst.dirY * HITBOX)][(int)(sdl->rcst.posx + sdl->rcst.dirX * HITBOX)] == 0)
 		{
 			if(sdl->pars.map[(int)(sdl->rcst.posy)][(int)(sdl->rcst.posx + sdl->rcst.dirX * HITBOX)] == 0)
-				sdl->rcst.posx += sdl->rcst.dirX * MOVE;
+				sdl->rcst.posx += sdl->rcst.dirX * sdl->move;
 			if(sdl->pars.map[(int)(sdl->rcst.posy + sdl->rcst.dirY * HITBOX)][(int)(sdl->rcst.posx)] == 0)
-				sdl->rcst.posy += sdl->rcst.dirY * MOVE;
+				sdl->rcst.posy += sdl->rcst.dirY * sdl->move;
 		}
 	}
 	if (sdl->key[SDL_SCANCODE_DOWN])
@@ -51,9 +51,9 @@ void	vertical_deplacement(t_sdl *sdl)
 		if (sdl->pars.map[(int)(sdl->rcst.posy - sdl->rcst.dirY * HITBOX)][(int)(sdl->rcst.posx - sdl->rcst.dirX * HITBOX)] == 0)
 		{
 			if(sdl->pars.map[(int)(sdl->rcst.posy)][(int)(sdl->rcst.posx - sdl->rcst.dirX * HITBOX)] == 0)
-				sdl->rcst.posx -= sdl->rcst.dirX * MOVE;
+				sdl->rcst.posx -= sdl->rcst.dirX * sdl->move;
 			if(sdl->pars.map[(int)(sdl->rcst.posy - sdl->rcst.dirY * HITBOX)][(int)(sdl->rcst.posx)] == 0)
-				sdl->rcst.posy -= sdl->rcst.dirY * MOVE;
+				sdl->rcst.posy -= sdl->rcst.dirY * sdl->move;
 		}
 	}
 }
@@ -73,6 +73,10 @@ void	event(t_sdl *sdl)
 		sdl->end = 1;
 	if (sdl->key[SDL_SCANCODE_SPACE])
 		init_variables(sdl);
+	if (sdl->key[SDL_SCANCODE_LSHIFT])
+		sdl->move = 0.06;
+	else
+		sdl->move = 0.03;
 
 	vertical_deplacement(sdl);
 	horizontal_deplacement(sdl);
