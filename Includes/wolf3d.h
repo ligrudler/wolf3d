@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   wolf3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:43:42 by grudler           #+#    #+#             */
-/*   Updated: 2020/01/28 14:17:14 by grudler          ###   ########.fr       */
+/*   Updated: 2020/02/04 16:25:53 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef WOLF3D_H
 # define WOLF3D_H
 
+#include "../Includes/Bmp.h"
 # include "../libft/libft.h"
 # include <stdlib.h>
 # include <unistd.h>
@@ -138,6 +139,7 @@ int		get_color(t_sdl *sdl);
 void	draw_vertical_line(t_sdl *sdl, int x);
 void	init_raycast(t_sdl *sdl, int x);
 
+t_bmp *load_image (char *path);
 
 
 

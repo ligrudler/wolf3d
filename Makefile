@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: grudler <grudler@student.42.fr>            +#+  +:+       +#+         #
+#    By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/20 16:56:04 by lgrudler          #+#    #+#              #
-#    Updated: 2020/01/28 14:13:42 by grudler          ###   ########.fr        #
+#    Updated: 2020/02/04 16:24:42 by qlouisia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,8 @@ SRC= main.c\
 	fps.c\
 	display.c\
 	init.c\
-	color.c
+	color.c\
+	bmp_parser.c
 SRCS= $(addprefix $(SRC_DIR),$(SRC))
 OBJ_DIR= obj/
 OBJ= $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRCS))

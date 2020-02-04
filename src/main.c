@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:51:44 by grudler           #+#    #+#             */
-/*   Updated: 2020/01/28 14:44:31 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/02/04 16:47:14 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@
 // Penser a virer les printfs
 int init_texture (t_sdl *sdl)
 {
+	t_bmp *test;
+	test = load_image("./ressources/Blue4.bmp");
+
+	printf(" w : %d | h %d \n", test->width, test->height);
+	
 	sdl->surf = SDL_LoadBMP("./ressources/Blue4.bmp");
 	if (sdl->surf)
 	{
