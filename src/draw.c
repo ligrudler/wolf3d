@@ -101,6 +101,50 @@ void	draw(t_sdl *sdl)
 void	draw_vertical_line(t_sdl *sdl, int x)
 {
 	int y;
+	long scale;
+	long index_frac;
+	int text_index;
+	uint32_t *pixels;
+
+	index_frac = 0;
+	text_index = 0;
+	scale = (64 << 16) / sdl->rcst.lineheight ;
+	y = sdl->rcst.lowpix;
+	while (y <= sdl->rcst.highpix)
+	{
+		text_index += (index_frac >> 16);
+		pixels = (uint32_t *)sdl->surf->pixels;
+		sdl->rcst.color = pixels[text_index];
+		put_pixels(sdl, sdl->rcst.color, x, y);
+		index_frac += scale;      // advance index by scale-factor
+  		index_frac &= 66535;      // mask out the whole part and just keep t
+
+		y++;
+	}
+}
+
+/*
+void	draw_vertical_line(t_sdl *sdl, int x)
+{
+	int y;
+
+	y = sdl->rcst.lowpix;
+	while (y <= sdl->rcst.highpix)
+	{
+		put_pixels(sdl, sdl->rcst.color, x, y);
+		y++;
+	}
+}
+*/
+
+
+/*
+
+// Working really good
+
+void	draw_vertical_line(t_sdl *sdl, int x)
+{
+	int y;
 	uint32_t *pixels;
 	// test affichage texture
 	double wallx;
@@ -134,16 +178,4 @@ void	draw_vertical_line(t_sdl *sdl, int x)
 	}
 }
 
-/*
-void	draw_vertical_line(t_sdl *sdl, int x)
-{
-	int y;
-
-	y = sdl->rcst.lowpix;
-	while (y <= sdl->rcst.highpix)
-	{
-		put_pixels(sdl, sdl->rcst.color, x, y);
-		y++;
-	}
-}
 */
