@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:43:42 by grudler           #+#    #+#             */
-/*   Updated: 2020/02/04 16:25:53 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/02/18 14:49:38 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ typedef struct	s_sdl
 	SDL_Surface *surf;
 	SDL_Surface *img;
 	SDL_Surface *screen; // Surface affichant l'ecran
-
+	t_bmp *txt;
 	t_fps fps;
 }				t_sdl;
 

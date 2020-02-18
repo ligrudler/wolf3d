@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:51:44 by grudler           #+#    #+#             */
-/*   Updated: 2020/02/04 16:47:14 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/02/18 15:46:55 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,23 @@
 // Penser a virer les printfs
 int init_texture (t_sdl *sdl)
 {
-	t_bmp *test;
-	test = load_image("./ressources/Blue4.bmp");
 
-	printf(" w : %d | h %d \n", test->width, test->height);
-	
+	sdl->txt = load_image("./ressources/Blue4.bmp");
+
+	//printf(" w : %d | h %d \n", sdl->txt->width, sdl->txt->height);
+	//printf(" value first px : %d\n", sdl->txt->data[0]);
 	sdl->surf = SDL_LoadBMP("./ressources/Blue4.bmp");
 	if (sdl->surf)
 	{
+		 sdl->surf = SDL_ConvertSurfaceFormat(sdl->surf,SDL_PIXELFORMAT_ARGB8888,0);
+		 sdl->img = SDL_ConvertSurfaceFormat(sdl->img,SDL_PIXELFORMAT_ARGB8888,0);
 		// image = SDL_ConvertSurfaceFormat(image, SDL_PIXELFORMAT_ARGB8888, 0);
 		// sdl->test_texture = SDL_CreateTextureFromSurface(sdl->renderer, image);
 		// if (sdl->test_texture)
 		// {
 			printf("texture cree\n");
-			 sdl->surf = SDL_ConvertSurfaceFormat(sdl->surf,SDL_PIXELFORMAT_ARGB8888,0);
+			
+			/* sdl->surf = SDL_ConvertSurfaceFormat(sdl->surf,SDL_PIXELFORMAT_ARGB8888,0);
 			 sdl->img = SDL_ConvertSurfaceFormat(sdl->img,SDL_PIXELFORMAT_ARGB8888,0);
 			SDL_PixelFormat* pixelFormat = sdl->surf->format;
 			Uint32 pixelFormatEnum = pixelFormat->format;
@@ -45,6 +48,7 @@ int init_texture (t_sdl *sdl)
 			Uint32 pixelFormatEnum3 = pixelFormat3->format;
 			const char* surfacePixelFormatName3 = SDL_GetPixelFormatName(pixelFormatEnum3);
 			SDL_Log("The surface img pixelformat is %s\n", surfacePixelFormatName3);
+			*/
 			return (1);
 		// }
 		// else

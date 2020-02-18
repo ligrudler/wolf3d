@@ -6,7 +6,7 @@
 #    By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/20 16:56:04 by lgrudler          #+#    #+#              #
-#    Updated: 2020/02/04 16:24:42 by qlouisia         ###   ########.fr        #
+#    Updated: 2020/02/18 15:29:39 by qlouisia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,9 @@ SRC= main.c\
 	display.c\
 	init.c\
 	color.c\
-	bmp_parser.c
+	bmp_parser.c\
+	8bits.c
+
 SRCS= $(addprefix $(SRC_DIR),$(SRC))
 OBJ_DIR= obj/
 OBJ= $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRCS))
