@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 14:57:19 by qlouisia          #+#    #+#             */
-/*   Updated: 2020/02/18 14:44:08 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/02/20 15:52:38 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,5 @@ typedef struct	s_bmpfiles
 
 int create_palette(char *tmp, t_bmp *bmp);
 void format_data8bit(char *tmp, t_bmp *bmp);
+int exit8bit(t_bmp *bmp);
 #endif

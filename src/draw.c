@@ -18,7 +18,7 @@ void put_pixels(t_sdl* sdl, uint32_t color, int x, int y)
 	uint32_t *pixels;
 
 	pixels = (uint32_t *)sdl->img->pixels;
-	if ((x > 0 && x < WINX) && (y > 0 && x < WINY))
+	if ((x >= 0 && x < WINX) && (y >= 0 && x < WINY))
 	{
 		pixels[x + WINY * y] = color;
  	}
@@ -144,7 +144,7 @@ void	draw_vertical_line(t_sdl *sdl, int x)
 void	draw_vertical_line(t_sdl *sdl, int x)
 {
 	int y;
-	uint32_t *pixels;
+//	uint32_t *pixels;
 	// test affichage texture
 	double wallx;
 	if (sdl->rcst.side == 0)
@@ -165,7 +165,7 @@ void	draw_vertical_line(t_sdl *sdl, int x)
 	double step = 1.0 * 64 / sdl->rcst.lineheight;
 	double texPos = (sdl->rcst.lowpix - WINY / 2 + sdl->rcst.lineheight / 2) * step ;
 	
-	pixels = (uint32_t *)sdl->surf->pixels;
+	//pixels = (uint32_t *)sdl->surf->pixels;
 	y = sdl->rcst.lowpix;
 	while (y <= sdl->rcst.highpix)
 	{
