@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:51:44 by grudler           #+#    #+#             */
-/*   Updated: 2020/02/21 16:21:26 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/02/21 17:15:32 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@ int init_texture (t_sdl *sdl)
 	SDL_Surface *tmp;
 	
 	sdl->txt = load_image("./ressources/GreenWall0.bmp");
+	sdl->txt2 = load_image("./ressources/Blue4.bmp");
+	sdl->txt3 = load_image("./ressources/RedBricks0.bmp");
+	sdl->txt = load_image("./ressources/WoodenWall0.bmp");
 	if (sdl->txt)
 	{
 		tmp = sdl->img;
