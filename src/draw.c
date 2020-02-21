@@ -18,7 +18,7 @@ void put_pixels(t_sdl* sdl, uint32_t color, int x, int y)
 	uint32_t *pixels;
 
 	pixels = (uint32_t *)sdl->img->pixels;
-	if ((x > 0 && x < WINX) && (y > 0 && x < WINY))
+	if ((x >= 0 && x < WINX) && (y >= 0 && x < WINY))
 	{
 		pixels[x + WINY * y] = color;
  	}
@@ -93,11 +93,11 @@ void	draw(t_sdl *sdl)
 	clear_screen(sdl);
 	draw_sky_ground(sdl);
 	raycast(sdl);
-	//draw_picture(sdl);
+	//test_draw_image(sdl);
 	update_screen(sdl);
 
 }
-
+/*
 void	draw_vertical_line(t_sdl *sdl, int x)
 {
 	int y;
@@ -113,9 +113,10 @@ void	draw_vertical_line(t_sdl *sdl, int x)
 	while (y <= sdl->rcst.highpix)
 	{
 		text_index += (index_frac >> 16);
-		pixels = (uint32_t *)sdl->surf->pixels;
-		sdl->rcst.color = pixels[text_index];
-		//getpixel(sdl->surf,)
+		pixels = (uint32_t *)sdl->txt->data;
+		//sdl->rcst.color = pixels[text_index];
+		sdl->rcst.color = pixels[0];
+	//	printf(" value first px : %d\n", sdl->txt->data[0]);
 		put_pixels(sdl, sdl->rcst.color, x, y);
 		index_frac += scale;      // advance index by scale-factor
   		index_frac &= 66535;      // mask out the whole part and just keep t
@@ -123,7 +124,7 @@ void	draw_vertical_line(t_sdl *sdl, int x)
 		y++;
 	}
 }
-
+*/
 /*
 void	draw_vertical_line(t_sdl *sdl, int x)
 {
@@ -137,3 +138,45 @@ void	draw_vertical_line(t_sdl *sdl, int x)
 	}
 }
 */
+
+// Working really good
+
+void	draw_vertical_line(t_sdl *sdl, int x)
+{
+	int y;
+//	uint32_t *pixels;
+	// test affichage texture
+	double wallx;
+	if (sdl->rcst.side == 0)
+		wallx = sdl->rcst.posy + sdl->rcst.raylenght *  sdl->rcst.raydirY;
+	else 
+		wallx = sdl->rcst.posx + sdl->rcst.raylenght *  sdl->rcst.raydirX;
+	wallx -= floor(wallx);
+
+	int texX = (int) (wallx * 64.0);
+	
+	texX = 64 - texX - 1;
+/*
+	if (sdl->rcst.side == 0 && sdl->rcst.raydirX > 0)
+	{
+		texX = 64 - texX - 1;
+	}*/
+	/*
+	if (sdl->rcst.side == 1 && sdl->rcst.raydirX < 0)
+	{
+		texX = 64 - texX - 1;
+	}*/
+	double step = 1.0 * 64 / sdl->rcst.lineheight;
+	double texPos = (sdl->rcst.lowpix - WINY / 2 + sdl->rcst.lineheight / 2) * step ;
+	
+	//pixels = (uint32_t *)sdl->surf->pixels;
+	y = sdl->rcst.lowpix;
+	while (y <= sdl->rcst.highpix)
+	{
+		int texY =(int)texPos & (64 - 1);
+		texPos += step;
+		sdl->rcst.color = sdl->txt->data[ 64 * texY + texX];
+		put_pixels(sdl, sdl->rcst.color, x, y);
+		y++;
+	}
+}

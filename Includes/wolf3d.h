@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   wolf3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:43:42 by grudler           #+#    #+#             */
-/*   Updated: 2020/01/30 12:43:30 by grudler          ###   ########.fr       */
+/*   Updated: 2020/02/21 15:50:24 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef WOLF3D_H
 # define WOLF3D_H
 
+#include "../Includes/Bmp.h"
 # include "../libft/libft.h"
 # include <stdlib.h>
 # include <unistd.h>
@@ -109,10 +110,10 @@ typedef struct	s_sdl
 	SDL_Scancode scancode;
 	t_pars		pars;
 	t_raycast	rcst;
-	SDL_Surface *surf;
+//	SDL_Surface *surf;
 	SDL_Surface *img;
 	SDL_Surface *screen; // Surface affichant l'ecran
-
+	t_bmp *txt;
 	t_fps fps;
 }				t_sdl;
 
@@ -138,6 +139,7 @@ int		get_color(t_sdl *sdl);
 void	draw_vertical_line(t_sdl *sdl, int x);
 void	init_raycast(t_sdl *sdl, int x);
 
+t_bmp *load_image (char *path);
 
 
 

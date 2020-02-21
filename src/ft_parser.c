@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parser.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 21:01:22 by grudler           #+#    #+#             */
-/*   Updated: 2020/01/06 13:15:12 by grudler          ###   ########.fr       */
+/*   Updated: 2020/02/20 18:09:44 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int 	check_close_map(t_sdl *check)
 	while (line < check->pars.nb_lin)
 	{
 		column = 0;
-		while ( column < check->pars.nb_col)
+		while (column < check->pars.nb_col)
 		{
 			if (line == 0 && check->pars.map[0][column] == 0)
 				return (0);
@@ -119,7 +119,10 @@ int		create_map(char *str, t_sdl *sdl) // il faudrait penser a bien tout free (s
 	}
 	stock_in_map(str, sdl);
 	if (!check_close_map(sdl))
-		ft_putstr("Map NOT CLOSED");
+	{
+		ft_putendl("Map NOT CLOSED");
+		return (0);
+	}
 	return (1);
 }
 
@@ -138,13 +141,13 @@ int		ft_parser(int fd, t_sdl *sdl)
 		str = ft_strjoin_gnl(tmp, buff);
 		free(tmp);
 	}
-	if (str == NULL || ret <= -1)
+	if (str == NULL || ret <= -1 || !(create_map(str, sdl)))
 	{
 		free(str);
-		ft_putstr("STRING NULL\n");
+		ft_putendl("MAP ERROR");
 		ft_error();
+		return(0);
 	}
-	create_map(str, sdl);
 	free(str);
-	return (0);
+	return (1);
 }

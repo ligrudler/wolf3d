@@ -6,49 +6,30 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:51:44 by grudler           #+#    #+#             */
-/*   Updated: 2020/01/28 14:44:31 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/02/21 15:49:35 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/wolf3d.h"
-
+#include "../Includes/wolf3d.h"
 // fonction pour initialiser les textures
 // Penser a virer les printfs
 int init_texture (t_sdl *sdl)
 {
-	sdl->surf = SDL_LoadBMP("./ressources/Blue4.bmp");
-	if (sdl->surf)
+	SDL_Surface *tmp;
+	
+	sdl->txt = load_image("./ressources/Blue4.bmp");
+	if (sdl->txt)
 	{
-		// image = SDL_ConvertSurfaceFormat(image, SDL_PIXELFORMAT_ARGB8888, 0);
-		// sdl->test_texture = SDL_CreateTextureFromSurface(sdl->renderer, image);
-		// if (sdl->test_texture)
-		// {
-			printf("texture cree\n");
-			 sdl->surf = SDL_ConvertSurfaceFormat(sdl->surf,SDL_PIXELFORMAT_ARGB8888,0);
-			 sdl->img = SDL_ConvertSurfaceFormat(sdl->img,SDL_PIXELFORMAT_ARGB8888,0);
-			SDL_PixelFormat* pixelFormat = sdl->surf->format;
-			Uint32 pixelFormatEnum = pixelFormat->format;
-			const char* surfacePixelFormatName = SDL_GetPixelFormatName(pixelFormatEnum);
-			SDL_Log("The surface surf pixelformat is %s\n", surfacePixelFormatName);
-
-			SDL_PixelFormat* pixelFormat2 = sdl->screen->format;
-			Uint32 pixelFormatEnum2 = pixelFormat2->format;
-			const char* surfacePixelFormatName2 = SDL_GetPixelFormatName(pixelFormatEnum2);
-			SDL_Log("The surface screen pixelformat is %s\n", surfacePixelFormatName2);
-			
-			SDL_PixelFormat* pixelFormat3 = sdl->img->format;
-			Uint32 pixelFormatEnum3 = pixelFormat3->format;
-			const char* surfacePixelFormatName3 = SDL_GetPixelFormatName(pixelFormatEnum3);
-			SDL_Log("The surface img pixelformat is %s\n", surfacePixelFormatName3);
-			return (1);
-		// }
-		// else
-		// 	printf("error text\n");
+		tmp = sdl->img;
+		sdl->img = SDL_ConvertSurfaceFormat(sdl->img,SDL_PIXELFORMAT_ARGB8888,0);
+		SDL_FreeSurface(tmp);
+		ft_putendl("Textures Loaded");
+		return (1);
 	}
 	else
-		printf("echec de chargement du sprite (%s)\n", SDL_GetError());
+		ft_putendl("Error with Texture, please check files in ressources");
 	return (0);
-
 }
 
 int init_sdl(t_sdl *sdl)
@@ -71,6 +52,7 @@ int init_sdl(t_sdl *sdl)
     if (sdl->img == NULL) {
         ft_error();
 	}
+	sdl->txt = NULL;
 	if (! (init_texture(sdl)))
 		ft_error();
 	return (0);
@@ -79,7 +61,6 @@ int init_sdl(t_sdl *sdl)
 
 int		main(int argc, char **argv)
 {
-
 	int fd;
 	t_sdl sdl;
 
@@ -87,7 +68,8 @@ int		main(int argc, char **argv)
 	if (argc == 2)
 	{
 		fd = open(argv[1], O_RDONLY);
-		ft_parser(fd, &sdl);
+		if (!(ft_parser(fd, &sdl)))
+			return (0);
 		init_sdl(&sdl);
 		init_variables(&sdl);
 		printf("end initialization\n");
@@ -101,6 +83,7 @@ int		main(int argc, char **argv)
 		SDL_FreeSurface((&sdl)->screen);
 		SDL_DestroyWindow(sdl.fenetre);
 		SDL_Quit();
+		exit8bit((&sdl)->txt);
 		free_tpars(&sdl, sdl.pars.nb_lin);
 		return (0);
 	}

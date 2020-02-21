@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   exitBMP.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/26 19:19:31 by qlouisia          #+#    #+#             */
-/*   Updated: 2020/02/20 16:01:44 by qlouisia         ###   ########.fr       */
+/*   Created: 2020/02/18 16:49:29 by qlouisia          #+#    #+#             */
+/*   Updated: 2020/02/20 15:47:35 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Includes/wolf3d.h"
+#include "../Includes/Bmp.h"
 #include <stdlib.h>
 
-int 	free_tpars(t_sdl *map, int size)
+int exit8bit(t_bmp *bmp)
 {
-	int line;
-
-	line = 0;
-	while (line < size)
-	{
-		free(map->pars.map[line]);
-		line++;
-	}
-	free(map->pars.map);
-	ft_putstr("MAP CLEANED");
-	return(0);
+	if (bmp->palette != NULL)
+		free (bmp->palette);
+	if (bmp->palette != NULL)
+		free (bmp->data);
+	free(bmp);
+	return (1);
 }

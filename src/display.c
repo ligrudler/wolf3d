@@ -35,3 +35,31 @@ void draw_picture(t_sdl* sdl)
 		printf("echec de chargement du sprite (%s)\n", SDL_GetError());
 }
 */
+
+void test_draw_image(t_sdl *sdl)
+{
+	int x;
+	int y;
+	uint32_t color;
+	int i;
+	int tmp;
+
+	y = 0;
+	i = 0;
+	while (y < IMGH)
+	{
+		x = 0 ;
+		while (x < IMGW)
+		{
+			
+			color = sdl->txt->data[ y * IMGW + x];
+			//color = convert_8bits_color(color);
+			put_pixels(sdl, color, x + IMGW + 2 , y);
+			i++;
+			
+			//printf(" %d = x:%d y:%d \n",i,x,y);
+			x++;
+		}
+		y++;
+	}
+}
