@@ -154,14 +154,18 @@ void	draw_vertical_line(t_sdl *sdl, int x)
 	wallx -= floor(wallx);
 
 	int texX = (int) (wallx * 64.0);
+	
+	texX = 64 - texX - 1;
+/*
 	if (sdl->rcst.side == 0 && sdl->rcst.raydirX > 0)
 	{
 		texX = 64 - texX - 1;
-	}
-		if (sdl->rcst.side == 1 && sdl->rcst.raydirX < 0)
+	}*/
+	/*
+	if (sdl->rcst.side == 1 && sdl->rcst.raydirX < 0)
 	{
 		texX = 64 - texX - 1;
-	}
+	}*/
 	double step = 1.0 * 64 / sdl->rcst.lineheight;
 	double texPos = (sdl->rcst.lowpix - WINY / 2 + sdl->rcst.lineheight / 2) * step ;
 	
