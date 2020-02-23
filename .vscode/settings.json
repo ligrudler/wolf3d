@@ -1,8 +1,0 @@
-{
-    "files.associations": {
-		"wolf3d.h": "c",
-		"__locale": "c",
-		"math.h": "c",
-		"stdlib.h": "c"
-	}
-}

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+         #
+#    By: grudler <grudler@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/20 16:56:04 by lgrudler          #+#    #+#              #
-#    Updated: 2020/02/20 15:56:07 by qlouisia         ###   ########.fr        #
+#    Updated: 2020/02/23 23:41:58 by grudler          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,9 @@ SRC= main.c\
 	exitBMP.c
 
 SRCS= $(addprefix $(SRC_DIR),$(SRC))
+ABS_DIR= $(shell pwd)
 OBJ_DIR= obj/
+SDL_DIR= $(ABS_DIR)/lib/SDL2-2.0.10/
 OBJ= $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRCS))
 LIB= -L libft -lft
 
@@ -54,7 +56,15 @@ LIB= -L libft -lft
 
 all: $(NAME)
 
-$(NAME): $(OBJ) Makefile
+sdl2:
+	@mkdir -p SDL2/
+	@mkdir -p SDL2/build
+	@cd SDL2/build; 									\
+	$(SDL_DIR)/configure --prefix $(ABSDIR)/SDL2;		\
+	make -j; 											\
+	make install										\
+
+$(NAME): sdl2 $(OBJ)
 	@ echo "$(BLUE)Creating libft$(WHITE)"
 	@ make -C libft
 	@ echo "$(GREEN)Libft created$(WHITE)"
@@ -85,7 +95,12 @@ fclean: clean
 	@ echo "$(YELLOW)Deleting obj directory$(WHITE)"
 	@ rm -rf obj
 	@ echo "$(GREEN)Obj directory deleted$(WHITE)"
-	@ echo "$(GREEN)Executable deleted$(WHITE)"
+	@ rm -rf sdl2
+	@ echo "$(GREEN)Sdl2 deleted$(WHITE)"
 	@ rm -rf $(NAME)
+	@ echo "$(GREEN)Executable deleted$(WHITE)"
+
 
 re: fclean all
+
+.PHONY: all clean fclean re
