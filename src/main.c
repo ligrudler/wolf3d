@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:51:44 by grudler           #+#    #+#             */
-/*   Updated: 2020/02/24 15:57:15 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/02/24 18:09:24 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int init_texture (t_sdl *sdl)
 	sdl->txt3 = load_image("./ressources/RedBricks0.bmp");
 
 
-	sdl->icon = IMG_Load("./ressources/icon.png");
+	sdl->icon = SDL_LoadBMP("./ressources/icon.bmp");
 
 
 	if (sdl->txt)
