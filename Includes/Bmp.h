@@ -1,28 +1,15 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Bmp.h                                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/04 14:57:19 by qlouisia          #+#    #+#             */
-/*   Updated: 2020/02/20 15:52:38 by qlouisia         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef BMP_PARSER_H
 # define BMP_PARSER_H
 #include <stdint.h>
 
-# define IMGW 64
-# define IMGH 64
+# define PATH "./ressources/wol.bmp"
 # define BUFFSIZE 54 + 256 * 4
 
 typedef struct	s_bmpfiles
 {
 	int size;
-	int width;
-	int height;
+	uint16_t width;
+	uint16_t height;
 	int bpp;
 	int BPP;
 	int px_data_offset;

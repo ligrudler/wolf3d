@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 14:51:37 by qlouisia          #+#    #+#             */
-/*   Updated: 2020/02/18 14:42:45 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/02/24 13:55:25 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,16 @@ t_bmp *load_image (char *path)
 	printf("check files : %c%c \n",buff[0],buff[1]);
 	if (buff[0] != 'B' && buff[1] != 'M')
 		return(NULL);
-	ret->width  = (int)buff[18];
-	ret->height = (int)buff[22];
-	ret->bpp = (int)buff[28];
-	ret->px_data_offset = (int)buff[10];
-	ret->nb_color_palette = (int)buff[46];	
-	ret->important_color_nb = (int)buff[50];
-	ret->header_size = (int)buff[14];
-	ret->image_size = (int)buff[34];
-	ret->compression = (int)buff[30];
+	ret->width = *(uint32_t*)(buff + 18);
+	/*ret->width  = ((buff[18]>> 8) | (buff[19]<<8));//(int)buff[18];*/
+	ret->height = *(uint32_t*)(buff + 22);//(int)buff[22];
+	ret->bpp = *(int*)(buff + 28);
+	ret->px_data_offset = *(int*)(buff + 10);
+	ret->nb_color_palette = *(int*)(buff + 46);	
+	ret->important_color_nb = *(int*)(buff + 50);
+	ret->header_size = *(int*)(buff + 14);
+	ret->image_size = *(int*)(buff + 34);
+	ret->compression = *(int*)(buff + 30);
 	ret->BPP = ret->bpp / 8;
 	ret->size = ret->width * ret->height * ret->BPP;
 

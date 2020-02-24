@@ -36,7 +36,7 @@ void draw_picture(t_sdl* sdl)
 }
 */
 
-void test_draw_image(t_sdl *sdl)
+void test_draw_image(t_sdl *sdl, t_bmp *img)
 {
 	int x;
 	int y;
@@ -46,15 +46,15 @@ void test_draw_image(t_sdl *sdl)
 
 	y = 0;
 	i = 0;
-	while (y < IMGH)
+	while (y < img->height)
 	{
 		x = 0 ;
-		while (x < IMGW)
+		while (x < img->width)
 		{
 			
-			color = sdl->txt->data[ y * IMGW + x];
+			color = img->data[ y * img->width + x];
 			//color = convert_8bits_color(color);
-			put_pixels(sdl, color, x + IMGW + 2 , y);
+			put_pixels(sdl, color, x + img->width + 2 , y);
 			i++;
 			
 			//printf(" %d = x:%d y:%d \n",i,x,y);
