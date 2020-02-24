@@ -6,12 +6,12 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:51:44 by grudler           #+#    #+#             */
-/*   Updated: 2020/02/24 15:03:51 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/02/24 15:57:15 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/wolf3d.h"
-#include "../Includes/wolf3d.h"
+
 // fonction pour initialiser les textures
 // Penser a virer les printfs
 int init_texture (t_sdl *sdl)
@@ -21,7 +21,11 @@ int init_texture (t_sdl *sdl)
 	sdl->txt = load_image("./ressources/GreenWall0.bmp");
 	sdl->txt2 = load_image("./ressources/Blue4.bmp");
 	sdl->txt3 = load_image("./ressources/RedBricks0.bmp");
-	sdl->txt = load_image("./ressources/WoodenWall0.bmp");
+
+
+	sdl->icon = IMG_Load("./ressources/icon.png");
+
+
 	if (sdl->txt)
 	{
 		tmp = sdl->img;
@@ -59,6 +63,7 @@ int init_sdl(t_sdl *sdl)
 	if (! (init_texture(sdl)))
 		ft_error();
 	sdl->menu = true;
+	SDL_SetWindowIcon(sdl->fenetre, sdl->icon);
 	return (0);
 }
 
@@ -89,7 +94,7 @@ int		main(int argc, char **argv)
 		SDL_FreeSurface((&sdl)->screen);
 		SDL_DestroyWindow(sdl.fenetre);
 		SDL_Quit();
-		exit8bit((&sdl)->txt);
+		free_image (&sdl);
 		free_tpars(&sdl, sdl.pars.nb_lin);
 		return (0);
 	}

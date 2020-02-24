@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:43:42 by grudler           #+#    #+#             */
-/*   Updated: 2020/02/24 14:59:54 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/02/24 15:57:17 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <math.h>
 # include <stdio.h> // pour printf
 # include "../lib/SDL2-2.0.10/include/SDL.h"
+
 
 # define BUFF_SIZE 10
 # define WINX 800
@@ -120,6 +121,9 @@ typedef struct	s_sdl
 	t_bmp *txt3;
 	t_bmp *txt4;
 	t_bmp *menu_img;
+	int padding_x;
+	int padding_y;
+	SDL_Surface *icon;
 	t_fps fps;
 }				t_sdl;
 
@@ -148,7 +152,7 @@ void	init_raycast(t_sdl *sdl, int x);
 t_bmp *load_image (char *path);
 int init_menu(t_sdl *sdl);
 void display_menu(t_sdl *sdl, t_bmp *img);
-
+int free_image (t_sdl *sdl);
 
 
 #endif

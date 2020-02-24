@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 14:23:20 by qlouisia          #+#    #+#             */
-/*   Updated: 2020/02/24 15:07:36 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/02/24 15:39:07 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,21 +49,17 @@
 	int x;
 	int y;
 	uint32_t color;
-	int i;
-	int tmp;
 
 	y = 0;
-	i = 0;
-	while (y < img->height)
+	while (y < (img->height + sdl->padding_y))
 	{
 		x = 0 ;
-		while (x < img->width)
+		while (x < (img->width + sdl->padding_y))
 		{
 			
 			color = img->data[ y *img->width + x];
 			//color = convert_8bits_color(color);
-			put_pixels(sdl, color, x /*+ IMGW + 2*/ , y);
-			i++;
+			put_pixels(sdl, color, (x + sdl->padding_x)  /*+ IMGW + 2*/ ,  (y + sdl->padding_y));
 			
 			//printf(" %d = x:%d y:%d \n",i,x,y);
 			x++;
@@ -79,6 +75,8 @@ int init_menu(t_sdl *sdl)
 		return(0);
 
 	// centrer l'image en fonction de la taille de la fenetre
+	sdl->padding_x = (WINX - sdl->menu_img->width) / 2;
+	sdl->padding_y = (WINY - sdl->menu_img->height) / 2;
 	/*
 	display_menu(sdl, sdl->menu_img);
 	SDL_BlitSurface(sdl->img, NULL, sdl->screen, NULL);
