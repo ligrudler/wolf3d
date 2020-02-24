@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:43:42 by grudler           #+#    #+#             */
-/*   Updated: 2020/02/21 17:11:50 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/02/24 14:41:21 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "../libft/libft.h"
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdbool.h> 
 # include <math.h>
 # include <stdio.h> // pour printf
 # include "../lib/SDL2-2.0.10/include/SDL.h"
@@ -104,6 +105,7 @@ typedef struct	s_sdl
 	SDL_Point    point[WINX/2];
 	char		key[SDL_NUM_SCANCODES];
 	int			end;
+	bool		menu;
 	double			move;
 //	Uint32 *img;
 	Uint32		type;
@@ -117,6 +119,7 @@ typedef struct	s_sdl
 	t_bmp *txt2;
 	t_bmp *txt3;
 	t_bmp *txt4;
+	t_bmp *menu_img;
 	t_fps fps;
 }				t_sdl;
 
@@ -143,7 +146,8 @@ void	draw_vertical_line(t_sdl *sdl, int x);
 void	init_raycast(t_sdl *sdl, int x);
 
 t_bmp *load_image (char *path);
-
+int init_menu(t_sdl *sdl);
+void display_menu(t_sdl *sdl, t_bmp *img);
 
 
 

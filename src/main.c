@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:51:44 by grudler           #+#    #+#             */
-/*   Updated: 2020/02/21 17:15:32 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/02/24 14:48:15 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int init_sdl(t_sdl *sdl)
 	sdl->txt = NULL;
 	if (! (init_texture(sdl)))
 		ft_error();
+	sdl->menu = true;
 	return (0);
 }
 
@@ -76,10 +77,12 @@ int		main(int argc, char **argv)
 		init_sdl(&sdl);
 		init_variables(&sdl);
 		printf("end initialization\n");
+		init_menu(&sdl);
 		while (!(sdl.end))
 		{
 			event(&sdl);
 			//fps_limit(&sdl); // affichage de FPS
+			
 			draw(&sdl);
 		}
 		SDL_FreeSurface((&sdl)->img);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_event.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/06 11:25:38 by grudler           #+#    #+#             */
-/*   Updated: 2020/01/30 12:44:57 by grudler          ###   ########.fr       */
+/*   Updated: 2020/02/24 14:21:12 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,16 +71,19 @@ void	event(t_sdl *sdl)
 		sdl->end = 1;
 	if (sdl->key[SDL_SCANCODE_ESCAPE])
 		sdl->end = 1;
-	if (sdl->key[SDL_SCANCODE_SPACE])
-		init_variables(sdl);
-	if (sdl->key[SDL_SCANCODE_LSHIFT])
-		sdl->move = 0.06;
-	else
-		sdl->move = 0.03;
+	if (sdl->key[SDL_SCANCODE_SPACE] && sdl->menu == true)
+		sdl->menu = false;
+	else {
+		if (sdl->key[SDL_SCANCODE_SPACE])
+			init_variables(sdl);
+		if (sdl->key[SDL_SCANCODE_LSHIFT])
+			sdl->move = 0.06;
+		else
+			sdl->move = 0.03;
 
-	vertical_deplacement(sdl);
-	horizontal_deplacement(sdl);
-
+		vertical_deplacement(sdl);
+		horizontal_deplacement(sdl);
+	}
 	/*SDL_SetRenderDrawColor(sdl->renderer, 0, 0, 0, 0);
 	if (SDL_RenderClear(sdl->renderer) != 0)
 		ft_error();*/

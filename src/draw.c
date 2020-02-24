@@ -90,54 +90,18 @@ void	draw_sky_ground(t_sdl *sdl)
 
 void	draw(t_sdl *sdl)
 {
-	clear_screen(sdl);
-	draw_sky_ground(sdl);
-	raycast(sdl);
+	if (sdl->menu == false)
+	{
+		clear_screen(sdl);
+		draw_sky_ground(sdl);
+		raycast(sdl);
+	}
+	else 
+		display_menu(sdl, sdl->menu_img);
 	//test_draw_image(sdl);
 	update_screen(sdl);
 
 }
-/*
-void	draw_vertical_line(t_sdl *sdl, int x)
-{
-	int y;
-	long scale;
-	long index_frac;
-	int text_index;
-	uint32_t *pixels;
-
-	index_frac = 0;
-	text_index = 0;
-	scale = (64 << 16) / sdl->rcst.lineheight ;
-	y = sdl->rcst.lowpix;
-	while (y <= sdl->rcst.highpix)
-	{
-		text_index += (index_frac >> 16);
-		pixels = (uint32_t *)sdl->txt->data;
-		//sdl->rcst.color = pixels[text_index];
-		sdl->rcst.color = pixels[0];
-	//	printf(" value first px : %d\n", sdl->txt->data[0]);
-		put_pixels(sdl, sdl->rcst.color, x, y);
-		index_frac += scale;      // advance index by scale-factor
-  		index_frac &= 66535;      // mask out the whole part and just keep t
-
-		y++;
-	}
-}
-*/
-/*
-void	draw_vertical_line(t_sdl *sdl, int x)
-{
-	int y;
-
-	y = sdl->rcst.lowpix;
-	while (y <= sdl->rcst.highpix)
-	{
-		put_pixels(sdl, sdl->rcst.color, x, y);
-		y++;
-	}
-}
-*/
 
 // Working really good
 
@@ -180,3 +144,45 @@ void	draw_vertical_line(t_sdl *sdl, int x)
 		y++;
 	}
 }
+
+/*
+void	draw_vertical_line(t_sdl *sdl, int x)
+{
+	int y;
+	long scale;
+	long index_frac;
+	int text_index;
+	uint32_t *pixels;
+
+	index_frac = 0;
+	text_index = 0;
+	scale = (64 << 16) / sdl->rcst.lineheight ;
+	y = sdl->rcst.lowpix;
+	while (y <= sdl->rcst.highpix)
+	{
+		text_index += (index_frac >> 16);
+		pixels = (uint32_t *)sdl->txt->data;
+		//sdl->rcst.color = pixels[text_index];
+		sdl->rcst.color = pixels[0];
+	//	printf(" value first px : %d\n", sdl->txt->data[0]);
+		put_pixels(sdl, sdl->rcst.color, x, y);
+		index_frac += scale;      // advance index by scale-factor
+  		index_frac &= 66535;      // mask out the whole part and just keep t
+
+		y++;
+	}
+}
+*/
+/*
+void	draw_vertical_line(t_sdl *sdl, int x)
+{
+	int y;
+
+	y = sdl->rcst.lowpix;
+	while (y <= sdl->rcst.highpix)
+	{
+		put_pixels(sdl, sdl->rcst.color, x, y);
+		y++;
+	}
+}
+*/
