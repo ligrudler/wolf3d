@@ -97,6 +97,7 @@ void	draw(t_sdl *sdl)
 		clear_screen(sdl);
 		draw_sky_ground(sdl);
 		raycast(sdl);
+		draw_wepaon(sdl, sdl->weapon);
 	}
 	else 
 		display_menu(sdl, sdl->menu_img);

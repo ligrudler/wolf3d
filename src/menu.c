@@ -6,44 +6,38 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 14:23:20 by qlouisia          #+#    #+#             */
-/*   Updated: 2020/02/25 15:28:52 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/02/25 16:31:24 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/wolf3d.h"
 
-/*
-	void display_menu(t_sdl *sdl, t_bmp *img)
+void draw_wepaon(t_sdl *sdl, t_bmp *img)
 {
 	int x;
 	int y;
 	uint32_t color;
-
-	int scale_x;
-	int scale_y;
-
-	scale_x = img->width / WINX;
-	scale_y = img->height / WINY;
+	uint32_t ref_col;
+	int padding_x;
+	int padding_y;
 
 	y = 0;
-	while (y < img->height )
+	padding_x = (WINX / 2) - (img->width / 2);
+	padding_y = WINY - img->height;
+	ref_col = img->data[0];
+	while (y < img->width)
 	{
 		x = 0 ;
-		while (x < img->width)
+		while (x < img->height)
 		{
-			
 			color = img->data[ y * img->width + x];
-			//color = convert_8bits_color(color);
-			put_pixels(sdl, color, (x + sdl->padding_x),  (y + sdl->padding_y));
-			
-			//printf(" %d = x:%d y:%d \n",i,x,y);
+			if (color != ref_col)
+				put_pixels(sdl, color, x + padding_x , y + padding_y);
 			x++;
 		}
 		y++;
 	}
-
 }
-*/
 
 
 	void display_menu(t_sdl *sdl, t_bmp *img)
@@ -77,6 +71,7 @@
 	}
 
 }
+
 
 
 
