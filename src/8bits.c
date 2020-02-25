@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 13:33:21 by qlouisia          #+#    #+#             */
-/*   Updated: 2020/02/18 14:48:20 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/02/25 10:21:22 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,9 @@ int create_palette(char *tmp, t_bmp *bmp)
 	{
 	//	bmp->palette[i] = tmp[i + bmp->header_size + 14];
 	
-		printf("[%d]%hhX %hhX %hhX %hhX",j,tmp[i],tmp[i+1],tmp[i+2],tmp[i+3]);
+		//printf("[%d]%hhX %hhX %hhX %hhX",j,tmp[i],tmp[i+1],tmp[i+2],tmp[i+3]);
 		bmp->palette[j] = convert_8bitscolor(tmp[i + 2] , tmp[i + 1], tmp[i]);
-		printf("[%X]\n", bmp->palette[j]);
+		//printf("[%X]\n", bmp->palette[j]);
 		
 		//printf("Palette[%d] = %d | \n",j, bmp->palette[j]);
 		

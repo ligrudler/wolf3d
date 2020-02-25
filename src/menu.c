@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 14:23:20 by qlouisia          #+#    #+#             */
-/*   Updated: 2020/02/24 15:39:07 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/02/24 18:26:14 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,10 @@
 	uint32_t color;
 
 	y = 0;
-	while (y < (img->height + sdl->padding_y))
+	while (y < img->height )
 	{
 		x = 0 ;
-		while (x < (img->width + sdl->padding_y))
+		while (x < img->width)
 		{
 			
 			color = img->data[ y *img->width + x];

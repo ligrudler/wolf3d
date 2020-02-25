@@ -17,7 +17,7 @@ void put_pixels(t_sdl* sdl, uint32_t color, int x, int y)
 {
 	uint32_t *pixels;
 
-	pixels = (uint32_t *)sdl->img->pixels;
+	pixels = (uint32_t *)sdl->screen->pixels;
 	if ((x >= 0 && x < WINX) && (y >= 0 && x < WINY))
 	{
 		pixels[x + WINY * y] = color;
@@ -52,39 +52,42 @@ void clear_screen(t_sdl *sdl)
 
 void update_screen(t_sdl* sdl)
 {
-	SDL_BlitSurface(sdl->img, NULL, sdl->screen, NULL);
+//	SDL_BlitSurface(sdl->img, NULL, sdl->screen, NULL);
 	SDL_UpdateWindowSurface(sdl->fenetre);
 }
 
 void	draw_sky_ground(t_sdl *sdl)
 {
-	int i;
-	int j;
+	int y;
+	int x;
 	uint32_t color;
 
-	j = 0;
+	y = 0;
 	color = convert_argb(255, 135, 206, 255);
-	while (j <= WINY /*/ 2*/)
+
+	while (y <= ( (WINY - 1) / 2))
 	{
-		i = 0;
-		while (i < WINX)
+		x = 0;
+		while (x < WINX - 1)
 		{
-			put_pixels(sdl, color, i, j);
-			i++;
+			put_pixels(sdl, color, x, y);
+			x++;
+			//printf("x :%d | y: %d\n",x,y);
 		}
-		j++;
+		y++;
 	}
-	j = WINY / 2;
+	
+	y = ( (WINY - 1) / 2);
 	color = convert_argb(255, 211, 211, 211);
-	while (j <= WINY)
+	while (y <= (WINY - 1))
 	{
-		i = 0;
-		while (i < WINX)
+		x = 0;
+		while (x < (WINX - 1))
 		{
-			put_pixels(sdl, color, i, j);
-			i++;
+			put_pixels(sdl, color, x, y);
+			x++;
 		}
-		j++;
+		y++;
 	}
 }
 

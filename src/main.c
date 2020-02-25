@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:51:44 by grudler           #+#    #+#             */
-/*   Updated: 2020/02/24 18:09:24 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/02/25 12:25:28 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int init_sdl(t_sdl *sdl)
 	int		terminer;
 
 	terminer = 0;
+	
 	if(SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
 		SDL_Log("Unable to initialize SDL: %s", SDL_GetError());
@@ -73,9 +74,10 @@ int		main(int argc, char **argv)
 	int fd;
 	t_sdl sdl;
 
-	sdl.end = 0;
+	
 	if (argc == 2)
 	{
+		ft_bzero(&sdl, sizeof(t_sdl));
 		fd = open(argv[1], O_RDONLY);
 		if (!(ft_parser(fd, &sdl)))
 			return (0);
@@ -83,13 +85,14 @@ int		main(int argc, char **argv)
 		init_variables(&sdl);
 		printf("end initialization\n");
 		init_menu(&sdl);
+		ft_bzero((&sdl)->key, SDL_NUM_SCANCODES);
 		while (!(sdl.end))
 		{
 			event(&sdl);
-			//fps_limit(&sdl); // affichage de FPS
-			
+			fps_limit(&sdl); // affichage de FPS
 			draw(&sdl);
 		}
+		printf("end = %d\n",sdl.end);
 		SDL_FreeSurface((&sdl)->img);
 		SDL_FreeSurface((&sdl)->screen);
 		SDL_DestroyWindow(sdl.fenetre);

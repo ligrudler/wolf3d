@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:43:42 by grudler           #+#    #+#             */
-/*   Updated: 2020/02/24 15:57:17 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/02/25 12:26:10 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,9 @@
 # include <stdio.h> // pour printf
 # include "../lib/SDL2-2.0.10/include/SDL.h"
 
-
 # define BUFF_SIZE 10
-# define WINX 800
-# define WINY 800
+# define WINX 1200
+# define WINY 1200
 # define HITBOX 0.3
 # define MOVEDIR 0.05
 # define MAX_FPS 60

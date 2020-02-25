@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/06 11:25:38 by grudler           #+#    #+#             */
-/*   Updated: 2020/02/24 14:21:12 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/02/25 10:53:27 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	vertical_deplacement(t_sdl *sdl)
 
 void	event(t_sdl *sdl)
 {
+	
 	while (SDL_PollEvent(&sdl->evenements))
 	{
 		if (sdl->evenements.type == SDL_KEYDOWN)
@@ -67,10 +68,12 @@ void	event(t_sdl *sdl)
 		if (sdl->evenements.type == SDL_KEYUP)
 			sdl->key[sdl->evenements.key.keysym.scancode] = 0;
 	}
-	if (sdl->evenements.type == SDL_QUIT)
+	
+	if ( sdl->evenements.type == SDL_QUIT || sdl->key[SDL_SCANCODE_ESCAPE])
+	{
 		sdl->end = 1;
-	if (sdl->key[SDL_SCANCODE_ESCAPE])
-		sdl->end = 1;
+		printf("exit by action\n");
+	}
 	if (sdl->key[SDL_SCANCODE_SPACE] && sdl->menu == true)
 		sdl->menu = false;
 	else {

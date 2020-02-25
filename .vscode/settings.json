@@ -3,6 +3,8 @@
 		"wolf3d.h": "c",
 		"__locale": "c",
 		"math.h": "c",
-		"stdlib.h": "c"
+		"stdlib.h": "c",
+		"sdl.h": "c",
+		"unistd.h": "c"
 	}
 }
