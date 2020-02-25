@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:51:44 by grudler           #+#    #+#             */
-/*   Updated: 2020/02/25 12:25:28 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/02/25 14:57:31 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,14 @@ int init_texture (t_sdl *sdl)
 	sdl->txt = load_image("./ressources/GreenWall0.bmp");
 	sdl->txt2 = load_image("./ressources/Blue4.bmp");
 	sdl->txt3 = load_image("./ressources/RedBricks0.bmp");
-
-
 	sdl->icon = SDL_LoadBMP("./ressources/icon.bmp");
 
 
 	if (sdl->txt)
 	{
-		tmp = sdl->img;
+	/*	tmp = sdl->img;
 		sdl->img = SDL_ConvertSurfaceFormat(sdl->img,SDL_PIXELFORMAT_ARGB8888,0);
-		SDL_FreeSurface(tmp);
+		SDL_FreeSurface(tmp);*/
 		ft_putendl("Textures Loaded");
 		return (1);
 	}
@@ -56,10 +54,10 @@ int init_sdl(t_sdl *sdl)
 	sdl->screen = SDL_GetWindowSurface(sdl->fenetre);
 	printf("WINDOW Create\n");
 	// Creer la surface de travail
-	sdl->img = SDL_CreateRGBSurfaceWithFormat(0, WINX, WINY, 32, SDL_PIXELFORMAT_ARGB32);
+	/*sdl->img = SDL_CreateRGBSurfaceWithFormat(0, WINX, WINY, 32, SDL_PIXELFORMAT_ARGB32);
     if (sdl->img == NULL) {
         ft_error();
-	}
+	}*/
 	sdl->txt = NULL;
 	if (! (init_texture(sdl)))
 		ft_error();
@@ -92,12 +90,15 @@ int		main(int argc, char **argv)
 			fps_limit(&sdl); // affichage de FPS
 			draw(&sdl);
 		}
-		printf("end = %d\n",sdl.end);
-		SDL_FreeSurface((&sdl)->img);
+	//	SDL_FreeSurface((&sdl)->img);
+		printf("free screen\n");
 		SDL_FreeSurface((&sdl)->screen);
+		printf("free fenetre\n");
 		SDL_DestroyWindow(sdl.fenetre);
 		SDL_Quit();
+		printf("free image\n");
 		free_image (&sdl);
+		printf("free pars\n");
 		free_tpars(&sdl, sdl.pars.nb_lin);
 		return (0);
 	}

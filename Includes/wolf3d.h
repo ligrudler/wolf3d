@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:43:42 by grudler           #+#    #+#             */
-/*   Updated: 2020/02/25 12:26:10 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/02/25 15:32:53 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # include "../lib/SDL2-2.0.10/include/SDL.h"
 
 # define BUFF_SIZE 10
-# define WINX 1200
-# define WINY 1200
+# define WINX 800
+# define WINY 800
 # define HITBOX 0.3
 # define MOVEDIR 0.05
 # define MAX_FPS 60
@@ -113,7 +113,7 @@ typedef struct	s_sdl
 	t_pars		pars;
 	t_raycast	rcst;
 //	SDL_Surface *surf;
-	SDL_Surface *img;
+//	SDL_Surface *img;
 	SDL_Surface *screen; // Surface affichant l'ecran
 	t_bmp *txt;
 	t_bmp *txt2;
@@ -128,13 +128,13 @@ typedef struct	s_sdl
 
 int		ft_parser(int fd, t_sdl *sdl);
 int 	free_tpars(t_sdl *map, int size);
-int	ft_drawline(t_pt s1, t_pt s2, t_sdl *sdl);
+int		ft_drawline(t_pt s1, t_pt s2, t_sdl *sdl);
 void	init_bres(t_line *bre, t_pt *p1, t_pt *p2);
 void	draw(t_sdl *sdl);
-int init_sdl(t_sdl *sdl);
+int 	init_sdl(t_sdl *sdl);
 void	event(t_sdl *sdl);
-void draw_rect(t_sdl *sdl, t_pt *p1, t_pt *p2);
-void set_point(t_pt *point, double x, double y);
+void 	draw_rect(t_sdl *sdl, t_pt *p1, t_pt *p2);
+void	set_point(t_pt *point, double x, double y);
 void	raycast(t_sdl *sdl);
 void	init_variables(t_sdl *sdl);
 void	draw(t_sdl *sdl);
@@ -142,7 +142,7 @@ void	draw_sky_ground(t_sdl *sdl);
 void	fps_counter(t_sdl *sdl);
 void	fps_limit(t_sdl *sdl);
 int		fps_limit_delay(t_sdl *sdl);
-void put_pixels(t_sdl* sdl, uint32_t color, int x, int y);
+void 	put_pixels(t_sdl* sdl, uint32_t color, int x, int y);
 uint32_t	convert_argb(unsigned int a, unsigned int r, unsigned int g, unsigned int b);
 int		get_color(t_sdl *sdl);
 void	draw_vertical_line(t_sdl *sdl, int x);

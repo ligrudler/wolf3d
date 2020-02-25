@@ -42,7 +42,7 @@ void clear_screen(t_sdl *sdl)
 
 	n = WINY * WINX;
 	i = 0;
-	pixels = (uint32_t *)sdl->img->pixels;
+	pixels = (uint32_t *)sdl->screen->pixels;
 	while(i < n)
 	{
 		pixels[i] = 0;
@@ -52,7 +52,6 @@ void clear_screen(t_sdl *sdl)
 
 void update_screen(t_sdl* sdl)
 {
-//	SDL_BlitSurface(sdl->img, NULL, sdl->screen, NULL);
 	SDL_UpdateWindowSurface(sdl->fenetre);
 }
 

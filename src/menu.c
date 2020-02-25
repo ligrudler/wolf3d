@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 14:23:20 by qlouisia          #+#    #+#             */
-/*   Updated: 2020/02/24 18:26:14 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/02/25 15:28:52 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,15 @@
 	int x;
 	int y;
 	uint32_t color;
-	int i;
-	int tmp;
+
+	int scale_x;
+	int scale_y;
+
+	scale_x = img->width / WINX;
+	scale_y = img->height / WINY;
 
 	y = 0;
-	i = 0;
-//	printf("display menu\n");
-	while (y < img->height)
+	while (y < img->height )
 	{
 		x = 0 ;
 		while (x < img->width)
@@ -32,8 +34,7 @@
 			
 			color = img->data[ y * img->width + x];
 			//color = convert_8bits_color(color);
-			put_pixels(sdl, color, x + img->width, y);
-			i++;
+			put_pixels(sdl, color, (x + sdl->padding_x),  (y + sdl->padding_y));
 			
 			//printf(" %d = x:%d y:%d \n",i,x,y);
 			x++;
@@ -44,30 +45,40 @@
 }
 */
 
+
 	void display_menu(t_sdl *sdl, t_bmp *img)
 {
 	int x;
 	int y;
+	int x_p;
+	int y_p;
 	uint32_t color;
 
+	float scale_x;
+	float scale_y;
+	scale_x = ((float)img->width / WINX);
+	scale_y = ((float)img->height / WINY);
 	y = 0;
-	while (y < img->height )
+	while (y < WINY - 1)
 	{
 		x = 0 ;
-		while (x < img->width)
+		while (x < WINX - 1)
 		{
-			
-			color = img->data[ y *img->width + x];
+			x_p = x * scale_x;
+			y_p = y * scale_y;
+			color = img->data[ y_p * img->width + x_p];
 			//color = convert_8bits_color(color);
-			put_pixels(sdl, color, (x + sdl->padding_x)  /*+ IMGW + 2*/ ,  (y + sdl->padding_y));
+			put_pixels(sdl, color, x , y);
 			
-			//printf(" %d = x:%d y:%d \n",i,x,y);
+		//	printf(" x:%d y:%d | x_p %d y_p %d [%f][%f] \n",x,y,x_p, y_p, scale_x, scale_y);
 			x++;
 		}
 		y++;
 	}
 
 }
+
+
 
 int init_menu(t_sdl *sdl)
 {
