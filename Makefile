@@ -6,7 +6,7 @@
 #    By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/20 16:56:04 by lgrudler          #+#    #+#              #
-#    Updated: 2020/02/25 17:16:15 by lgrudler         ###   ########.fr        #
+#    Updated: 2020/02/25 17:48:25 by lgrudler         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,14 +56,13 @@ LIB= -L libft -lft `sdl2-config --cflags --libs`
 
 all: $(NAME)
 
-
 $(NAME): sdl2 $(OBJ)
 	@ echo "$(BLUE)Creating libft$(WHITE)"
 	@ make -C libft
 	@ echo "$(GREEN)Libft created$(WHITE)"
 	@ echo "$(YELLOW)Creating $@ executable$(WHITE)"
 	@ $(CC) -o $@ $(CFLAGS) $(OBJ) $(LIB)
-	@echo "$(GREEN)$@ executable created$(WHITE)"
+	@ echo "$(GREEN)$@ executable created$(WHITE)"
 
 sdl2:
 	@mkdir -p SDL2/build
@@ -94,12 +93,13 @@ fclean: clean
 	@ echo "$(YELLOW)Deleting obj directory$(WHITE)"
 	@ rm -rf obj
 	@ echo "$(GREEN)Obj directory deleted$(WHITE)"
-	@ rm -rf sdl2
-	@ echo "$(GREEN)Sdl2 deleted$(WHITE)"
 	@ rm -rf $(NAME)
 	@ echo "$(GREEN)Executable deleted$(WHITE)"
 
+clear: fclean
+	@ rm -rf sdl2
+	@ echo "$(GREEN)Sdl2 deleted$(WHITE)"
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re clear
