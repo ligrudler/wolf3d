@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: grudler <grudler@student.42.fr>            +#+  +:+       +#+         #
+#    By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/20 16:56:04 by lgrudler          #+#    #+#              #
-#    Updated: 2020/02/23 23:41:58 by grudler          ###   ########.fr        #
+#    Updated: 2020/02/25 17:16:15 by lgrudler         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,7 @@ ABS_DIR= $(shell pwd)
 OBJ_DIR= obj/
 SDL_DIR= $(ABS_DIR)/lib/SDL2-2.0.10/
 OBJ= $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRCS))
-LIB= -L libft -lft
+LIB= -L libft -lft `sdl2-config --cflags --libs`
 
 ###############################################################################
 #								Rules										  #
@@ -56,21 +56,20 @@ LIB= -L libft -lft
 
 all: $(NAME)
 
-sdl2:
-	@mkdir -p SDL2/
-	@mkdir -p SDL2/build
-	@cd SDL2/build; 									\
-	$(SDL_DIR)/configure --prefix $(ABSDIR)/SDL2;		\
-	make -j; 											\
-	make install										\
 
 $(NAME): sdl2 $(OBJ)
 	@ echo "$(BLUE)Creating libft$(WHITE)"
 	@ make -C libft
 	@ echo "$(GREEN)Libft created$(WHITE)"
 	@ echo "$(YELLOW)Creating $@ executable$(WHITE)"
-	@ $(CC) -o $@ $(CFLAGS) $(OBJ) $(LIB) `sdl2-config --cflags --libs`
+	@ $(CC) -o $@ $(CFLAGS) $(OBJ) $(LIB)
 	@echo "$(GREEN)$@ executable created$(WHITE)"
+
+sdl2:
+	@mkdir -p SDL2/build
+	@cd SDL2/build; 									\
+	$(SDL_DIR)/configure --prefix $(ABSDIR)/SDL2;		\
+	make; 												\
 
 obj:
 	@mkdir obj
