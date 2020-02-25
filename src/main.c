@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:51:44 by grudler           #+#    #+#             */
-/*   Updated: 2020/02/25 14:57:31 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/02/25 16:00:41 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,36 +70,39 @@ int init_sdl(t_sdl *sdl)
 int		main(int argc, char **argv)
 {
 	int fd;
-	t_sdl sdl;
-
+	t_sdl *sdl;
 	
 	if (argc == 2)
 	{
-		ft_bzero(&sdl, sizeof(t_sdl));
-		fd = open(argv[1], O_RDONLY);
-		if (!(ft_parser(fd, &sdl)))
+		if (!(sdl = (t_sdl *)malloc(sizeof(t_sdl))))
 			return (0);
-		init_sdl(&sdl);
-		init_variables(&sdl);
+		ft_bzero(sdl, sizeof(t_sdl));
+		fd = open(argv[1], O_RDONLY);
+		if (!(ft_parser(fd, sdl)))
+			return (0);
+		init_sdl(sdl);
+		init_variables(sdl);
 		printf("end initialization\n");
-		init_menu(&sdl);
-		ft_bzero((&sdl)->key, SDL_NUM_SCANCODES);
-		while (!(sdl.end))
+		init_menu(sdl);
+		ft_bzero((sdl)->key, SDL_NUM_SCANCODES);
+		while (!(sdl->end))
 		{
-			event(&sdl);
-			fps_limit(&sdl); // affichage de FPS
-			draw(&sdl);
+			event(sdl);
+			fps_limit(sdl); // affichage de FPS
+			draw(sdl);
 		}
-	//	SDL_FreeSurface((&sdl)->img);
+	//	SDL_FreeSurface((sdl)->img);
 		printf("free screen\n");
-		SDL_FreeSurface((&sdl)->screen);
+		SDL_FreeSurface((sdl)->screen);
 		printf("free fenetre\n");
-		SDL_DestroyWindow(sdl.fenetre);
+		SDL_FreeSurface((sdl)->icon);
+		SDL_DestroyWindow(sdl->fenetre);
 		SDL_Quit();
 		printf("free image\n");
-		free_image (&sdl);
+		free_image (sdl);
 		printf("free pars\n");
-		free_tpars(&sdl, sdl.pars.nb_lin);
+		free_tpars(sdl, sdl->pars.nb_lin);
+		free(sdl);
 		return (0);
 	}
 	ft_putstr("ERROR, MAIN ARGV"); //temp
