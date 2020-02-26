@@ -6,7 +6,7 @@
 /*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 14:06:02 by grudler           #+#    #+#             */
-/*   Updated: 2020/01/30 12:42:51 by grudler          ###   ########.fr       */
+/*   Updated: 2020/02/26 18:30:47 by grudler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	init_variables(t_sdl *sdl)
 {
-	sdl->rcst.posx = 10; // postion x du joueur
-	sdl->rcst.posy = 13;
+	sdl->rcst.posx = sdl->pars.spawnx; // postion x du joueur
+	sdl->rcst.posy = sdl->pars.spawny;
 	sdl->rcst.dirX = 0; // direction du joueur (ou regarde le joueur)
 	sdl->rcst.dirY = -1;
 	sdl->rcst.planX = 0.66; // plan de la camera (ce quon affiche a lecran) Fov de 66 ici

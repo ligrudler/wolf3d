@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parser.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 21:01:22 by grudler           #+#    #+#             */
-/*   Updated: 2020/02/20 18:09:44 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/02/26 18:41:46 by grudler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,11 @@ int 	check_close_map(t_sdl *check)
 		column = 0;
 		while (column < check->pars.nb_col)
 		{
+			if (check->pars.map[line][column] == 1)
+			{
+				check->pars.spawnx = column;
+				check->pars.spawny = line;
+			}
 			if (line == 0 && check->pars.map[0][column] == 0)
 				return (0);
 			else if  (line == check->pars.nb_lin -1 && check->pars.map[line][column] == 0)

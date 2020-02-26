@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:43:42 by grudler           #+#    #+#             */
-/*   Updated: 2020/02/26 14:52:45 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/02/26 18:28:54 by grudler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "../libft/libft.h"
 # include <stdlib.h>
 # include <unistd.h>
-# include <stdbool.h> 
+# include <stdbool.h>
 # include <math.h>
 # include <stdio.h> // pour printf
 # include "../lib/SDL2-2.0.10/include/SDL.h"
@@ -96,6 +96,8 @@ typedef struct	s_pars
 	int y_map;
 	int	nb_col;
 	int	nb_lin;
+	double			spawnx;
+	double			spawny;
 }		t_pars;
 
 typedef struct s_weapons

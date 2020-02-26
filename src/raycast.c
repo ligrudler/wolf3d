@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 15:35:26 by grudler           #+#    #+#             */
-/*   Updated: 2020/01/28 18:50:18 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/02/26 18:42:19 by grudler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	side_hit(t_sdl *sdl)
 			sdl->rcst.mapY += sdl->rcst.stepY;
 			sdl->rcst.side = 1;
 		}
-		if (sdl->pars.map[sdl->rcst.mapY][sdl->rcst.mapX] > 0)
+		if (sdl->pars.map[sdl->rcst.mapY][sdl->rcst.mapX] == 2)
 			hit = 1;
 	}
 }

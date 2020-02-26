@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_event.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/06 11:25:38 by grudler           #+#    #+#             */
-/*   Updated: 2020/02/26 14:57:43 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/02/26 18:43:28 by grudler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,21 +38,21 @@ void	vertical_deplacement(t_sdl *sdl)
 {
 	if (sdl->key[SDL_SCANCODE_UP])
 	{
-		if (sdl->pars.map[(int)(sdl->rcst.posy + sdl->rcst.dirY * HITBOX)][(int)(sdl->rcst.posx + sdl->rcst.dirX * HITBOX)] == 0)
+		if (sdl->pars.map[(int)(sdl->rcst.posy + sdl->rcst.dirY * HITBOX)][(int)(sdl->rcst.posx + sdl->rcst.dirX * HITBOX)] < 2)
 		{
-			if(sdl->pars.map[(int)(sdl->rcst.posy)][(int)(sdl->rcst.posx + sdl->rcst.dirX * HITBOX)] == 0)
+			if(sdl->pars.map[(int)(sdl->rcst.posy)][(int)(sdl->rcst.posx + sdl->rcst.dirX * HITBOX)] < 2)
 				sdl->rcst.posx += sdl->rcst.dirX * sdl->move;
-			if(sdl->pars.map[(int)(sdl->rcst.posy + sdl->rcst.dirY * HITBOX)][(int)(sdl->rcst.posx)] == 0)
+			if(sdl->pars.map[(int)(sdl->rcst.posy + sdl->rcst.dirY * HITBOX)][(int)(sdl->rcst.posx)] < 2)
 				sdl->rcst.posy += sdl->rcst.dirY * sdl->move;
 		}
 	}
 	if (sdl->key[SDL_SCANCODE_DOWN])
 	{
-		if (sdl->pars.map[(int)(sdl->rcst.posy - sdl->rcst.dirY * HITBOX)][(int)(sdl->rcst.posx - sdl->rcst.dirX * HITBOX)] == 0)
+		if (sdl->pars.map[(int)(sdl->rcst.posy - sdl->rcst.dirY * HITBOX)][(int)(sdl->rcst.posx - sdl->rcst.dirX * HITBOX)] < 2)
 		{
-			if(sdl->pars.map[(int)(sdl->rcst.posy)][(int)(sdl->rcst.posx - sdl->rcst.dirX * HITBOX)] == 0)
+			if(sdl->pars.map[(int)(sdl->rcst.posy)][(int)(sdl->rcst.posx - sdl->rcst.dirX * HITBOX)] < 2)
 				sdl->rcst.posx -= sdl->rcst.dirX * sdl->move;
-			if(sdl->pars.map[(int)(sdl->rcst.posy - sdl->rcst.dirY * HITBOX)][(int)(sdl->rcst.posx)] == 0)
+			if(sdl->pars.map[(int)(sdl->rcst.posy - sdl->rcst.dirY * HITBOX)][(int)(sdl->rcst.posx)] < 2)
 				sdl->rcst.posy -= sdl->rcst.dirY * sdl->move;
 		}
 	}
@@ -60,7 +60,7 @@ void	vertical_deplacement(t_sdl *sdl)
 
 void	event(t_sdl *sdl)
 {
-	
+
 	while (SDL_PollEvent(&sdl->evenements))
 	{
 		if (sdl->evenements.type == SDL_KEYDOWN)
@@ -68,7 +68,7 @@ void	event(t_sdl *sdl)
 		if (sdl->evenements.type == SDL_KEYUP)
 			sdl->key[sdl->evenements.key.keysym.scancode] = 0;
 	}
-	
+
 	if ( sdl->evenements.type == SDL_QUIT || sdl->key[SDL_SCANCODE_ESCAPE])
 	{
 		sdl->end = 1;
