@@ -6,7 +6,7 @@
 /*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 21:01:22 by grudler           #+#    #+#             */
-/*   Updated: 2020/02/26 18:41:46 by grudler          ###   ########.fr       */
+/*   Updated: 2020/02/26 18:50:41 by grudler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@ int 	check_close_map(t_sdl *check)
 {
 	int line;
 	int column;
+	int verif;
 
+	verif = 0;
 	line = 0;
 	while (line < check->pars.nb_lin)
 	{
@@ -26,8 +28,14 @@ int 	check_close_map(t_sdl *check)
 		{
 			if (check->pars.map[line][column] == 1)
 			{
+				if (verif == 1)
+				{
+					ft_putstr("Only one spawn\n");
+					return (0);
+				}
 				check->pars.spawnx = column;
 				check->pars.spawny = line;
+				verif = 1;
 			}
 			if (line == 0 && check->pars.map[0][column] == 0)
 				return (0);
