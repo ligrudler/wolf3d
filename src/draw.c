@@ -29,7 +29,7 @@ Uint32 getpixel(SDL_Surface *surface, int x, int y)
     //int bpp = surface->format->BytesPerPixel;
     /* Here p is the address to the pixel we want to retrieve */
     Uint8 *p = (Uint8 *)surface->pixels + y * surface->pitch + x * 4;  // 4=bpp
- 
+
     return *(Uint32 *)p;
 }
 
@@ -75,7 +75,7 @@ void	draw_sky_ground(t_sdl *sdl)
 		}
 		y++;
 	}
-	
+
 	y = ( (WINY - 1) / 2);
 	color = convert_argb(255, 211, 211, 211);
 	while (y <= (WINY - 1))
@@ -92,7 +92,7 @@ void	draw_sky_ground(t_sdl *sdl)
 
 void	draw(t_sdl *sdl)
 {
-	
+
 	if (sdl->menu == false)
 	{
 		clear_screen(sdl);
@@ -100,7 +100,7 @@ void	draw(t_sdl *sdl)
 		raycast(sdl);
 		draw_wepaon(sdl, sdl->weapons);
 	}
-	else 
+	else
 		display_menu(sdl, sdl->menu_img);
 	update_screen(sdl);
 
@@ -116,12 +116,12 @@ void	draw_vertical_line(t_sdl *sdl, int x)
 	double wallx;
 	if (sdl->rcst.side == 0)
 		wallx = sdl->rcst.posy + sdl->rcst.raylenght *  sdl->rcst.raydirY;
-	else 
+	else
 		wallx = sdl->rcst.posx + sdl->rcst.raylenght *  sdl->rcst.raydirX;
 	wallx -= floor(wallx);
 
 	int texX = (int) (wallx * 64.0);
-	
+
 	texX = 64 - texX - 1;
 /*
 	if (sdl->rcst.side == 0 && sdl->rcst.raydirX > 0)
@@ -135,14 +135,22 @@ void	draw_vertical_line(t_sdl *sdl, int x)
 	}*/
 	double step = 1.0 * 64 / sdl->rcst.lineheight;
 	double texPos = (sdl->rcst.lowpix - WINY / 2 + sdl->rcst.lineheight / 2) * step ;
-	
+
 	//pixels = (uint32_t *)sdl->surf->pixels;
 	y = sdl->rcst.lowpix;
 	while (y <= sdl->rcst.highpix)
 	{
 		int texY =(int)texPos & (64 - 1);
 		texPos += step;
-		sdl->rcst.color = sdl->txt->data[ 64 * texY + texX];
+		if ((int)sdl->rcst.posx >= sdl->rcst.mapX && sdl->rcst.side == 0)
+			sdl->rcst.color = sdl->txt->data[ 64 * texY + texX];
+		else if (sdl->rcst.side == 0)
+			sdl->rcst.color = sdl->txt2->data[ 64 * texY + texX];
+		if ((int)sdl->rcst.posy <= sdl->rcst.mapY && sdl->rcst.side == 1)
+			sdl->rcst.color = sdl->txt3->data[ 64 * texY + texX];
+		else if (sdl->rcst.side == 1)
+			sdl->rcst.color = sdl->txt4->data[ 64 * texY + texX];
+		//sdl->rcst.color = sdl->txt->data[ 64 * texY + texX];
 		put_pixels(sdl, sdl->rcst.color, x, y);
 		y++;
 	}

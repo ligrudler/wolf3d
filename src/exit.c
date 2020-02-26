@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 19:19:31 by qlouisia          #+#    #+#             */
-/*   Updated: 2020/02/24 15:29:33 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/02/26 18:01:57 by grudler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,5 @@ int free_image (t_sdl *sdl)
 	exit8bit(sdl->txt);
 	exit8bit(sdl->txt2);
 	exit8bit(sdl->txt3);
+	exit8bit(sdl->txt4);
 }
