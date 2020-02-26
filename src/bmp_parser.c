@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 14:51:37 by qlouisia          #+#    #+#             */
-/*   Updated: 2020/02/24 13:55:25 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/02/26 14:16:58 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ t_bmp *load_image (char *path)
 
 
 	printf("\n### CUSTOM READ ###\n\n");
+	printf("%s\n",path);
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
 	{

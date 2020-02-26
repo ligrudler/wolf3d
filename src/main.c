@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:51:44 by grudler           #+#    #+#             */
-/*   Updated: 2020/02/25 16:19:33 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/02/26 15:00:11 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,22 @@
 
 // fonction pour initialiser les textures
 // Penser a virer les printfs
+
+int init_weapons (t_weapons *wp)
+{
+	// need secure and return
+	wp->frame_nb = 0;
+	wp->delay = 100;
+	wp->shoot = false;
+	wp->frame2= load_image("./ressources/pistol1.bmp");
+	wp->frame[0] = load_image("./ressources/pistol1.bmp");
+	wp->frame[1] = load_image("./ressources/pistol2.bmp");
+	wp->frame[2] = load_image("./ressources/pistol3.bmp");
+	wp->frame[3] = load_image("./ressources/pistol4.bmp");
+	wp->frame[4] = load_image("./ressources/pistol5.bmp");
+	printf("load gun text\n");
+	return (1);
+}
 int init_texture (t_sdl *sdl)
 {
 	SDL_Surface *tmp;
@@ -22,9 +38,10 @@ int init_texture (t_sdl *sdl)
 	sdl->txt2 = load_image("./ressources/Blue4.bmp");
 	sdl->txt3 = load_image("./ressources/RedBricks0.bmp");
 	sdl->icon = SDL_LoadBMP("./ressources/icon.bmp");
-	sdl->weapon = load_image("./ressources/pistol1.bmp");
-
-
+	if(!( sdl->weapons = (t_weapons *)malloc(sizeof(t_weapons))))
+		return (0);
+	
+	init_weapons(sdl->weapons);
 	if (sdl->txt)
 	{
 	/*	tmp = sdl->img;
@@ -89,7 +106,7 @@ int		main(int argc, char **argv)
 		while (!(sdl->end))
 		{
 			event(sdl);
-			fps_limit(sdl); // affichage de FPS
+		//	fps_limit(sdl); // affichage de FPS
 			draw(sdl);
 		}
 	//	SDL_FreeSurface((sdl)->img);
@@ -103,6 +120,7 @@ int		main(int argc, char **argv)
 		free_image (sdl);
 		printf("free pars\n");
 		free_tpars(sdl, sdl->pars.nb_lin);
+		free(sdl->weapons);
 		free(sdl);
 		return (0);
 	}

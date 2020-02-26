@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/06 11:25:38 by grudler           #+#    #+#             */
-/*   Updated: 2020/02/25 10:53:27 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/02/26 14:57:43 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,8 @@ void	event(t_sdl *sdl)
 		sdl->menu = false;
 	else {
 		if (sdl->key[SDL_SCANCODE_SPACE])
-			init_variables(sdl);
+			sdl->weapons->shoot = true;
+			//init_variables(sdl);
 		if (sdl->key[SDL_SCANCODE_LSHIFT])
 			sdl->move = 0.06;
 		else

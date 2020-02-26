@@ -6,13 +6,13 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 14:23:20 by qlouisia          #+#    #+#             */
-/*   Updated: 2020/02/25 16:31:24 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/02/26 14:56:57 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/wolf3d.h"
 
-void draw_wepaon(t_sdl *sdl, t_bmp *img)
+void draw_wepaon(t_sdl *sdl, t_weapons *img)
 {
 	int x;
 	int y;
@@ -20,22 +20,38 @@ void draw_wepaon(t_sdl *sdl, t_bmp *img)
 	uint32_t ref_col;
 	int padding_x;
 	int padding_y;
+	static int last_time = 0;
+	int current_time;
 
 	y = 0;
-	padding_x = (WINX / 2) - (img->width / 2);
-	padding_y = WINY - img->height;
-	ref_col = img->data[0];
-	while (y < img->width)
+	padding_x = (WINX / 2) - (img->frame[img->frame_nb]->width / 2);
+	padding_y = WINY - img->frame[img->frame_nb]->height;
+	ref_col = img->frame[img->frame_nb]->data[0];
+	while (y < img->frame[img->frame_nb]->height)
 	{
 		x = 0 ;
-		while (x < img->height)
+		while (x < img->frame[img->frame_nb]->width)
 		{
-			color = img->data[ y * img->width + x];
+			color = img->frame[img->frame_nb]->data[ y *img->frame[img->frame_nb]->width + x];
 			if (color != ref_col)
 				put_pixels(sdl, color, x + padding_x , y + padding_y);
 			x++;
 		}
 		y++;
+	}
+	if (img->shoot == true)
+	{
+		current_time = SDL_GetTicks();
+		if (current_time > last_time + img->delay)
+	{
+		img->frame_nb++;
+		if (img->frame_nb > 4)
+		{
+			img->frame_nb = 0;
+			img->shoot = false;
+		}
+		last_time = current_time;
+	}
 	}
 }
 

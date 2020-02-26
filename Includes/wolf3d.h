@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:43:42 by grudler           #+#    #+#             */
-/*   Updated: 2020/02/25 16:25:59 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/02/26 14:52:45 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,16 @@ typedef struct	s_pars
 	int	nb_lin;
 }		t_pars;
 
+typedef struct s_weapons
+{
+	t_bmp *frame[5];
+	t_bmp *frame2;
+	int		delay;
+	int		frame_nb;
+	bool	shoot;
+
+}				t_weapons;
+
 typedef struct	s_sdl
 {
 	SDL_Window *fenetre;
@@ -119,11 +129,11 @@ typedef struct	s_sdl
 	t_bmp *txt2;
 	t_bmp *txt3;
 	t_bmp *txt4;
-	t_bmp *weapon;
 	t_bmp *menu_img;
 	int padding_x;
 	int padding_y;
 	SDL_Surface *icon;
+	t_weapons 	*weapons;
 	t_fps fps;
 }				t_sdl;
 
@@ -153,7 +163,7 @@ t_bmp *load_image (char *path);
 int init_menu(t_sdl *sdl);
 void display_menu(t_sdl *sdl, t_bmp *img);
 int free_image (t_sdl *sdl);
-void draw_wepaon(t_sdl *sdl, t_bmp *img);
+void draw_wepaon(t_sdl *sdl, t_weapons *img);
 
 
 #endif
