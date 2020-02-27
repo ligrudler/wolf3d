@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 14:12:37 by grudler           #+#    #+#             */
-/*   Updated: 2020/02/01 16:40:51 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/02/25 17:45:56 by lgrudler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ int		get_color(t_sdl *sdl)
 	if ((int)sdl->rcst.posx < sdl->rcst.mapX && sdl->rcst.side == 0)
 		return(convert_argb(255, 255, 100, 23)); // ouest
 	else if (sdl->rcst.side == 0)
-		return(convert_argb(255, 255, 0, 0)); // est 
+		return(convert_argb(255, 255, 0, 0)); // est
 	if ((int)sdl->rcst.posy > sdl->rcst.mapY && sdl->rcst.side == 1) // sud
 		return(convert_argb(255, 0, 255, 0));
-	return(convert_argb(255, 0, 0, 255)); // nord 
+	return(convert_argb(255, 0, 0, 255)); // nord
 }

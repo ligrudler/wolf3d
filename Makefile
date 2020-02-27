@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+         #
+#    By: grudler <grudler@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/20 16:56:04 by lgrudler          #+#    #+#              #
-#    Updated: 2020/02/26 14:48:48 by qlouisia         ###   ########.fr        #
+#    Updated: 2020/02/27 16:06:17 by grudler          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ MAGENTA= \033[35m
 ################################################################################
 NAME= wolf3d
 CC= gcc
-CFLAGS= -g3 -fsanitize=address #-Wall -Wextra -Werror # 
+CFLAGS= -g3 -fsanitize=address #-Wall -Wextra -Werror #
 SRC_DIR= src/
 SRC= main.c\
 	ft_parser.c\
@@ -45,9 +45,11 @@ SRC= main.c\
 	menu.c
 
 SRCS= $(addprefix $(SRC_DIR),$(SRC))
+ABS_DIR= $(shell pwd)
 OBJ_DIR= obj/
+SDL_DIR= $(ABS_DIR)/lib/SDL2-2.0.10/
 OBJ= $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRCS))
-LIB= -L libft -lft
+LIB= -L libft -lft `sdl2-config --cflags --libs`
 
 ###############################################################################
 #								Rules										  #
@@ -55,13 +57,19 @@ LIB= -L libft -lft
 
 all: $(NAME)
 
-$(NAME): $(OBJ) Makefile
+$(NAME): sdl2 $(OBJ)
 	@ echo "$(BLUE)Creating libft$(WHITE)"
 	@ make -C libft
 	@ echo "$(GREEN)Libft created$(WHITE)"
 	@ echo "$(YELLOW)Creating $@ executable$(WHITE)"
-	@ $(CC) -o $@ $(CFLAGS) $(OBJ) $(LIB) `sdl2-config --cflags --libs`
-	@echo "$(GREEN)$@ executable created$(WHITE)"
+	@ $(CC) -o $@ $(CFLAGS) $(OBJ) $(LIB)
+	@ echo "$(GREEN)$@ executable created$(WHITE)"
+
+sdl2:
+	@mkdir -p SDL2/build
+	@cd SDL2/build; 									\
+	$(SDL_DIR)/configure --prefix $(ABSDIR)/SDL2;		\
+	make; 												\
 
 obj:
 	@mkdir obj
@@ -86,7 +94,13 @@ fclean: clean
 	@ echo "$(YELLOW)Deleting obj directory$(WHITE)"
 	@ rm -rf obj
 	@ echo "$(GREEN)Obj directory deleted$(WHITE)"
-	@ echo "$(GREEN)Executable deleted$(WHITE)"
 	@ rm -rf $(NAME)
+	@ echo "$(GREEN)Executable deleted$(WHITE)"
+
+clear: fclean
+	@ rm -rf sdl2
+	@ echo "$(GREEN)Sdl2 deleted$(WHITE)"
 
 re: fclean all
+
+.PHONY: all clean fclean re clear
