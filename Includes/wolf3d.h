@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:43:42 by grudler           #+#    #+#             */
-/*   Updated: 2020/02/26 14:52:45 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/02/26 15:10:45 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,6 @@ typedef struct	s_pars
 typedef struct s_weapons
 {
 	t_bmp *frame[5];
-	t_bmp *frame2;
 	int		delay;
 	int		frame_nb;
 	bool	shoot;

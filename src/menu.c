@@ -6,11 +6,22 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 14:23:20 by qlouisia          #+#    #+#             */
-/*   Updated: 2020/02/26 14:56:57 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/02/26 16:13:14 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/wolf3d.h"
+
+
+void image_scale(int x, int y, int *s_x, int *s_y, t_bmp *img)
+{
+	float scale_x;
+	float scale_y;
+
+	scale_x = ((float)img->width / WINX);
+	scale_y = ((float)img->height / WINY);
+	
+}
 
 void draw_wepaon(t_sdl *sdl, t_weapons *img)
 {

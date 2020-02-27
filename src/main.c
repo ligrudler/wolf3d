@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:51:44 by grudler           #+#    #+#             */
-/*   Updated: 2020/02/26 15:00:11 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/02/26 15:17:21 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int init_weapons (t_weapons *wp)
 	wp->frame_nb = 0;
 	wp->delay = 100;
 	wp->shoot = false;
-	wp->frame2= load_image("./ressources/pistol1.bmp");
 	wp->frame[0] = load_image("./ressources/pistol1.bmp");
 	wp->frame[1] = load_image("./ressources/pistol2.bmp");
 	wp->frame[2] = load_image("./ressources/pistol3.bmp");
