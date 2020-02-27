@@ -6,7 +6,7 @@
 /*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:43:42 by grudler           #+#    #+#             */
-/*   Updated: 2020/02/26 19:07:50 by grudler          ###   ########.fr       */
+/*   Updated: 2020/02/27 22:26:57 by grudler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@
 # include <stdbool.h>
 # include <math.h>
 # include <stdio.h> // pour printf
-# include "../lib/SDL2-2.0.10/include/SDL.h"
+#include "SDL2/SDL.h"
+#include "SDL2/SDL_ttf.h"
 
 # define BUFF_SIZE 10
 # define WINX 800

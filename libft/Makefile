@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+         #
+#    By: grudler <grudler@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/10 13:21:42 by lgrudler          #+#    #+#              #
-#    Updated: 2020/02/05 14:21:48 by qlouisia         ###   ########.fr        #
+#    Updated: 2020/02/27 23:19:16 by grudler          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -91,7 +91,7 @@ OBJET = $(SRC:.c=.o)
 
 all : $(NAME)
 
-$(NAME) :
+$(NAME) : $(OBJET)
 	@gcc $(FLAGS) -c $(SRC) -I $(HDR)
 	@ar rc $(NAME) $(OBJET)
 	@ranlib $(NAME)

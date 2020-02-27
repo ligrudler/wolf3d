@@ -6,7 +6,7 @@
 #    By: grudler <grudler@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/20 16:56:04 by lgrudler          #+#    #+#              #
-#    Updated: 2020/02/27 16:06:17 by grudler          ###   ########.fr        #
+#    Updated: 2020/02/27 23:28:01 by grudler          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,9 +47,21 @@ SRC= main.c\
 SRCS= $(addprefix $(SRC_DIR),$(SRC))
 ABS_DIR= $(shell pwd)
 OBJ_DIR= obj/
-SDL_DIR= $(ABS_DIR)/lib/SDL2-2.0.10/
+
+LFT_DIR= libft
+LFT= $(LFT_DIR)/libft.a
+
+SDL_DIR= /usr/local/Cellar/sdl2/2.0.10/lib
+SDL2 = $(SDL_DIR)/libsdl2.a
+# SDL_DIR= $(HOME)/.brew/Cellar/sdl2/2.0.10/lib
+
+TTF_DIR= /usr/local/Cellar/sdl2_ttf/2.0.15/lib
+SDL_TTF= $(TTF_DIR)/libsdl2_ttf.a
+# SDL_TTF= $(HOME)/.brew/Cellar/sdl2_ttf/2.0.15/lib
+
 OBJ= $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRCS))
-LIB= -L libft -lft `sdl2-config --cflags --libs`
+
+LIB= -L libft -lft -L$(SDL_DIR) -lSDL2 -L$(TTF_DIR) -lSDL2_ttf
 
 ###############################################################################
 #								Rules										  #
@@ -57,19 +69,26 @@ LIB= -L libft -lft `sdl2-config --cflags --libs`
 
 all: $(NAME)
 
-$(NAME): sdl2 $(OBJ)
-	@ echo "$(BLUE)Creating libft$(WHITE)"
-	@ make -C libft
-	@ echo "$(GREEN)Libft created$(WHITE)"
+$(NAME): $(LFT) $(SDL2) $(SDL_TTF) $(OBJ)
 	@ echo "$(YELLOW)Creating $@ executable$(WHITE)"
 	@ $(CC) -o $@ $(CFLAGS) $(OBJ) $(LIB)
 	@ echo "$(GREEN)$@ executable created$(WHITE)"
 
-sdl2:
-	@mkdir -p SDL2/build
-	@cd SDL2/build; 									\
-	$(SDL_DIR)/configure --prefix $(ABSDIR)/SDL2;		\
-	make; 												\
+$(LFT):
+	@ echo "$(BLUE)Creating libft$(WHITE)"
+	@ make -sC $(LFT_DIR) -j
+	@ echo "$(GREEN)Libft created$(WHITE)"
+
+$(SDL2):
+	@ echo "$(YELLOW)Installing library SDL2$(WHITE)";
+	@ brew install sdl2
+	@ echo "$(GREEN)SDL2 created$(WHITE)"
+
+$(SDL_TTF):
+	@ echo "$(YELLOW)Installing library SDL2_TTF$(WHITE)";
+	@ brew install sdl2_ttf
+	@ echo "$(GREEN)SDL2_TTF created$(WHITE)"
+
 
 obj:
 	@mkdir obj
@@ -97,10 +116,6 @@ fclean: clean
 	@ rm -rf $(NAME)
 	@ echo "$(GREEN)Executable deleted$(WHITE)"
 
-clear: fclean
-	@ rm -rf sdl2
-	@ echo "$(GREEN)Sdl2 deleted$(WHITE)"
-
 re: fclean all
 
-.PHONY: all clean fclean re clear
+.PHONY: all clean fclean re
