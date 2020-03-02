@@ -6,7 +6,7 @@
 #    By: grudler <grudler@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/20 16:56:04 by lgrudler          #+#    #+#              #
-#    Updated: 2020/02/27 23:28:01 by grudler          ###   ########.fr        #
+#    Updated: 2020/03/02 09:52:17 by grudler          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,8 @@ SRC= main.c\
 	bmp_parser.c\
 	8bits.c\
 	exitBMP.c\
-	menu.c
+	menu.c\
+	hud.c
 
 SRCS= $(addprefix $(SRC_DIR),$(SRC))
 ABS_DIR= $(shell pwd)

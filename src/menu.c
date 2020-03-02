@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   menu.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 14:23:20 by qlouisia          #+#    #+#             */
-/*   Updated: 2020/02/26 14:56:57 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/02/28 01:13:06 by grudler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void draw_wepaon(t_sdl *sdl, t_weapons *img)
 			color = img->data[ y_p * img->width + x_p];
 			//color = convert_8bits_color(color);
 			put_pixels(sdl, color, x , y);
-			
+
 		//	printf(" x:%d y:%d | x_p %d y_p %d [%f][%f] \n",x,y,x_p, y_p, scale_x, scale_y);
 			x++;
 		}
@@ -105,5 +105,5 @@ int init_menu(t_sdl *sdl)
 	SDL_UpdateWindowSurface(sdl->fenetre);
 	*/
 	return (1);
-	
+
 }

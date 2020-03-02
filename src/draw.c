@@ -92,18 +92,17 @@ void	draw_sky_ground(t_sdl *sdl)
 
 void	draw(t_sdl *sdl)
 {
-
 	if (sdl->menu == false)
 	{
 		clear_screen(sdl);
 		draw_sky_ground(sdl);
 		raycast(sdl);
 		draw_wepaon(sdl, sdl->weapons);
+		fps_display(sdl);
 	}
 	else
 		display_menu(sdl, sdl->menu_img);
 	update_screen(sdl);
-
 }
 
 // Working really good

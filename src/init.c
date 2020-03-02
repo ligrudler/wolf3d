@@ -6,7 +6,7 @@
 /*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 14:06:02 by grudler           #+#    #+#             */
-/*   Updated: 2020/02/26 19:12:58 by grudler          ###   ########.fr       */
+/*   Updated: 2020/02/28 00:39:40 by grudler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	init_variables(t_sdl *sdl)
 
 	sdl->fps.lastTime = 0;
 	sdl->fps.framelimit = 0;
+
+	sdl->counter = 0;
 }
 
 void	init_raycast(t_sdl *sdl, int x)

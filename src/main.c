@@ -6,7 +6,7 @@
 /*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:51:44 by grudler           #+#    #+#             */
-/*   Updated: 2020/02/27 23:28:32 by grudler          ###   ########.fr       */
+/*   Updated: 2020/03/02 09:54:26 by grudler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,14 +100,20 @@ int		main(int argc, char **argv)
 		if (!(ft_parser(fd, sdl)))
 			return (0);
 		init_sdl(sdl);
+
+		if (TTF_Init() == -1)
+			return (0);
+		sdl->police = TTF_OpenFont("./ressources/bebasneue-regular.ttf", 50);
+
 		init_variables(sdl);
 		printf("end initialization\n");
 		init_menu(sdl);
 		ft_bzero((sdl)->key, SDL_NUM_SCANCODES);
 		while (!(sdl->end))
 		{
+			sdl->counter++;
 			event(sdl);
-		//	fps_limit(sdl); // affichage de FPS
+			fps_limit(sdl);
 			draw(sdl);
 		}
 	//	SDL_FreeSurface((sdl)->img);
@@ -116,6 +122,10 @@ int		main(int argc, char **argv)
 		printf("free fenetre\n");
 		SDL_FreeSurface((sdl)->icon);
 		SDL_DestroyWindow(sdl->fenetre);
+
+		TTF_CloseFont(sdl->police);
+		TTF_Quit();
+
 		SDL_Quit();
 		printf("free image\n");
 		free_image (sdl);
