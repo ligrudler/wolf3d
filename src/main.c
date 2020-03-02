@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:51:44 by grudler           #+#    #+#             */
-/*   Updated: 2020/02/26 18:02:35 by grudler          ###   ########.fr       */
+/*   Updated: 2020/02/27 12:57:15 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,16 @@ int init_weapons (t_weapons *wp)
 	wp->frame_nb = 0;
 	wp->delay = 100;
 	wp->shoot = false;
-	wp->frame2= load_image("./ressources/pistol1.bmp");
-	wp->frame[0] = load_image("./ressources/pistol1.bmp");
-	wp->frame[1] = load_image("./ressources/pistol2.bmp");
-	wp->frame[2] = load_image("./ressources/pistol3.bmp");
-	wp->frame[3] = load_image("./ressources/pistol4.bmp");
-	wp->frame[4] = load_image("./ressources/pistol5.bmp");
-	printf("load gun text\n");
+	if (!(wp->frame[0] = load_image("./ressources/pistol1.bmp")) || 
+	!(wp->frame[1] = load_image("./ressources/pistol2.bmp")) || 
+	!(wp->frame[2] = load_image("./ressources/pistol3.bmp")) || 
+	!(wp->frame[3] = load_image("./ressources/pistol4.bmp")) || 
+	!(wp->frame[4] = load_image("./ressources/pistol5.bmp")) )
+	{
+		ft_putendl("error with Gun_texture");
+		return (0);
+	}
+
 	return (1);
 }
 int init_texture (t_sdl *sdl)
@@ -42,7 +45,8 @@ int init_texture (t_sdl *sdl)
 	if(!( sdl->weapons = (t_weapons *)malloc(sizeof(t_weapons))))
 		return (0);
 
-	init_weapons(sdl->weapons);
+	if (!(init_weapons(sdl->weapons)))
+		return (0);
 	if (sdl->txt)
 	{
 	/*	tmp = sdl->img;
