@@ -6,7 +6,7 @@
 /*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 14:23:20 by qlouisia          #+#    #+#             */
-/*   Updated: 2020/03/02 10:11:14 by grudler          ###   ########.fr       */
+/*   Updated: 2020/03/02 10:27:57 by grudler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ void	displat_menu_text(t_sdl *sdl)
 	sdl->police = TTF_OpenFont("./ressources/vogue.ttf", 50);
 	texte = TTF_RenderText_Blended(sdl->police, "Press space !", red);
 
-	position.x = 450;
-	position.y = 600;
+	position.x = WINX / 1.8;
+	position.y = WINY / 1.3;
 	SDL_BlitSurface(texte, NULL, sdl->screen, &position);
 }
 
