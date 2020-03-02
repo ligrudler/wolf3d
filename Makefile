@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+         #
+#    By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/20 16:56:04 by lgrudler          #+#    #+#              #
-#    Updated: 2020/03/02 18:30:00 by lgrudler         ###   ########.fr        #
+#    Updated: 2020/03/02 19:07:56 by qlouisia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ MAGENTA= \033[35m
 ################################################################################
 NAME= wolf3d
 CC= gcc
-CFLAGS= -g3 -fsanitize=address `sdl2-config --cflags` #-Wall -Wextra -Werror #
+CFLAGS= -g3 `sdl2-config --cflags` #-Wall -Wextra -Werror # -fsanitize=address
 SRC_DIR= src/
 SRC= main.c\
 	ft_parser.c\
@@ -36,7 +36,6 @@ SRC= main.c\
 	raycast.c\
 	key_event.c\
 	fps.c\
-	display.c\
 	init.c\
 	color.c\
 	bmp_parser.c\

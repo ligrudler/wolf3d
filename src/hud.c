@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hud.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 09:48:56 by grudler           #+#    #+#             */
-/*   Updated: 2020/03/02 10:21:50 by grudler          ###   ########.fr       */
+/*   Updated: 2020/03/02 19:10:34 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	fps_display(t_sdl *sdl)
 {
 	SDL_Surface *texte;
 	SDL_Rect position;
-	SDL_Color noir = {255,255,0};
+	SDL_Color font_color = {255,255,0};
 
 	sdl->police = TTF_OpenFont("./ressources/bebasneue-regular.ttf", 50);
 	if (sdl->counter % 10 == 0)
@@ -25,9 +25,12 @@ void	fps_display(t_sdl *sdl)
 		sdl->counter = 0;
 	}
 
-	texte = TTF_RenderText_Blended(sdl->police, sdl->str, noir);
+	texte = TTF_RenderText_Blended(sdl->police, sdl->str, font_color);
 
 	position.x = 10;
 	position.y = 10;
 	SDL_BlitSurface(texte, NULL, sdl->screen, &position);
+	free(sdl->str);
+	//SDL_FreeSurface(texte);
+	sdl->str = NULL;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_event.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/06 11:25:38 by grudler           #+#    #+#             */
-/*   Updated: 2020/02/26 18:43:28 by grudler          ###   ########.fr       */
+/*   Updated: 2020/03/02 18:48:00 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,4 @@ void	event(t_sdl *sdl)
 		vertical_deplacement(sdl);
 		horizontal_deplacement(sdl);
 	}
-	/*SDL_SetRenderDrawColor(sdl->renderer, 0, 0, 0, 0);
-	if (SDL_RenderClear(sdl->renderer) != 0)
-		ft_error();*/
 }

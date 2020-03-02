@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   menu.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 14:23:20 by qlouisia          #+#    #+#             */
-/*   Updated: 2020/03/02 10:27:57 by grudler          ###   ########.fr       */
+/*   Updated: 2020/03/02 19:11:04 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,15 +90,12 @@ void display_menu(t_sdl *sdl, t_bmp *img)
 			x_p = x * scale_x;
 			y_p = y * scale_y;
 			color = img->data[ y_p * img->width + x_p];
-			//color = convert_8bits_color(color);
 			put_pixels(sdl, color, x , y);
-
-		//	printf(" x:%d y:%d | x_p %d y_p %d [%f][%f] \n",x,y,x_p, y_p, scale_x, scale_y);
 			x++;
 		}
 		y++;
 	}
-	displat_menu_text(sdl);
+//	displat_menu_text(sdl);
 }
 
 
@@ -112,6 +109,9 @@ int init_menu(t_sdl *sdl)
 	// centrer l'image en fonction de la taille de la fenetre
 	sdl->padding_x = (WINX - sdl->menu_img->width) / 2;
 	sdl->padding_y = (WINY - sdl->menu_img->height) / 2;
+
+	// refactoriser pour n'afficher l'image qu'une fois
+	
 	/*
 	display_menu(sdl, sdl->menu_img);
 	SDL_BlitSurface(sdl->img, NULL, sdl->screen, NULL);

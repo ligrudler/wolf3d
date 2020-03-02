@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:43:42 by grudler           #+#    #+#             */
-/*   Updated: 2020/03/02 18:30:05 by lgrudler         ###   ########.fr       */
+/*   Updated: 2020/03/02 19:20:58 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 # include "SDL_ttf.h"
 
 # define BUFF_SIZE 10
-# define WINX 800
-# define WINY 800
+# define WINX 1200
+# define WINY 1200
 # define HITBOX 0.3
 # define MOVEDIR 0.05
 # define MAX_FPS 60
@@ -104,7 +104,6 @@ typedef struct	s_pars
 typedef struct s_weapons
 {
 	t_bmp *frame[5];
-	t_bmp *frame2;
 	int		delay;
 	int		frame_nb;
 	bool	shoot;
@@ -124,18 +123,14 @@ typedef struct	s_sdl
 	int			end;
 	bool		menu;
 	double			move;
-//	Uint32 *img;
 	Uint32		type;
-	SDL_Scancode scancode;
 	t_pars		pars;
 	t_raycast	rcst;
-//	SDL_Surface *surf;
-//	SDL_Surface *img;
 	SDL_Surface *screen; // Surface affichant l'ecran
 	t_bmp *txt;
 	t_bmp *txt2;
 	t_bmp *txt3;
-	t_bmp *txt4;
+	t_bmp *txt4; // creer la structure pour stocker les textures
 	t_bmp *menu_img;
 	int padding_x;
 	int padding_y;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 15:35:26 by grudler           #+#    #+#             */
-/*   Updated: 2020/02/26 18:42:19 by grudler          ###   ########.fr       */
+/*   Updated: 2020/03/02 18:44:40 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,6 @@ void	raycast(t_sdl *sdl)
 		side_hit(sdl);
 		ray_lenght(sdl);
 		find_line_height(sdl);
-		sdl->rcst.color = get_color(sdl);
 		draw_vertical_line(sdl, x);
 		x++;
 	}
