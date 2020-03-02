@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:43:42 by grudler           #+#    #+#             */
-/*   Updated: 2020/03/02 10:24:19 by grudler          ###   ########.fr       */
+/*   Updated: 2020/03/02 18:30:05 by lgrudler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # include <stdbool.h>
 # include <math.h>
 # include <stdio.h> // pour printf
-#include "SDL2/SDL.h"
-#include "SDL2/SDL_ttf.h"
+# include "SDL.h"
+# include "SDL_ttf.h"
 
 # define BUFF_SIZE 10
 # define WINX 800
