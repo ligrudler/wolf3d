@@ -6,7 +6,7 @@
 /*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:51:44 by grudler           #+#    #+#             */
-/*   Updated: 2020/03/02 09:54:26 by grudler          ###   ########.fr       */
+/*   Updated: 2020/03/02 10:04:12 by grudler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,11 +100,8 @@ int		main(int argc, char **argv)
 		if (!(ft_parser(fd, sdl)))
 			return (0);
 		init_sdl(sdl);
-
 		if (TTF_Init() == -1)
 			return (0);
-		sdl->police = TTF_OpenFont("./ressources/bebasneue-regular.ttf", 50);
-
 		init_variables(sdl);
 		printf("end initialization\n");
 		init_menu(sdl);
