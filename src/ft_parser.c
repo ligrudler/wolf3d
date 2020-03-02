@@ -3,21 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parser.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 21:01:22 by grudler           #+#    #+#             */
-/*   Updated: 2020/02/26 19:04:02 by grudler          ###   ########.fr       */
+/*   Updated: 2020/03/02 19:53:17 by lgrudler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/wolf3d.h"
 
-
-int 	check_close_map(t_sdl *check)
+int				check_close_map(t_sdl *check)
 {
-	int line;
-	int column;
-	int verif;
+	int		line;
+	int		column;
+	int		verif;
 
 	verif = 0;
 	line = 0;
@@ -39,9 +38,9 @@ int 	check_close_map(t_sdl *check)
 			}
 			if (line == 0 && check->pars.map[0][column] == 0)
 				return (0);
-			else if  (line == check->pars.nb_lin -1 && check->pars.map[line][column] == 0)
-				return(0);
-			else if ((column == 0 || column == check->pars.nb_col - 1 ) && check->pars.map[line][column] == 0)
+			else if (line == check->pars.nb_lin - 1 && check->pars.map[line][column] == 0)
+				return (0);
+			else if ((column == 0 || column == check->pars.nb_col - 1) && check->pars.map[line][column] == 0)
 				return (0);
 			column++;
 		}
@@ -50,17 +49,17 @@ int 	check_close_map(t_sdl *check)
 	if (verif == 0)
 	{
 		ft_putstr("Need a spawn");
-		return(0);
+		return (0);
 	}
 	ft_putstr("Map VALID");
-	return(1);
+	return (1);
 }
 
-int		check_column_line(char *str, t_sdl *sdl)
+int				check_column_line(char *str, t_sdl *sdl)
 {
-	int i;
-	int tmp;
-	int check; // permet de gerer si la map finie par pls \n
+	int		i;
+	int		tmp;
+	int		check;
 
 	i = -1;
 	tmp = 0;
@@ -79,7 +78,7 @@ int		check_column_line(char *str, t_sdl *sdl)
 			}
 			i++;
 		}
-		if (check == 1 && tmp != 0 && tmp != sdl->pars.nb_col) // pour l'instant ne gere que les map avec le meme nombre de colonne
+		if (check == 1 && tmp != 0 && tmp != sdl->pars.nb_col)
 			return (0);
 		else if (check == 1)
 		{
@@ -92,14 +91,13 @@ int		check_column_line(char *str, t_sdl *sdl)
 	return (1);
 }
 
-void	stock_in_map(char *str, t_sdl *sdl)
+void			stock_in_map(char *str, t_sdl *sdl)
 {
-	int i;
+	int		i;
 
-	sdl->pars.x_map = 0; // jai fais dans le sens x en abcisse donc nb colonne et y en ordonnee dc nb ligne
+	sdl->pars.x_map = 0;
 	sdl->pars.y_map = 0;
 	i = 0;
-
 	while (sdl->pars.y_map < sdl->pars.nb_lin && str[i])
 	{
 		sdl->pars.x_map = 0;
@@ -117,7 +115,7 @@ void	stock_in_map(char *str, t_sdl *sdl)
 	}
 }
 
-int		create_map(char *str, t_sdl *sdl) // il faudrait penser a bien tout free (str ex) dans les retour erreur de malloc
+int				create_map(char *str, t_sdl *sdl) // il faudrait penser a bien tout free (str ex) dans les retour erreur de malloc
 {
 	int i;
 
@@ -127,11 +125,11 @@ int		create_map(char *str, t_sdl *sdl) // il faudrait penser a bien tout free (s
 		ft_putstr("ERROR NB COLONNE");
 		ft_error();
 	}
-	if(!(sdl->pars.map = (int**)malloc(sizeof(int*) * sdl->pars.nb_lin)))
+	if (!(sdl->pars.map = (int**)malloc(sizeof(int*) * sdl->pars.nb_lin)))
 		return (0);
 	while (i < sdl->pars.nb_lin)
 	{
-		if(!(sdl->pars.map[i] = (int*)malloc(sizeof(int) * sdl->pars.nb_col)))
+		if (!(sdl->pars.map[i] = (int*)malloc(sizeof(int) * sdl->pars.nb_col)))
 			return (0);
 		i++;
 	}
@@ -144,7 +142,7 @@ int		create_map(char *str, t_sdl *sdl) // il faudrait penser a bien tout free (s
 	return (1);
 }
 
-int		ft_parser(int fd, t_sdl *sdl)
+int				ft_parser(int fd, t_sdl *sdl)
 {
 	char	buff[BUFF_SIZE + 1];
 	char	*str;
@@ -164,7 +162,7 @@ int		ft_parser(int fd, t_sdl *sdl)
 		free(str);
 		ft_putendl("MAP ERROR");
 		ft_error();
-		return(0);
+		return (0);
 	}
 	free(str);
 	return (1);

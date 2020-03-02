@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   8bits.c                                            :+:      :+:    :+:   */
+/*   huit_bits.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 13:33:21 by qlouisia          #+#    #+#             */
-/*   Updated: 2020/02/25 10:21:22 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/03/02 20:08:21 by lgrudler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,44 +16,43 @@
 uint32_t	convert_8bitscolor(char r, char g, char b)
 {
 	int nb;
+	int value;
 
-	int value = ((255 & 0xFF) << 24) | //alpha
-            (((int)r & 0xFF) << 16) | //red
-            (((int)g & 0xFF) << 8)  | //green
-            (((int)b & 0xFF) << 0); //blue
+	value = ((255 & 0xFF) << 24) | //alpha
+			(((int)r & 0xFF) << 16) | //red
+			(((int)g & 0xFF) << 8) | //green
+			(((int)b & 0xFF) << 0); //blue
 	return (value);
 }
 
-void format_data8bit(char *tmp, t_bmp *bmp)
+void		format_data8bit(char *tmp, t_bmp *bmp)
 {
-	int x;
-	int y;
-	int i;
-	unsigned char index;
-
+	int				x;
+	int				y;
+	int				i;
+	unsigned char	index;
 
 	i = 0;
 	y = bmp->height - 1;
 	while (y >= 0)
 	{
-		x = 0; 
-		while (x < bmp->width )
+		x = 0;
+		while (x < bmp->width)
 		{
 			index = tmp[y * bmp->width + x];
 			bmp->data[i] = bmp->palette[index];
 			x++;
 			i++;
-		} 
+		}
 		y--;
 	}
 }
-
 /* Color Format in raw data : R B G 0  */
 
-int create_palette(char *tmp, t_bmp *bmp)
+int			create_palette(char *tmp, t_bmp *bmp)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	j = 0;
@@ -64,14 +63,11 @@ int create_palette(char *tmp, t_bmp *bmp)
 		return (0);
 	while (i < bmp->nb_color_palette * 4)
 	{
-	//	bmp->palette[i] = tmp[i + bmp->header_size + 14];
-	
+		//bmp->palette[i] = tmp[i + bmp->header_size + 14];
 		//printf("[%d]%hhX %hhX %hhX %hhX",j,tmp[i],tmp[i+1],tmp[i+2],tmp[i+3]);
-		bmp->palette[j] = convert_8bitscolor(tmp[i + 2] , tmp[i + 1], tmp[i]);
+		bmp->palette[j] = convert_8bitscolor(tmp[i + 2], tmp[i + 1], tmp[i]);
 		//printf("[%X]\n", bmp->palette[j]);
-		
 		//printf("Palette[%d] = %d | \n",j, bmp->palette[j]);
-		
 		i += 4;
 		j++;
 	}

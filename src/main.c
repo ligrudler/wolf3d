@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:51:44 by grudler           #+#    #+#             */
-/*   Updated: 2020/03/02 19:17:26 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/03/02 19:28:35 by lgrudler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int init_weapons (t_weapons *wp)
 	wp->frame_nb = 0;
 	wp->delay = 100;
 	wp->shoot = false;
-	wp->frame2= load_image("./ressources/pistol1.bmp");
 	wp->frame[0] = load_image("./ressources/pistol1.bmp");
 	wp->frame[1] = load_image("./ressources/pistol2.bmp");
 	wp->frame[2] = load_image("./ressources/pistol3.bmp");

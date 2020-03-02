@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:43:42 by grudler           #+#    #+#             */
-/*   Updated: 2020/03/02 19:20:58 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/03/02 20:30:03 by lgrudler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,7 +164,7 @@ void	init_raycast(t_sdl *sdl, int x);
 t_bmp *load_image (char *path);
 int init_menu(t_sdl *sdl);
 void display_menu(t_sdl *sdl, t_bmp *img);
-int free_image (t_sdl *sdl);
+void free_image (t_sdl *sdl);
 void draw_wepaon(t_sdl *sdl, t_weapons *img);
 void	fps_display(t_sdl *sdl);
 
