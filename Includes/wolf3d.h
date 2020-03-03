@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:43:42 by grudler           #+#    #+#             */
-/*   Updated: 2020/03/03 10:10:13 by grudler          ###   ########.fr       */
+/*   Updated: 2020/03/03 11:16:42 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,14 @@
 # include "SDL.h"
 # include "SDL_ttf.h"
 
-# define BUFF_SIZE 10
+# define BUFF_SIZE 4 //10
 # define WINX 800
 # define WINY 800
 # define HITBOX 0.3
 # define MOVEDIR 0.05
 # define MAX_FPS 60
 # define ARGB 372645892 // equivalent de SDL_PIXELFORMAT_ARGB8888
+# define CHECKCODE "W3D\n"
 
 typedef struct	s_fps
 {

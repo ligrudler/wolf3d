@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parser.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 21:01:22 by grudler           #+#    #+#             */
-/*   Updated: 2020/03/03 10:52:37 by grudler          ###   ########.fr       */
+/*   Updated: 2020/03/03 11:22:59 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,6 +166,13 @@ int		ft_parser(int fd, t_sdl *sdl)
 	int ret;
 
 	str = NULL;
+	ret = read(fd, buff, 4);
+	// buff[4] = '\0';
+	if (ft_strcmp (buff, CHECKCODE))
+	{
+		ft_putendl ("Incorrect Map");
+		return (0);
+	}
 	while ((ret = read(fd, buff, BUFF_SIZE)) > 0)
 	{
 		buff[ret] = '\0';

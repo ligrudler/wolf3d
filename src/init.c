@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 14:06:02 by grudler           #+#    #+#             */
-/*   Updated: 2020/03/03 10:14:11 by grudler          ###   ########.fr       */
+/*   Updated: 2020/03/03 11:37:06 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int init_texture (t_sdl *sdl)
 	sdl->icon = SDL_LoadBMP("./ressources/icon.bmp");
 	if(!( sdl->weapons = (t_weapons *)malloc(sizeof(t_weapons))))
 		return (0);
-
 	init_weapons(sdl->weapons);
 	if (sdl->txt) // need to improve
 	{
