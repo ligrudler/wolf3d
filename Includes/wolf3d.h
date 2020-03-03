@@ -6,7 +6,7 @@
 /*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:43:42 by grudler           #+#    #+#             */
-/*   Updated: 2020/03/03 10:10:13 by grudler          ###   ########.fr       */
+/*   Updated: 2020/03/03 11:47:27 by grudler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,7 +169,9 @@ void free_image (t_sdl *sdl);
 void draw_wepaon(t_sdl *sdl, t_weapons *img);
 void	fps_display(t_sdl *sdl);
 int		file_valid_name(char *file, char *ref);
-
+int		check_plus(t_sdl *check, int line, int column);
+int		check_close_map(t_sdl *check);
+int		check_column_line(char *str, t_sdl *sdl, int i);
 
 
 #endif
