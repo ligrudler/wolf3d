@@ -6,7 +6,7 @@
 /*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:51:44 by grudler           #+#    #+#             */
-/*   Updated: 2020/03/03 15:42:34 by lgrudler         ###   ########.fr       */
+/*   Updated: 2020/03/03 17:34:24 by lgrudler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int		main(int argc, char **argv)
 		SDL_FreeSurface((sdl)->icon);
 		SDL_DestroyWindow(sdl->fenetre);
 
-		TTF_CloseFont(sdl->police);
+		TTF_CloseFont(sdl->ttf.police);
 		TTF_Quit();
 
 		SDL_Quit();

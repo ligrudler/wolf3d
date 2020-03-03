@@ -6,7 +6,7 @@
 /*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:43:42 by grudler           #+#    #+#             */
-/*   Updated: 2020/03/03 17:23:36 by lgrudler         ###   ########.fr       */
+/*   Updated: 2020/03/03 17:41:29 by lgrudler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,6 @@ typedef struct			s_raycast
 	double				planx;
 	double				plany;
 
-	double				time;
-	double				oldtime;
-
 	double				camerax;
 	double				raydirx;
 	double				raydiry;
@@ -73,24 +70,6 @@ typedef struct			s_raycast
 	uint32_t			color;
 }						t_raycast;
 
-typedef struct			s_pt
-{
-	int					x;
-	int					y;
-}						t_pt;
-
-typedef struct			s_line
-{
-	t_pt				p1;
-	t_pt				p2;
-	int					err;
-	int					dx;
-	int					dy;
-	int					sx;
-	int					sy;
-	int					e2;
-}						t_line;
-
 typedef struct			s_pars
 {
 	int					**map;
@@ -109,15 +88,17 @@ typedef struct			s_weapons
 	int					delay;
 	int					frame_nb;
 	bool				shoot;
-
 }						t_weapons;
+
+typedef struct			s_ttf
+{
+	TTF_Font			*police;
+	char				*str;
+}						t_ttf;
 
 typedef struct			s_sdl
 {
-	TTF_Font			*police;
 	int					counter;
-	char				*str;
-
 	SDL_Window			*fenetre;
 	SDL_Event			evenements;
 	SDL_Point			point[WINX / 2];
@@ -128,8 +109,8 @@ typedef struct			s_sdl
 	Uint32				type;
 	t_pars				pars;
 	t_raycast			rcst;
+	t_ttf				ttf;
 	SDL_Surface			*screen;
-
 	t_bmp				*txt[4];
 	t_bmp				*menu_img;
 	int					padding_x;
