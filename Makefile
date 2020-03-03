@@ -6,7 +6,7 @@
 #    By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/20 16:56:04 by lgrudler          #+#    #+#              #
-#    Updated: 2020/03/02 20:28:15 by lgrudler         ###   ########.fr        #
+#    Updated: 2020/03/03 15:14:24 by lgrudler         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,9 @@ SRC= main.c\
 	huit_bits.c\
 	exit_bmp.c\
 	menu.c\
-	hud.c
+	hud.c\
+	check_map.c\
+	clear.c
 
 SRCS= $(addprefix $(SRC_DIR),$(SRC))
 ABS_DIR= $(shell pwd)

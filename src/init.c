@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 14:06:02 by grudler           #+#    #+#             */
-/*   Updated: 2020/03/03 15:14:24 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/03/03 15:30:27 by lgrudler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ bool init_weapons (t_weapons *wp)
 	wp->frame_nb = 0;
 	wp->delay = 100;
 	wp->shoot = false;
-	if (!(wp->frame[0] = load_image("./ressources/pistol1.bmp")) || 
-	!(wp->frame[1] = load_image("./ressources/pistol2.bmp"))|| 
+	if (!(wp->frame[0] = load_image("./ressources/pistol1.bmp")) ||
+	!(wp->frame[1] = load_image("./ressources/pistol2.bmp"))||
 	!(wp->frame[2] = load_image("./ressources/pistol3.bmp")) ||
 	!(wp->frame[3] = load_image("./ressources/pistol4.bmp")) ||
 	!(wp->frame[4] = load_image("./ressources/pistol5.bmp")))
@@ -33,8 +33,8 @@ ft_putendl("Weapon_texture...[loaded]");
 
 bool init_wall (t_sdl *sdl)
 {
-	if (!(sdl->txt[0] = load_image("./ressources/GreenWall0.bmp")) || 
-	!(sdl->txt[1] = load_image("./ressources/Blue4.bmp"))|| 
+	if (!(sdl->txt[0] = load_image("./ressources/GreenWall0.bmp")) ||
+	!(sdl->txt[1] = load_image("./ressources/Blue4.bmp"))||
 	!(sdl->txt[2] = load_image("./ressources/RedBricks0.bmp")) ||
 	!(sdl->txt[3] = load_image("./ressources/WoodenWall0.bmp")))
 		{

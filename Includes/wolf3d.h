@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:43:42 by grudler           #+#    #+#             */
-/*   Updated: 2020/03/03 13:46:57 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/03/03 15:30:32 by lgrudler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,7 @@ typedef struct	s_sdl
 	t_pars		pars;
 	t_raycast	rcst;
 	SDL_Surface *screen; // Surface affichant l'ecran
-	
+
 	t_bmp *txt[4];
 	t_bmp *menu_img;
 	int padding_x;
@@ -169,7 +169,9 @@ void free_image (t_sdl *sdl);
 void draw_wepaon(t_sdl *sdl, t_weapons *img);
 void	fps_display(t_sdl *sdl);
 int		file_valid_name(char *file, char *ref);
-
-
+int		check_plus(t_sdl *check, int line, int column);
+int		check_close_map(t_sdl *check);
+int		check_column_line(char *str, t_sdl *sdl, int i);
+void	clear_screen(t_sdl *sdl);
 
 #endif

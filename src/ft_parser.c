@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parser.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 21:01:22 by grudler           #+#    #+#             */
-/*   Updated: 2020/03/03 13:33:56 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/03/03 15:30:28 by lgrudler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,84 +29,6 @@ int		file_valid_name(char *file, char *ref)
 	return (i >= 0 ? 1 : 0);
 }
 
-int		check_plus(t_sdl *check, int line, int column)
-{
-	if (check->pars.map[line][column] == 1)
-	{
-		if (check->pars.verif == 1)
-		{
-			ft_putstr("Only one spawn\n");
-			return (0);
-		}
-		check->pars.spawnx = column;
-		check->pars.spawny = line;
-		check->pars.verif = 1;
-	}
-	if (line == 0 && check->pars.map[0][column] == 0)
-		return (0);
-	else if (line == check->pars.nb_lin - 1 && check->pars.map[line][column] == 0)
-		return (0);
-	else if ((column == 0 || column == check->pars.nb_col - 1) && check->pars.map[line][column] == 0)
-		return (0);
-	return (1);
-}
-
-int		check_close_map(t_sdl *check)
-{
-	int line;
-	int column;
-
-	line = -1;
-	while (++line < check->pars.nb_lin)
-	{
-		column = -1;
-		while (++column < check->pars.nb_col)
-			if (check_plus(check, line, column) == 0)
-			{
-				ft_putstr("ERROR MAP");
-				return (0);
-			}
-	}
-	if (check->pars.verif == 0)
-	{
-		ft_putendl("Spawn Needed");
-		return (0);
-	}
-	ft_putendl("Map...[ok]");
-	return (1);
-}
-
-int		check_column_line(char *str, t_sdl *sdl)
-{
-	int i;
-	int tmp;
-	int check;
-
-	i = -1;
-	tmp = 0;
-	while (str[++i])
-	{
-		tmp = sdl->pars.nb_col;
-		sdl->pars.nb_col = 0;
-		while (str[i] && str[i] != '\n')
-			if (ft_isdigit(str[i++]))
-			{
-				sdl->pars.nb_col++;
-				check = 1;
-			}
-		if (check == 1 && tmp != 0 && tmp != sdl->pars.nb_col)
-			return (0);
-		else if (check == 1)
-		{
-			sdl->pars.nb_lin++;
-			check = 0;
-		}
-		else if (check == 0)
-			sdl->pars.nb_col = tmp;
-	}
-	return (1);
-}
-
 void	stock_in_map(char *str, t_sdl *sdl)
 {
 	int i;
@@ -121,7 +43,8 @@ void	stock_in_map(char *str, t_sdl *sdl)
 		{
 			if (ft_isdigit(str[i]))
 			{
-				sdl->pars.map[sdl->pars.y_map][sdl->pars.x_map] = ft_atoi(&str[i]);
+				sdl->pars.map[sdl->pars.y_map][sdl->pars.x_map] =
+					ft_atoi(&str[i]);
 				sdl->pars.x_map++;
 			}
 			i++;
@@ -135,20 +58,17 @@ int		create_map(char *str, t_sdl *sdl) // il faudrait penser a bien tout free (s
 {
 	int i;
 
-	i = 0;
-	if (check_column_line(str, sdl) == 0)
+	i = -1;
+	if (check_column_line(str, sdl, i) == 0)
 	{
 		ft_putstr("ERROR COLUMN NUMBER");
 		ft_error();
 	}
 	if (!(sdl->pars.map = (int **)malloc(sizeof(int *) * sdl->pars.nb_lin)))
 		return (0);
-	while (i < sdl->pars.nb_lin)
-	{
+	while (++i < sdl->pars.nb_lin)
 		if (!(sdl->pars.map[i] = (int *)malloc(sizeof(int) * sdl->pars.nb_col)))
 			return (0);
-		i++;
-	}
 	stock_in_map(str, sdl);
 	if (!check_close_map(sdl))
 	{
@@ -160,10 +80,10 @@ int		create_map(char *str, t_sdl *sdl) // il faudrait penser a bien tout free (s
 
 int		ft_parser(int fd, t_sdl *sdl)
 {
-	char buff[BUFF_SIZE + 1];
-	char *str;
-	char *tmp;
-	int ret;
+	char	buff[BUFF_SIZE + 1];
+	char	*str;
+	char	*tmp;
+	int		ret;
 
 	str = NULL;
 	ret = read(fd, buff, 4);
