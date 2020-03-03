@@ -1,0 +1,36 @@
+build/SDL_hidapi_ps4.lo: \
+  /Users/lgrudler/Projets_42/wolf3d/lib/SDL2-2.0.10/src/joystick/hidapi/SDL_hidapi_ps4.c \
+  /Users/lgrudler/Projets_42/wolf3d/lib/SDL2-2.0.10/src/joystick/hidapi/../../SDL_internal.h \
+  /Users/lgrudler/Projets_42/wolf3d/lib/SDL2-2.0.10/src/joystick/hidapi/../../dynapi/SDL_dynapi.h \
+  /Users/lgrudler/Projets_42/wolf3d/lib/SDL2-2.0.10/src/joystick/hidapi/../../dynapi/SDL_dynapi_overrides.h \
+  include/SDL_config.h \
+  /Users/lgrudler/Projets_42/wolf3d/lib/SDL2-2.0.10/include/SDL_platform.h \
+  /Users/lgrudler/Projets_42/wolf3d/lib/SDL2-2.0.10/include/begin_code.h \
+  /Users/lgrudler/Projets_42/wolf3d/lib/SDL2-2.0.10/include/close_code.h \
+  /Users/lgrudler/Projets_42/wolf3d/lib/SDL2-2.0.10/include/SDL_hints.h \
+  /Users/lgrudler/Projets_42/wolf3d/lib/SDL2-2.0.10/include/SDL_stdinc.h \
+  /Users/lgrudler/Projets_42/wolf3d/lib/SDL2-2.0.10/include/SDL_config.h \
+  /Users/lgrudler/Projets_42/wolf3d/lib/SDL2-2.0.10/include/SDL_log.h \
+  /Users/lgrudler/Projets_42/wolf3d/lib/SDL2-2.0.10/include/SDL_events.h \
+  /Users/lgrudler/Projets_42/wolf3d/lib/SDL2-2.0.10/include/SDL_error.h \
+  /Users/lgrudler/Projets_42/wolf3d/lib/SDL2-2.0.10/include/SDL_video.h \
+  /Users/lgrudler/Projets_42/wolf3d/lib/SDL2-2.0.10/include/SDL_pixels.h \
+  /Users/lgrudler/Projets_42/wolf3d/lib/SDL2-2.0.10/include/SDL_endian.h \
+  /Users/lgrudler/Projets_42/wolf3d/lib/SDL2-2.0.10/include/SDL_rect.h \
+  /Users/lgrudler/Projets_42/wolf3d/lib/SDL2-2.0.10/include/SDL_rwops.h \
+  /Users/lgrudler/Projets_42/wolf3d/lib/SDL2-2.0.10/include/SDL_surface.h \
+  /Users/lgrudler/Projets_42/wolf3d/lib/SDL2-2.0.10/include/SDL_blendmode.h \
+  /Users/lgrudler/Projets_42/wolf3d/lib/SDL2-2.0.10/include/SDL_keyboard.h \
+  /Users/lgrudler/Projets_42/wolf3d/lib/SDL2-2.0.10/include/SDL_keycode.h \
+  /Users/lgrudler/Projets_42/wolf3d/lib/SDL2-2.0.10/include/SDL_scancode.h \
+  /Users/lgrudler/Projets_42/wolf3d/lib/SDL2-2.0.10/include/SDL_mouse.h \
+  /Users/lgrudler/Projets_42/wolf3d/lib/SDL2-2.0.10/include/SDL_joystick.h \
+  /Users/lgrudler/Projets_42/wolf3d/lib/SDL2-2.0.10/include/SDL_gamecontroller.h \
+  /Users/lgrudler/Projets_42/wolf3d/lib/SDL2-2.0.10/include/SDL_quit.h \
+  /Users/lgrudler/Projets_42/wolf3d/lib/SDL2-2.0.10/include/SDL_gesture.h \
+  /Users/lgrudler/Projets_42/wolf3d/lib/SDL2-2.0.10/include/SDL_touch.h \
+  /Users/lgrudler/Projets_42/wolf3d/lib/SDL2-2.0.10/include/SDL_timer.h \
+  /Users/lgrudler/Projets_42/wolf3d/lib/SDL2-2.0.10/src/joystick/hidapi/../SDL_sysjoystick.h \
+  /Users/lgrudler/Projets_42/wolf3d/lib/SDL2-2.0.10/src/joystick/hidapi/../SDL_joystick_c.h \
+  /Users/lgrudler/Projets_42/wolf3d/lib/SDL2-2.0.10/src/joystick/hidapi/SDL_hidapijoystick_c.h \
+  /Users/lgrudler/Projets_42/wolf3d/lib/SDL2-2.0.10/src/joystick/hidapi/../../hidapi/hidapi/hidapi.h

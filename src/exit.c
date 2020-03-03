@@ -3,19 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 19:19:31 by qlouisia          #+#    #+#             */
-/*   Updated: 2020/02/26 18:01:57 by grudler          ###   ########.fr       */
+/*   Updated: 2020/03/03 13:51:06 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/wolf3d.h"
-#include <stdlib.h>
 
-int 	free_tpars(t_sdl *map, int size)
+int		free_tpars(t_sdl *map, int size)
 {
-	int line;
+	int	line;
 
 	line = 0;
 	while (line < size)
@@ -25,15 +24,19 @@ int 	free_tpars(t_sdl *map, int size)
 	}
 	free(map->pars.map);
 	ft_putstr("MAP CLEANED");
-	return(0);
+	return (0);
 }
 
 // a reprendre et a ameliorer au fil des images
-int free_image (t_sdl *sdl)
+void		free_image(t_sdl *sdl)
 {
+	int i;
+
+	i = 0;
 	exit8bit(sdl->menu_img);
-	exit8bit(sdl->txt);
-	exit8bit(sdl->txt2);
-	exit8bit(sdl->txt3);
-	exit8bit(sdl->txt4);
+	while (i < 4)
+	{
+		exit8bit(sdl->txt[i]);
+		i++;
+	}
 }
