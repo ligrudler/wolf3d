@@ -6,7 +6,7 @@
 /*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 15:01:43 by grudler           #+#    #+#             */
-/*   Updated: 2020/03/03 17:16:50 by lgrudler         ###   ########.fr       */
+/*   Updated: 2020/03/03 17:43:15 by lgrudler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 int		fps_limit_delay(t_sdl *sdl)
 {
-	int		getticks;
-	int		max;
+	unsigned int		getticks;
 
 	getticks = SDL_GetTicks();
 	if (sdl->fps.framelimit > getticks)
