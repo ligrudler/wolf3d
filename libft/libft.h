@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 21:25:34 by lgrudler          #+#    #+#             */
-/*   Updated: 2019/11/27 17:18:15 by lgrudler         ###   ########.fr       */
+/*   Updated: 2020/03/03 13:46:34 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stdlib.h>
 # include <fcntl.h>
 
-# define BUFF_SIZE 10
+# define BUFF_SIZE 4
 
 typedef struct		s_car
 {
@@ -43,6 +43,7 @@ typedef struct		s_list
 	size_t			content_size;
 	struct s_list	*next;
 }					t_list;
+
 
 void				*ft_memset(void *s, int c, size_t n);
 void				ft_bzero(void *s, size_t n);

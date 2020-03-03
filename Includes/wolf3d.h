@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:43:42 by grudler           #+#    #+#             */
-/*   Updated: 2020/03/03 11:16:42 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/03/03 13:46:57 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ typedef struct s_weapons
 
 }				t_weapons;
 
+
 typedef struct	s_sdl
 {
 	TTF_Font *police;
@@ -129,10 +130,8 @@ typedef struct	s_sdl
 	t_pars		pars;
 	t_raycast	rcst;
 	SDL_Surface *screen; // Surface affichant l'ecran
-	t_bmp *txt;
-	t_bmp *txt2;
-	t_bmp *txt3;
-	t_bmp *txt4; // creer la structure pour stocker les textures
+	
+	t_bmp *txt[4];
 	t_bmp *menu_img;
 	int padding_x;
 	int padding_y;

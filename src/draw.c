@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 16:19:49 by lgrudler          #+#    #+#             */
-/*   Updated: 2020/03/02 20:23:09 by lgrudler         ###   ########.fr       */
+/*   Updated: 2020/03/03 13:49:45 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,13 +113,13 @@ void			draw_vertical_line(t_sdl *sdl, int x)
 		tex_y = (int)texpos & (64 - 1);
 		texpos += step;
 		if ((int)sdl->rcst.posx >= sdl->rcst.mapX && sdl->rcst.side == 0)
-			sdl->rcst.color = sdl->txt->data[64 * tex_y + tex_x];
+			sdl->rcst.color = sdl->txt[0]->data[64 * tex_y + tex_x];
 		else if (sdl->rcst.side == 0)
-			sdl->rcst.color = sdl->txt2->data[64 * tex_y + tex_x];
+			sdl->rcst.color = sdl->txt[1]->data[64 * tex_y + tex_x];
 		if ((int)sdl->rcst.posy <= sdl->rcst.mapY && sdl->rcst.side == 1)
-			sdl->rcst.color = sdl->txt3->data[64 * tex_y + tex_x];
+			sdl->rcst.color = sdl->txt[2]->data[64 * tex_y + tex_x];
 		else if (sdl->rcst.side == 1)
-			sdl->rcst.color = sdl->txt4->data[64 * tex_y + tex_x];
+			sdl->rcst.color = sdl->txt[3]->data[64 * tex_y + tex_x];
 		put_pixels(sdl, sdl->rcst.color, x, y);
 		y++;
 	}

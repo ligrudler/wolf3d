@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: grudler <grudler@student.42.fr>            +#+  +:+       +#+         #
+#    By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/10 13:21:42 by lgrudler          #+#    #+#              #
-#    Updated: 2020/02/27 23:19:16 by grudler          ###   ########.fr        #
+#    Updated: 2020/03/03 13:18:21 by qlouisia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 CC = gcc
-FLAGS = -g3 # -Wall -Werror -Wextra
+FLAGS =  -Wall -Werror -Wextra
 
 SRC = 	ft_atoi.c \
 		ft_bzero.c \

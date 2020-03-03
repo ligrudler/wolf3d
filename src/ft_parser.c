@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 21:01:22 by grudler           #+#    #+#             */
-/*   Updated: 2020/03/03 11:22:59 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/03/03 13:33:56 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,10 @@ int		check_close_map(t_sdl *check)
 	}
 	if (check->pars.verif == 0)
 	{
-		ft_putstr("Need a spawn");
+		ft_putendl("Spawn Needed");
 		return (0);
 	}
-	ft_putstr("Map VALID");
+	ft_putendl("Map...[ok]");
 	return (1);
 }
 
@@ -138,7 +138,7 @@ int		create_map(char *str, t_sdl *sdl) // il faudrait penser a bien tout free (s
 	i = 0;
 	if (check_column_line(str, sdl) == 0)
 	{
-		ft_putstr("ERROR NB COLONNE");
+		ft_putstr("ERROR COLUMN NUMBER");
 		ft_error();
 	}
 	if (!(sdl->pars.map = (int **)malloc(sizeof(int *) * sdl->pars.nb_lin)))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 19:19:31 by qlouisia          #+#    #+#             */
-/*   Updated: 2020/03/02 20:29:09 by lgrudler         ###   ########.fr       */
+/*   Updated: 2020/03/03 13:51:06 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,13 @@ int		free_tpars(t_sdl *map, int size)
 // a reprendre et a ameliorer au fil des images
 void		free_image(t_sdl *sdl)
 {
+	int i;
+
+	i = 0;
 	exit8bit(sdl->menu_img);
-	exit8bit(sdl->txt);
-	exit8bit(sdl->txt2);
-	exit8bit(sdl->txt3);
-	exit8bit(sdl->txt4);
+	while (i < 4)
+	{
+		exit8bit(sdl->txt[i]);
+		i++;
+	}
 }
