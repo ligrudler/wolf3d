@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 11:45:33 by grudler           #+#    #+#             */
-/*   Updated: 2020/03/03 11:47:35 by grudler          ###   ########.fr       */
+/*   Updated: 2020/03/03 14:47:50 by lgrudler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,11 @@ int		check_plus(t_sdl *check, int line, int column)
 	}
 	if (line == 0 && check->pars.map[0][column] == 0)
 		return (0);
-	else if (line == check->pars.nb_lin - 1 && check->pars.map[line][column] == 0)
+	else if (line == check->pars.nb_lin - 1
+		&& check->pars.map[line][column] == 0)
 		return (0);
-	else if ((column == 0 || column == check->pars.nb_col - 1) && check->pars.map[line][column] == 0)
+	else if ((column == 0 || column == check->pars.nb_col - 1)
+		&& check->pars.map[line][column] == 0)
 		return (0);
 	return (1);
 }

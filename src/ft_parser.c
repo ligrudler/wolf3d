@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parser.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 21:01:22 by grudler           #+#    #+#             */
-/*   Updated: 2020/03/03 11:48:21 by grudler          ###   ########.fr       */
+/*   Updated: 2020/03/03 14:47:09 by lgrudler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ void	stock_in_map(char *str, t_sdl *sdl)
 		{
 			if (ft_isdigit(str[i]))
 			{
-				sdl->pars.map[sdl->pars.y_map][sdl->pars.x_map] = ft_atoi(&str[i]);
+				sdl->pars.map[sdl->pars.y_map][sdl->pars.x_map] =
+					ft_atoi(&str[i]);
 				sdl->pars.x_map++;
 			}
 			i++;
@@ -79,10 +80,10 @@ int		create_map(char *str, t_sdl *sdl) // il faudrait penser a bien tout free (s
 
 int		ft_parser(int fd, t_sdl *sdl)
 {
-	char buff[BUFF_SIZE + 1];
-	char *str;
-	char *tmp;
-	int ret;
+	char	buff[BUFF_SIZE + 1];
+	char	*str;
+	char	*tmp;
+	int		ret;
 
 	str = NULL;
 	while ((ret = read(fd, buff, BUFF_SIZE)) > 0)
