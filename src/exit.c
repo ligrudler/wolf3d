@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 19:19:31 by qlouisia          #+#    #+#             */
-/*   Updated: 2020/03/03 13:51:06 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/03/03 16:43:15 by lgrudler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/wolf3d.h"
 
-int		free_tpars(t_sdl *map, int size)
+int			free_tpars(t_sdl *map, int size)
 {
 	int	line;
 
