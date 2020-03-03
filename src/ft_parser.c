@@ -3,103 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parser.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 21:01:22 by grudler           #+#    #+#             */
-/*   Updated: 2020/02/26 19:04:02 by grudler          ###   ########.fr       */
+/*   Updated: 2020/03/03 15:30:28 by lgrudler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/wolf3d.h"
 
-
-int 	check_close_map(t_sdl *check)
-{
-	int line;
-	int column;
-	int verif;
-
-	verif = 0;
-	line = 0;
-	while (line < check->pars.nb_lin)
-	{
-		column = 0;
-		while (column < check->pars.nb_col)
-		{
-			if (check->pars.map[line][column] == 1)
-			{
-				if (verif == 1)
-				{
-					ft_putstr("Only one spawn\n");
-					return (0);
-				}
-				check->pars.spawnx = column;
-				check->pars.spawny = line;
-				verif = 1;
-			}
-			if (line == 0 && check->pars.map[0][column] == 0)
-				return (0);
-			else if  (line == check->pars.nb_lin -1 && check->pars.map[line][column] == 0)
-				return(0);
-			else if ((column == 0 || column == check->pars.nb_col - 1 ) && check->pars.map[line][column] == 0)
-				return (0);
-			column++;
-		}
-		line++;
-	}
-	if (verif == 0)
-	{
-		ft_putstr("Need a spawn");
-		return(0);
-	}
-	ft_putstr("Map VALID");
-	return(1);
-}
-
-int		check_column_line(char *str, t_sdl *sdl)
+int		file_valid_name(char *file, char *ref)
 {
 	int i;
-	int tmp;
-	int check; // permet de gerer si la map finie par pls \n
+	int j;
 
-	i = -1;
-	tmp = 0;
-	sdl->pars.nb_col = 0;
-	sdl->pars.nb_lin = 0;
-	while (str[++i])
+	i = ft_strlen(file) - 1;
+	j = ft_strlen(ref) - 1;
+	while (j >= 0)
 	{
-		tmp = sdl->pars.nb_col;
-		sdl->pars.nb_col = 0;
-		while (str[i] && str[i] != '\n')
-		{
-			if (ft_isdigit(str[i]))
-			{
-				sdl->pars.nb_col++;
-				check = 1;
-			}
-			i++;
-		}
-		if (check == 1 && tmp != 0 && tmp != sdl->pars.nb_col) // pour l'instant ne gere que les map avec le meme nombre de colonne
+		if (ref[j] != file[i])
 			return (0);
-		else if (check == 1)
-		{
-			sdl->pars.nb_lin++;
-			check = 0;
-		}
-		else if (check == 0)
-			sdl->pars.nb_col = tmp;
+		i--;
+		j--;
 	}
-	return (1);
+	return (i >= 0 ? 1 : 0);
 }
 
 void	stock_in_map(char *str, t_sdl *sdl)
 {
 	int i;
 
-	sdl->pars.x_map = 0; // jai fais dans le sens x en abcisse donc nb colonne et y en ordonnee dc nb ligne
+	sdl->pars.x_map = 0;
 	sdl->pars.y_map = 0;
 	i = 0;
-
 	while (sdl->pars.y_map < sdl->pars.nb_lin && str[i])
 	{
 		sdl->pars.x_map = 0;
@@ -107,7 +43,8 @@ void	stock_in_map(char *str, t_sdl *sdl)
 		{
 			if (ft_isdigit(str[i]))
 			{
-				sdl->pars.map[sdl->pars.y_map][sdl->pars.x_map] = ft_atoi(&str[i]);
+				sdl->pars.map[sdl->pars.y_map][sdl->pars.x_map] =
+					ft_atoi(&str[i]);
 				sdl->pars.x_map++;
 			}
 			i++;
@@ -121,20 +58,17 @@ int		create_map(char *str, t_sdl *sdl) // il faudrait penser a bien tout free (s
 {
 	int i;
 
-	i = 0;
-	if (check_column_line(str, sdl) == 0)
+	i = -1;
+	if (check_column_line(str, sdl, i) == 0)
 	{
-		ft_putstr("ERROR NB COLONNE");
+		ft_putstr("ERROR COLUMN NUMBER");
 		ft_error();
 	}
-	if(!(sdl->pars.map = (int**)malloc(sizeof(int*) * sdl->pars.nb_lin)))
+	if (!(sdl->pars.map = (int **)malloc(sizeof(int *) * sdl->pars.nb_lin)))
 		return (0);
-	while (i < sdl->pars.nb_lin)
-	{
-		if(!(sdl->pars.map[i] = (int*)malloc(sizeof(int) * sdl->pars.nb_col)))
+	while (++i < sdl->pars.nb_lin)
+		if (!(sdl->pars.map[i] = (int *)malloc(sizeof(int) * sdl->pars.nb_col)))
 			return (0);
-		i++;
-	}
 	stock_in_map(str, sdl);
 	if (!check_close_map(sdl))
 	{
@@ -152,6 +86,13 @@ int		ft_parser(int fd, t_sdl *sdl)
 	int		ret;
 
 	str = NULL;
+	ret = read(fd, buff, 4);
+	// buff[4] = '\0';
+	if (ft_strcmp (buff, CHECKCODE))
+	{
+		ft_putendl ("Incorrect Map");
+		return (0);
+	}
 	while ((ret = read(fd, buff, BUFF_SIZE)) > 0)
 	{
 		buff[ret] = '\0';
@@ -164,7 +105,7 @@ int		ft_parser(int fd, t_sdl *sdl)
 		free(str);
 		ft_putendl("MAP ERROR");
 		ft_error();
-		return(0);
+		return (0);
 	}
 	free(str);
 	return (1);

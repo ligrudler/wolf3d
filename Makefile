@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: grudler <grudler@student.42.fr>            +#+  +:+       +#+         #
+#    By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/20 16:56:04 by lgrudler          #+#    #+#              #
-#    Updated: 2020/02/27 16:06:17 by grudler          ###   ########.fr        #
+#    Updated: 2020/03/03 17:46:30 by qlouisia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ MAGENTA= \033[35m
 ################################################################################
 NAME= wolf3d
 CC= gcc
-CFLAGS= -g3 -fsanitize=address #-Wall -Wextra -Werror #
+CFLAGS= -g3 `sdl2-config --cflags`   #-fsanitize=address #-Wall -Wextra -Werror
 SRC_DIR= src/
 SRC= main.c\
 	ft_parser.c\
@@ -36,20 +36,26 @@ SRC= main.c\
 	raycast.c\
 	key_event.c\
 	fps.c\
-	display.c\
 	init.c\
 	color.c\
 	bmp_parser.c\
-	8bits.c\
-	exitBMP.c\
-	menu.c
+	huit_bits.c\
+	exit_bmp.c\
+	menu.c\
+	hud.c\
+	check_map.c\
+	clear.c
 
 SRCS= $(addprefix $(SRC_DIR),$(SRC))
 ABS_DIR= $(shell pwd)
 OBJ_DIR= obj/
-SDL_DIR= $(ABS_DIR)/lib/SDL2-2.0.10/
+
+LFT_DIR= libft
+LFT= $(LFT_DIR)/libft.a
+
 OBJ= $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRCS))
-LIB= -L libft -lft `sdl2-config --cflags --libs`
+
+LIB= -L libft -lft `sdl2-config --libs` `sdl2-config --libs`_ttf
 
 ###############################################################################
 #								Rules										  #
@@ -57,19 +63,26 @@ LIB= -L libft -lft `sdl2-config --cflags --libs`
 
 all: $(NAME)
 
-$(NAME): sdl2 $(OBJ)
-	@ echo "$(BLUE)Creating libft$(WHITE)"
-	@ make -C libft
-	@ echo "$(GREEN)Libft created$(WHITE)"
+$(NAME): $(LFT) $(SDL2) $(SDL_TTF) $(OBJ)
 	@ echo "$(YELLOW)Creating $@ executable$(WHITE)"
 	@ $(CC) -o $@ $(CFLAGS) $(OBJ) $(LIB)
 	@ echo "$(GREEN)$@ executable created$(WHITE)"
 
-sdl2:
-	@mkdir -p SDL2/build
-	@cd SDL2/build; 									\
-	$(SDL_DIR)/configure --prefix $(ABSDIR)/SDL2;		\
-	make; 												\
+$(LFT):
+	@ echo "$(BLUE)Creating libft$(WHITE)"
+	@ make -sC $(LFT_DIR) -j
+	@ echo "$(GREEN)Libft created$(WHITE)"
+
+$(SDL2):
+	@ echo "$(YELLOW)Installing library SDL2$(WHITE)";
+	@ brew install sdl2
+	@ echo "$(GREEN)SDL2 created$(WHITE)"
+
+$(SDL_TTF):
+	@ echo "$(YELLOW)Installing library SDL2_TTF$(WHITE)";
+	@ brew install sdl2_ttf
+	@ echo "$(GREEN)SDL2_TTF created$(WHITE)"
+
 
 obj:
 	@mkdir obj
@@ -97,10 +110,6 @@ fclean: clean
 	@ rm -rf $(NAME)
 	@ echo "$(GREEN)Executable deleted$(WHITE)"
 
-clear: fclean
-	@ rm -rf sdl2
-	@ echo "$(GREEN)Sdl2 deleted$(WHITE)"
-
 re: fclean all
 
-.PHONY: all clean fclean re clear
+.PHONY: all clean fclean re

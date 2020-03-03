@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:43:42 by grudler           #+#    #+#             */
-/*   Updated: 2020/02/26 19:07:50 by grudler          ###   ########.fr       */
+/*   Updated: 2020/03/03 16:18:37 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,16 @@
 # include <stdbool.h>
 # include <math.h>
 # include <stdio.h> // pour printf
-# include "../lib/SDL2-2.0.10/include/SDL.h"
+# include "SDL.h"
+# include "SDL_ttf.h"
 
-# define BUFF_SIZE 10
+# define BUFF_SIZE 4 //10
 # define WINX 800
 # define WINY 800
 # define HITBOX 0.3
 # define MOVEDIR 0.05
 # define MAX_FPS 60
-# define ARGB 372645892 // equivalent de SDL_PIXELFORMAT_ARGB8888
+# define CHECKCODE "W3D\n"
 
 typedef struct	s_fps
 {
@@ -96,6 +97,7 @@ typedef struct	s_pars
 	int y_map;
 	int	nb_col;
 	int	nb_lin;
+	int	verif;
 	double			spawnx;
 	double			spawny;
 }		t_pars;
@@ -103,15 +105,19 @@ typedef struct	s_pars
 typedef struct s_weapons
 {
 	t_bmp *frame[5];
-	t_bmp *frame2;
 	int		delay;
 	int		frame_nb;
 	bool	shoot;
 
 }				t_weapons;
 
+
 typedef struct	s_sdl
 {
+	TTF_Font *police;
+	int		counter;
+	char	*str;
+
 	SDL_Window *fenetre;
 	SDL_Event evenements;
 	SDL_Point    point[WINX/2];
@@ -119,18 +125,12 @@ typedef struct	s_sdl
 	int			end;
 	bool		menu;
 	double			move;
-//	Uint32 *img;
 	Uint32		type;
-	SDL_Scancode scancode;
 	t_pars		pars;
 	t_raycast	rcst;
-//	SDL_Surface *surf;
-//	SDL_Surface *img;
 	SDL_Surface *screen; // Surface affichant l'ecran
-	t_bmp *txt;
-	t_bmp *txt2;
-	t_bmp *txt3;
-	t_bmp *txt4;
+
+	t_bmp *txt[4];
 	t_bmp *menu_img;
 	int padding_x;
 	int padding_y;
@@ -164,8 +164,13 @@ void	init_raycast(t_sdl *sdl, int x);
 t_bmp *load_image (char *path);
 int init_menu(t_sdl *sdl);
 void display_menu(t_sdl *sdl, t_bmp *img);
-int free_image (t_sdl *sdl);
+void free_image (t_sdl *sdl);
 void draw_wepaon(t_sdl *sdl, t_weapons *img);
-
+void	fps_display(t_sdl *sdl);
+int		file_valid_name(char *file, char *ref);
+int		check_plus(t_sdl *check, int line, int column);
+int		check_close_map(t_sdl *check);
+int		check_column_line(char *str, t_sdl *sdl, int i);
+void	clear_screen(t_sdl *sdl);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fps.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 15:01:43 by grudler           #+#    #+#             */
-/*   Updated: 2020/01/23 17:30:36 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/03/02 20:27:38 by lgrudler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,11 @@ void	fps_counter(t_sdl *sdl)
 {
 	unsigned int getticks;
 
-	getticks =  SDL_GetTicks();
+	getticks = SDL_GetTicks();
 	sdl->fps.currentTime = getticks - sdl->fps.lastTime;
 	if (sdl->fps.currentTime != 0)
 		sdl->fps.currentFPS = 1000 / (sdl->fps.currentTime);
 	sdl->fps.lastTime = getticks;
-	printf("fps = %f\n", sdl->fps.currentFPS);
 }
 
 void	fps_limit(t_sdl *sdl)
