@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+         #
+#    By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/20 16:56:04 by lgrudler          #+#    #+#              #
-#    Updated: 2020/03/02 19:07:56 by qlouisia         ###   ########.fr        #
+#    Updated: 2020/03/02 20:28:15 by lgrudler         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,8 +39,8 @@ SRC= main.c\
 	init.c\
 	color.c\
 	bmp_parser.c\
-	8bits.c\
-	exitBMP.c\
+	huit_bits.c\
+	exit_bmp.c\
 	menu.c\
 	hud.c
 

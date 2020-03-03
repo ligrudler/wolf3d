@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 14:12:37 by grudler           #+#    #+#             */
-/*   Updated: 2020/03/02 18:44:37 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/03/02 20:14:00 by lgrudler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,5 @@ uint32_t	convert_argb(unsigned int a, unsigned int r, unsigned int g,
 	if (b > 0xff)
 		b = 0xff;
 	nb = ((a << 24) | (r << 16) | (g << 8) | (b));
-
 	return (nb);
 }
