@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:43:42 by grudler           #+#    #+#             */
-/*   Updated: 2020/03/03 11:47:27 by grudler          ###   ########.fr       */
+/*   Updated: 2020/03/03 15:14:08 by lgrudler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,6 +172,6 @@ int		file_valid_name(char *file, char *ref);
 int		check_plus(t_sdl *check, int line, int column);
 int		check_close_map(t_sdl *check);
 int		check_column_line(char *str, t_sdl *sdl, int i);
-
+void	clear_screen(t_sdl *sdl);
 
 #endif

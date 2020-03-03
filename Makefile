@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: grudler <grudler@student.42.fr>            +#+  +:+       +#+         #
+#    By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/20 16:56:04 by lgrudler          #+#    #+#              #
-#    Updated: 2020/03/03 11:47:37 by grudler          ###   ########.fr        #
+#    Updated: 2020/03/03 15:14:24 by lgrudler         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,8 @@ SRC= main.c\
 	exit_bmp.c\
 	menu.c\
 	hud.c\
-	check_map.c
+	check_map.c\
+	clear.c
 
 SRCS= $(addprefix $(SRC_DIR),$(SRC))
 ABS_DIR= $(shell pwd)
