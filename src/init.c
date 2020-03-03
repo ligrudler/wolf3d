@@ -6,7 +6,7 @@
 /*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 14:06:02 by grudler           #+#    #+#             */
-/*   Updated: 2020/03/03 15:30:27 by lgrudler         ###   ########.fr       */
+/*   Updated: 2020/03/03 17:21:29 by lgrudler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,22 +91,22 @@ void	init_variables(t_sdl *sdl)
 {
 	sdl->rcst.posx = sdl->pars.spawnx + 0.5; // postion x du joueur
 	sdl->rcst.posy = sdl->pars.spawny + 0.5;
-	sdl->rcst.dirX = 0; // direction du joueur (ou regarde le joueur)
-	sdl->rcst.dirY = -1;
-	sdl->rcst.planX = 0.66; // plan de la camera (ce quon affiche a lecran) Fov de 66 ici
-	sdl->rcst.planY = 0;
-	sdl->fps.lastTime = 0;
+	sdl->rcst.dirx = 0; // direction du joueur (ou regarde le joueur)
+	sdl->rcst.diry = -1;
+	sdl->rcst.planx = 0.66; // plan de la camera (ce quon affiche a lecran) Fov de 66 ici
+	sdl->rcst.plany = 0;
+	sdl->fps.lasttime = 0;
 	sdl->fps.framelimit = 0;
 	sdl->counter = 0;
 }
 
 void	init_raycast(t_sdl *sdl, int x)
 {
-	sdl->rcst.cameraX = 2 * x / (double)WINX - 1; // coordonnés x du plan de la camera que le current x de l'ecran represente
-	sdl->rcst.raydirX = sdl->rcst.dirX + sdl->rcst.planX * sdl->rcst.cameraX; //direction des rayons
-	sdl->rcst.raydirY = sdl->rcst.dirY + sdl->rcst.planY * sdl->rcst.cameraX;
-	sdl->rcst.mapX = (int)sdl->rcst.posx; // coordonées du carré actuel ou se trouve le rayon
-	sdl->rcst.mapY = (int)sdl->rcst.posy;
-	sdl->rcst.deltadistX = fabs(1 / sdl->rcst.raydirX); // distance que le rayon doit traverser pour aller d'un x-side au prochain x ou y-side (calcul simplifié trouvé apres pythagore)
-	sdl->rcst.deltadistY = fabs(1 / sdl->rcst.raydirY);
+	sdl->rcst.camerax = 2 * x / (double)WINX - 1; // coordonnés x du plan de la camera que le current x de l'ecran represente
+	sdl->rcst.raydirx = sdl->rcst.dirx + sdl->rcst.planx * sdl->rcst.camerax; //direction des rayons
+	sdl->rcst.raydiry = sdl->rcst.diry + sdl->rcst.plany * sdl->rcst.camerax;
+	sdl->rcst.mapx = (int)sdl->rcst.posx; // coordonées du carré actuel ou se trouve le rayon
+	sdl->rcst.mapy = (int)sdl->rcst.posy;
+	sdl->rcst.deltadistx = fabs(1 / sdl->rcst.raydirx); // distance que le rayon doit traverser pour aller d'un x-side au prochain x ou y-side (calcul simplifié trouvé apres pythagore)
+	sdl->rcst.deltadisty = fabs(1 / sdl->rcst.raydiry);
 }

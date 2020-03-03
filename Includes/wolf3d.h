@@ -6,20 +6,20 @@
 /*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:43:42 by grudler           #+#    #+#             */
-/*   Updated: 2020/03/03 15:30:32 by lgrudler         ###   ########.fr       */
+/*   Updated: 2020/03/03 17:23:36 by lgrudler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef WOLF3D_H
 # define WOLF3D_H
 
-#include "../Includes/Bmp.h"
+# include "../Includes/Bmp.h"
 # include "../libft/libft.h"
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdbool.h>
 # include <math.h>
-# include <stdio.h> // pour printf
+# include <stdio.h>
 # include "SDL.h"
 # include "SDL_ttf.h"
 
@@ -32,146 +32,236 @@
 # define ARGB 372645892 // equivalent de SDL_PIXELFORMAT_ARGB8888
 # define CHECKCODE "W3D\n"
 
-typedef struct	s_fps
+typedef struct			s_fps
 {
-	unsigned int lastTime;
-	unsigned int currentTime;
-	double		currentFPS;
-	unsigned int	framelimit;
-}				t_fps;
+	unsigned int		lasttime;
+	unsigned int		currentime;
+	double				currentfps;
+	unsigned int		framelimit;
+}						t_fps;
 
-typedef struct	s_raycast
+typedef struct			s_raycast
 {
-	double	posx;
-	double	posy;
-	double	dirX;
-	double	dirY;
-	double	planX;
-	double	planY;
+	double				posx;
+	double				posy;
+	double				dirx;
+	double				diry;
+	double				planx;
+	double				plany;
 
-	double	time;
-	double	oldtime;
+	double				time;
+	double				oldtime;
 
-	double	cameraX;
-	double	raydirX;
-	double	raydirY;
+	double				camerax;
+	double				raydirx;
+	double				raydiry;
 
-	int	mapX;
-	int	mapY;
-	double	sidedistX;
-	double	sidedistY;
-	double	deltadistX;
-	double	deltadistY;
-	double	raylenght;
-	int		stepX;
-	int		stepY;
-	int		side;
+	int					mapx;
+	int					mapy;
+	double				sidedistx;
+	double				sidedisty;
+	double				deltadistx;
+	double				deltadisty;
+	double				raylenght;
+	int					stepx;
+	int					stepy;
+	int					side;
 
-	int		lineheight;
-	int		lowpix;
-	int		highpix;
-	uint32_t color;
-}				t_raycast;
+	int					lineheight;
+	int					lowpix;
+	int					highpix;
+	uint32_t			color;
+}						t_raycast;
 
-typedef struct	s_pt
+typedef struct			s_pt
 {
-	int x;
-	int y;
-}				t_pt;
+	int					x;
+	int					y;
+}						t_pt;
 
-typedef struct	s_line
+typedef struct			s_line
 {
-	t_pt	p1;
-	t_pt	p2;
-	int		err;
-	int		dx;
-	int		dy;
-	int		sx;
-	int		sy;
-	int		e2;
-}				t_line;
+	t_pt				p1;
+	t_pt				p2;
+	int					err;
+	int					dx;
+	int					dy;
+	int					sx;
+	int					sy;
+	int					e2;
+}						t_line;
 
-typedef struct	s_pars
+typedef struct			s_pars
 {
-	int **map;
-	int x_map;
-	int y_map;
-	int	nb_col;
-	int	nb_lin;
-	int	verif;
-	double			spawnx;
-	double			spawny;
-}		t_pars;
+	int					**map;
+	int					x_map;
+	int					y_map;
+	int					nb_col;
+	int					nb_lin;
+	int					verif;
+	double				spawnx;
+	double				spawny;
+}						t_pars;
 
-typedef struct s_weapons
+typedef struct			s_weapons
 {
-	t_bmp *frame[5];
-	int		delay;
-	int		frame_nb;
-	bool	shoot;
+	t_bmp				*frame[5];
+	int					delay;
+	int					frame_nb;
+	bool				shoot;
 
-}				t_weapons;
+}						t_weapons;
 
-
-typedef struct	s_sdl
+typedef struct			s_sdl
 {
-	TTF_Font *police;
-	int		counter;
-	char	*str;
+	TTF_Font			*police;
+	int					counter;
+	char				*str;
 
-	SDL_Window *fenetre;
-	SDL_Event evenements;
-	SDL_Point    point[WINX/2];
-	char		key[SDL_NUM_SCANCODES];
-	int			end;
-	bool		menu;
-	double			move;
-	Uint32		type;
-	t_pars		pars;
-	t_raycast	rcst;
-	SDL_Surface *screen; // Surface affichant l'ecran
+	SDL_Window			*fenetre;
+	SDL_Event			evenements;
+	SDL_Point			point[WINX / 2];
+	char				key[SDL_NUM_SCANCODES];
+	int					end;
+	bool				menu;
+	double				move;
+	Uint32				type;
+	t_pars				pars;
+	t_raycast			rcst;
+	SDL_Surface			*screen;
 
-	t_bmp *txt[4];
-	t_bmp *menu_img;
-	int padding_x;
-	int padding_y;
-	SDL_Surface *icon;
-	t_weapons 	*weapons;
-	t_fps fps;
-}				t_sdl;
+	t_bmp				*txt[4];
+	t_bmp				*menu_img;
+	int					padding_x;
+	int					padding_y;
+	SDL_Surface			*icon;
+	t_weapons			*weapons;
+	t_fps				fps;
+}						t_sdl;
 
-int		ft_parser(int fd, t_sdl *sdl);
-int 	free_tpars(t_sdl *map, int size);
-int		ft_drawline(t_pt s1, t_pt s2, t_sdl *sdl);
-void	init_bres(t_line *bre, t_pt *p1, t_pt *p2);
-void	draw(t_sdl *sdl);
-int 	init_sdl(t_sdl *sdl);
-void	event(t_sdl *sdl);
-void 	draw_rect(t_sdl *sdl, t_pt *p1, t_pt *p2);
-void	set_point(t_pt *point, double x, double y);
-void	raycast(t_sdl *sdl);
-void	init_variables(t_sdl *sdl);
-void	draw(t_sdl *sdl);
-void	draw_sky_ground(t_sdl *sdl);
-void	fps_counter(t_sdl *sdl);
-void	fps_limit(t_sdl *sdl);
-int		fps_limit_delay(t_sdl *sdl);
-void 	put_pixels(t_sdl* sdl, uint32_t color, int x, int y);
-uint32_t	convert_argb(unsigned int a, unsigned int r, unsigned int g, unsigned int b);
-int		get_color(t_sdl *sdl);
-void	draw_vertical_line(t_sdl *sdl, int x);
-void	init_raycast(t_sdl *sdl, int x);
+/*
+**	bmp_parser.c
+*/
 
-t_bmp *load_image (char *path);
-int init_menu(t_sdl *sdl);
-void display_menu(t_sdl *sdl, t_bmp *img);
-void free_image (t_sdl *sdl);
-void draw_wepaon(t_sdl *sdl, t_weapons *img);
-void	fps_display(t_sdl *sdl);
-int		file_valid_name(char *file, char *ref);
-int		check_plus(t_sdl *check, int line, int column);
-int		check_close_map(t_sdl *check);
-int		check_column_line(char *str, t_sdl *sdl, int i);
-void	clear_screen(t_sdl *sdl);
+t_bmp					*load_image(char *path);
+
+/*
+**	check_map.c
+*/
+
+int						check_column_line(char *str, t_sdl *sdl, int i);
+int						check_close_map(t_sdl *check);
+int						check_plus(t_sdl *check, int line, int column);
+
+/*
+**	clear.c
+*/
+
+void					clear_screen(t_sdl *sdl);
+
+/*
+**	color.c
+*/
+
+uint32_t				convert_argb(unsigned int a, unsigned int r,
+	unsigned int g, unsigned int b);
+
+/*
+**	draw.c
+*/
+
+void					put_pixels(t_sdl *sdl, uint32_t color, int x, int y);
+void					draw_vertical_line(t_sdl *sdl, int x);
+void					draw_faces(t_sdl *sdl, int tex_x, double step, int x);
+void					draw(t_sdl *sdl);
+void					draw_sky_ground(t_sdl *sdl);
+
+/*
+**	exit_bmp.c
+*/
+
+int						exit8bit(t_bmp *bmp);
+
+/*
+**	exit.c
+*/
+
+int						free_tpars(t_sdl *map, int size);
+void					free_image(t_sdl *sdl);
+
+/*
+**	fps.c
+*/
+
+int						fps_limit_delay(t_sdl *sdl);
+void					fps_counter(t_sdl *sdl);
+void					fps_limit(t_sdl *sdl);
+
+/*
+**	ft_parser.c
+*/
+
+int						ft_parser(int fd, t_sdl *sdl);
+int						create_map(char *str, t_sdl *sdl);
+void					stock_in_map(char *str, t_sdl *sdl);
+int						file_valid_name(char *file, char *ref);
+
+/*
+**	hud.c
+*/
+
+void					fps_display(t_sdl *sdl);
+
+/*
+**	huit_bits.c
+*/
+
+uint32_t				convert_8bitscolor(char r, char g, char b);
+void					format_data8bit(char *tmp, t_bmp *bmp);
+int						create_palette(char *tmp, t_bmp *bmp);
+
+/*
+**	init.c
+*/
+
+bool					init_weapons (t_weapons *wp);
+bool					init_wall (t_sdl *sdl);
+int						init_texture (t_sdl *sdl);
+int						init_sdl(t_sdl *sdl);
+void					init_variables(t_sdl *sdl);
+void					init_raycast(t_sdl *sdl, int x);
+
+/*
+**	key_event.c
+*/
+
+void					event(t_sdl *sdl);
+void					vertical_deplacement(t_sdl *sdl);
+void					horizontal_deplacement(t_sdl *sdl);
+
+/*
+**	main.c
+*/
+
+int						main(int argc, char **argv);
+
+/*
+**	menu.c
+*/
+
+int						init_menu(t_sdl *sdl);
+void					display_menu(t_sdl *sdl, t_bmp *img);
+void					displat_menu_text(t_sdl *sdl);
+void					draw_wepaon(t_sdl *sdl, t_weapons *img);
+
+/*
+**	raycast.c
+*/
+
+void					raycast(t_sdl *sdl);
+void					find_line_height(t_sdl *sdl);
+void					ray_lenght(t_sdl *sdl);
+void					side_hit(t_sdl *sdl);
+void					ray_direction_distance(t_sdl *sdl);
 
 #endif

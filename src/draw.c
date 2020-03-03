@@ -6,7 +6,7 @@
 /*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 16:19:49 by lgrudler          #+#    #+#             */
-/*   Updated: 2020/03/03 15:30:30 by lgrudler         ###   ########.fr       */
+/*   Updated: 2020/03/03 17:20:57 by lgrudler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,11 +76,11 @@ void	draw_faces(t_sdl *sdl, int tex_x, double step, int x)
 	{
 		tex_y = (int)texpos & (64 - 1);
 		texpos += step;
-		if ((int)sdl->rcst.posx >= sdl->rcst.mapX && sdl->rcst.side == 0)
+		if ((int)sdl->rcst.posx >= sdl->rcst.mapx && sdl->rcst.side == 0)
 			sdl->rcst.color = sdl->txt[0]->data[64 * tex_y + tex_x];
 		else if (sdl->rcst.side == 0)
 			sdl->rcst.color = sdl->txt[1]->data[64 * tex_y + tex_x];
-		if ((int)sdl->rcst.posy <= sdl->rcst.mapY && sdl->rcst.side == 1)
+		if ((int)sdl->rcst.posy <= sdl->rcst.mapy && sdl->rcst.side == 1)
 			sdl->rcst.color = sdl->txt[2]->data[64 * tex_y + tex_x];
 		else if (sdl->rcst.side == 1)
 			sdl->rcst.color = sdl->txt[3]->data[64 * tex_y + tex_x];
@@ -96,9 +96,9 @@ void	draw_vertical_line(t_sdl *sdl, int x)
 	int		tex_x;
 
 	if (sdl->rcst.side == 0)
-		wallx = sdl->rcst.posy + sdl->rcst.raylenght * sdl->rcst.raydirY;
+		wallx = sdl->rcst.posy + sdl->rcst.raylenght * sdl->rcst.raydiry;
 	else
-		wallx = sdl->rcst.posx + sdl->rcst.raylenght * sdl->rcst.raydirX;
+		wallx = sdl->rcst.posx + sdl->rcst.raylenght * sdl->rcst.raydirx;
 	wallx -= floor(wallx);
 	tex_x = (int)(wallx * 64.0);
 	tex_x = 64 - tex_x - 1;

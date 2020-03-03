@@ -6,7 +6,7 @@
 /*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/06 11:25:38 by grudler           #+#    #+#             */
-/*   Updated: 2020/03/03 16:40:50 by lgrudler         ###   ########.fr       */
+/*   Updated: 2020/03/03 17:19:32 by lgrudler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,51 +17,51 @@ void	horizontal_deplacement(t_sdl *sdl)
 	double odx;
 	double opx;
 
-	odx = sdl->rcst.dirX;
-	opx = sdl->rcst.planX;
+	odx = sdl->rcst.dirx;
+	opx = sdl->rcst.planx;
 	if (sdl->key[SDL_SCANCODE_LEFT])
 	{
-		sdl->rcst.dirX = sdl->rcst.dirX * cos(-MOVEDIR)
-			- sdl->rcst.dirY * sin(-MOVEDIR);
-		sdl->rcst.dirY = odx * sin(-MOVEDIR) + sdl->rcst.dirY * cos(-MOVEDIR);
-		sdl->rcst.planX = sdl->rcst.planX * cos(-MOVEDIR)
-			- sdl->rcst.planY * sin(-MOVEDIR);
-		sdl->rcst.planY = opx * sin(-MOVEDIR) + sdl->rcst.planY * cos(-MOVEDIR);
+		sdl->rcst.dirx = sdl->rcst.dirx * cos(-MOVEDIR)
+			- sdl->rcst.diry * sin(-MOVEDIR);
+		sdl->rcst.diry = odx * sin(-MOVEDIR) + sdl->rcst.diry * cos(-MOVEDIR);
+		sdl->rcst.planx = sdl->rcst.planx * cos(-MOVEDIR)
+			- sdl->rcst.plany * sin(-MOVEDIR);
+		sdl->rcst.plany = opx * sin(-MOVEDIR) + sdl->rcst.plany * cos(-MOVEDIR);
 	}
 	if (sdl->key[SDL_SCANCODE_RIGHT])
 	{
-		sdl->rcst.dirX = sdl->rcst.dirX * cos(MOVEDIR)
-			- sdl->rcst.dirY * sin(MOVEDIR);
-		sdl->rcst.dirY = odx * sin(MOVEDIR) + sdl->rcst.dirY * cos(MOVEDIR);
-		sdl->rcst.planX = sdl->rcst.planX * cos(MOVEDIR)
-			- sdl->rcst.planY * sin(MOVEDIR);
-		sdl->rcst.planY = opx * sin(MOVEDIR) + sdl->rcst.planY * cos(MOVEDIR);
+		sdl->rcst.dirx = sdl->rcst.dirx * cos(MOVEDIR)
+			- sdl->rcst.diry * sin(MOVEDIR);
+		sdl->rcst.diry = odx * sin(MOVEDIR) + sdl->rcst.diry * cos(MOVEDIR);
+		sdl->rcst.planx = sdl->rcst.planx * cos(MOVEDIR)
+			- sdl->rcst.plany * sin(MOVEDIR);
+		sdl->rcst.plany = opx * sin(MOVEDIR) + sdl->rcst.plany * cos(MOVEDIR);
 	}
 }
 
 void	vertical_deplacement(t_sdl *sdl)
 {
 	if (sdl->key[SDL_SCANCODE_UP])
-		if (sdl->pars.map[(int)(sdl->rcst.posy + sdl->rcst.dirY * HITBOX)]
-			[(int)(sdl->rcst.posx + sdl->rcst.dirX * HITBOX)] < 2)
+		if (sdl->pars.map[(int)(sdl->rcst.posy + sdl->rcst.diry * HITBOX)]
+			[(int)(sdl->rcst.posx + sdl->rcst.dirx * HITBOX)] < 2)
 		{
 			if (sdl->pars.map[(int)(sdl->rcst.posy)][(int)(sdl->rcst.posx
-				+ sdl->rcst.dirX * HITBOX)] < 2)
-				sdl->rcst.posx += sdl->rcst.dirX * sdl->move;
-			if (sdl->pars.map[(int)(sdl->rcst.posy + sdl->rcst.dirY
+				+ sdl->rcst.dirx * HITBOX)] < 2)
+				sdl->rcst.posx += sdl->rcst.dirx * sdl->move;
+			if (sdl->pars.map[(int)(sdl->rcst.posy + sdl->rcst.diry
 				* HITBOX)][(int)(sdl->rcst.posx)] < 2)
-				sdl->rcst.posy += sdl->rcst.dirY * sdl->move;
+				sdl->rcst.posy += sdl->rcst.diry * sdl->move;
 		}
 	if (sdl->key[SDL_SCANCODE_DOWN])
-		if (sdl->pars.map[(int)(sdl->rcst.posy - sdl->rcst.dirY * HITBOX)]
-			[(int)(sdl->rcst.posx - sdl->rcst.dirX * HITBOX)] < 2)
+		if (sdl->pars.map[(int)(sdl->rcst.posy - sdl->rcst.diry * HITBOX)]
+			[(int)(sdl->rcst.posx - sdl->rcst.dirx * HITBOX)] < 2)
 		{
 			if (sdl->pars.map[(int)(sdl->rcst.posy)][(int)(sdl->rcst.posx
-				- sdl->rcst.dirX * HITBOX)] < 2)
-				sdl->rcst.posx -= sdl->rcst.dirX * sdl->move;
+				- sdl->rcst.dirx * HITBOX)] < 2)
+				sdl->rcst.posx -= sdl->rcst.dirx * sdl->move;
 			if (sdl->pars.map[(int)(sdl->rcst.posy
-				- sdl->rcst.dirY * HITBOX)][(int)(sdl->rcst.posx)] < 2)
-				sdl->rcst.posy -= sdl->rcst.dirY * sdl->move;
+				- sdl->rcst.diry * HITBOX)][(int)(sdl->rcst.posx)] < 2)
+				sdl->rcst.posy -= sdl->rcst.diry * sdl->move;
 		}
 }
 

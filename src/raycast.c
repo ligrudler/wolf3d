@@ -6,7 +6,7 @@
 /*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 15:35:26 by grudler           #+#    #+#             */
-/*   Updated: 2020/03/03 14:51:43 by lgrudler         ###   ########.fr       */
+/*   Updated: 2020/03/03 17:22:01 by lgrudler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,29 @@
 
 void	ray_direction_distance(t_sdl *sdl)
 {
-	if (sdl->rcst.raydirX < 0)
+	if (sdl->rcst.raydirx < 0)
 	{
-		sdl->rcst.stepX = -1;
-		sdl->rcst.sidedistX = (double)((sdl->rcst.posx - sdl->rcst.mapX)
-			* sdl->rcst.deltadistX);
+		sdl->rcst.stepx = -1;
+		sdl->rcst.sidedistx = (double)((sdl->rcst.posx - sdl->rcst.mapx)
+			* sdl->rcst.deltadistx);
 	}
 	else
 	{
-		sdl->rcst.stepX = 1;
-		sdl->rcst.sidedistX = (double)((sdl->rcst.mapX + 1 - sdl->rcst.posx)
-			* sdl->rcst.deltadistX);
+		sdl->rcst.stepx = 1;
+		sdl->rcst.sidedistx = (double)((sdl->rcst.mapx + 1 - sdl->rcst.posx)
+			* sdl->rcst.deltadistx);
 	}
-	if (sdl->rcst.raydirY < 0)
+	if (sdl->rcst.raydiry < 0)
 	{
-		sdl->rcst.stepY = -1;
-		sdl->rcst.sidedistY = (double)((sdl->rcst.posy - sdl->rcst.mapY)
-			* sdl->rcst.deltadistY);
+		sdl->rcst.stepy = -1;
+		sdl->rcst.sidedisty = (double)((sdl->rcst.posy - sdl->rcst.mapy)
+			* sdl->rcst.deltadisty);
 	}
 	else
 	{
-		sdl->rcst.stepY = 1;
-		sdl->rcst.sidedistY = (double)((sdl->rcst.mapY + 1 - sdl->rcst.posy)
-			* sdl->rcst.deltadistY);
+		sdl->rcst.stepy = 1;
+		sdl->rcst.sidedisty = (double)((sdl->rcst.mapy + 1 - sdl->rcst.posy)
+			* sdl->rcst.deltadisty);
 	}
 }
 
@@ -47,19 +47,19 @@ void	side_hit(t_sdl *sdl)
 	hit = 0;
 	while (hit == 0)
 	{
-		if (sdl->rcst.sidedistX < sdl->rcst.sidedistY)
+		if (sdl->rcst.sidedistx < sdl->rcst.sidedisty)
 		{
-			sdl->rcst.sidedistX += sdl->rcst.deltadistX;
-			sdl->rcst.mapX += sdl->rcst.stepX;
+			sdl->rcst.sidedistx += sdl->rcst.deltadistx;
+			sdl->rcst.mapx += sdl->rcst.stepx;
 			sdl->rcst.side = 0;
 		}
 		else
 		{
-			sdl->rcst.sidedistY += sdl->rcst.deltadistY;
-			sdl->rcst.mapY += sdl->rcst.stepY;
+			sdl->rcst.sidedisty += sdl->rcst.deltadisty;
+			sdl->rcst.mapy += sdl->rcst.stepy;
 			sdl->rcst.side = 1;
 		}
-		if (sdl->pars.map[sdl->rcst.mapY][sdl->rcst.mapX] == 2)
+		if (sdl->pars.map[sdl->rcst.mapy][sdl->rcst.mapx] == 2)
 			hit = 1;
 	}
 }
@@ -67,11 +67,11 @@ void	side_hit(t_sdl *sdl)
 void	ray_lenght(t_sdl *sdl)
 {
 	if (sdl->rcst.side == 0)
-		sdl->rcst.raylenght = (sdl->rcst.mapX - sdl->rcst.posx
-			+ (1 - sdl->rcst.stepX) / 2) / sdl->rcst.raydirX;
+		sdl->rcst.raylenght = (sdl->rcst.mapx - sdl->rcst.posx
+			+ (1 - sdl->rcst.stepx) / 2) / sdl->rcst.raydirx;
 	else
-		sdl->rcst.raylenght = (sdl->rcst.mapY - sdl->rcst.posy
-			+ (1 - sdl->rcst.stepY) / 2) / sdl->rcst.raydirY;
+		sdl->rcst.raylenght = (sdl->rcst.mapy - sdl->rcst.posy
+			+ (1 - sdl->rcst.stepy) / 2) / sdl->rcst.raydiry;
 }
 
 void	find_line_height(t_sdl *sdl)
