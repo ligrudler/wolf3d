@@ -6,7 +6,7 @@
 /*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 14:06:02 by grudler           #+#    #+#             */
-/*   Updated: 2020/03/03 17:21:29 by lgrudler         ###   ########.fr       */
+/*   Updated: 2020/03/04 16:24:10 by lgrudler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 bool init_weapons (t_weapons *wp)
 {
-	// need secure and return
+	// Test about leaks
+	//return(0);
+
 	wp->frame_nb = 0;
 	wp->delay = 100;
 	wp->shoot = false;
@@ -33,6 +35,9 @@ ft_putendl("Weapon_texture...[loaded]");
 
 bool init_wall (t_sdl *sdl)
 {
+	// Test about Leaks
+	//return(0);
+
 	if (!(sdl->txt[0] = load_image("./ressources/GreenWall0.bmp")) ||
 	!(sdl->txt[1] = load_image("./ressources/Blue4.bmp"))||
 	!(sdl->txt[2] = load_image("./ressources/RedBricks0.bmp")) ||
@@ -47,14 +52,16 @@ bool init_wall (t_sdl *sdl)
 
 int init_texture (t_sdl *sdl)
 {
+	// Test about Leaks
+	//return(0);
 
-	init_wall(sdl);
+	if (!(init_wall(sdl)))
+		return (0);
 	sdl->icon = SDL_LoadBMP("./ressources/icon.bmp");
 	if(!( sdl->weapons = (t_weapons *)malloc(sizeof(t_weapons))))
 		return (0);
 	ft_bzero(sdl->weapons, sizeof(t_weapons));
-
-	if (init_weapons(sdl->weapons)) // need to improve
+	if (init_weapons(sdl->weapons))
 	{
 		ft_putendl("Textures...[Loaded]");
 		return (1);
@@ -66,24 +73,23 @@ int init_texture (t_sdl *sdl)
 
 int init_sdl(t_sdl *sdl)
 {
-	int		terminer;
+	// Test about Leaks
+	//return(0);
 
-	terminer = 0;
-
-	if(SDL_Init(SDL_INIT_VIDEO) < 0)
+	if((SDL_Init(SDL_INIT_VIDEO) < 0) || (!(sdl->fenetre =
+	SDL_CreateWindow("Wolf3d", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WINX,
+	WINY, SDL_WINDOW_SHOWN)))|| !(sdl->screen = SDL_GetWindowSurface(sdl->fenetre)))
 	{
 		ft_putendl("Error Unable to initialize SDL");
 		return (0);
 	}
-	if (!(sdl->fenetre = SDL_CreateWindow("Wolf3d", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WINX, WINY, SDL_WINDOW_SHOWN)))
-		ft_error();
-	sdl->screen = SDL_GetWindowSurface(sdl->fenetre);
-	printf("Window...[Created]\n");
-	//sdl->txt = NULL;
+	ft_putendl("Window...[Created]");
 	if (! (init_texture(sdl)))
-		ft_error();
+		return(0);
 	sdl->menu = true;
-	SDL_SetWindowIcon(sdl->fenetre, sdl->icon);
+	if (sdl->icon)
+		SDL_SetWindowIcon(sdl->fenetre, sdl->icon);
+
 	return (1);
 }
 
@@ -98,6 +104,8 @@ void	init_variables(t_sdl *sdl)
 	sdl->fps.lasttime = 0;
 	sdl->fps.framelimit = 0;
 	sdl->counter = 0;
+	sdl->ttf.police1 = TTF_OpenFont("./ressources/bebasneue-regular.ttf", 50);
+	sdl->ttf.police2 = TTF_OpenFont("./ressources/vogue.ttf", 50);
 }
 
 void	init_raycast(t_sdl *sdl, int x)

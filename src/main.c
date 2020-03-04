@@ -6,14 +6,38 @@
 /*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:51:44 by grudler           #+#    #+#             */
-/*   Updated: 2020/03/03 17:34:24 by lgrudler         ###   ########.fr       */
+/*   Updated: 2020/03/04 16:17:42 by lgrudler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/wolf3d.h"
 
 // fonction pour initialiser les textures
-// Penser a virer les printfs
+
+int exit_programm(t_sdl *sdl)
+{
+		ft_putendl("free screen");
+		if (sdl->screen)
+			SDL_FreeSurface((sdl)->screen);
+		ft_putendl("free fenetre");
+		if (sdl->icon)
+			SDL_FreeSurface((sdl)->icon);
+		if (sdl->fenetre)
+			SDL_DestroyWindow(sdl->fenetre);
+		TTF_CloseFont(sdl->ttf.police1);
+		TTF_CloseFont(sdl->ttf.police2);
+		TTF_Quit();
+		SDL_Quit();
+		ft_putendl("free image");
+		free_image (sdl);
+		ft_putendl("free pars");
+		free_tpars(sdl, sdl->pars.nb_lin);
+		free(sdl->weapons);
+		free(sdl);
+		// TEST LEAKS
+		//while(1);
+		return (0);
+}
 
 int		main(int argc, char **argv)
 {
@@ -26,13 +50,9 @@ int		main(int argc, char **argv)
 			return (0);
 		ft_bzero(sdl, sizeof(t_sdl));
 		fd = open(argv[1], O_RDONLY);
-		if (!(ft_parser(fd, sdl)))
-			return (0);
-		init_sdl(sdl);
-		if (TTF_Init() == -1)
-			return (0);
+		if (!(ft_parser(fd, sdl)) || !(init_sdl(sdl)) || ((TTF_Init() == -1)))
+			return (exit_programm(sdl));
 		init_variables(sdl);
-		printf("end initialization\n");
 		init_menu(sdl);
 		ft_bzero((sdl)->key, SDL_NUM_SCANCODES);
 		while (!(sdl->end))
@@ -42,27 +62,10 @@ int		main(int argc, char **argv)
 			fps_limit(sdl);
 			draw(sdl);
 		}
-		ft_putendl("free screen\n");
-		SDL_FreeSurface((sdl)->screen);
-		ft_putendl("free fenetre\n");
-		SDL_FreeSurface((sdl)->icon);
-		SDL_DestroyWindow(sdl->fenetre);
-
-		TTF_CloseFont(sdl->ttf.police);
-		TTF_Quit();
-
-		SDL_Quit();
-		ft_putendl("free image\n");
-		free_image (sdl);
-		ft_putendl("free pars\n");
-		free_tpars(sdl, sdl->pars.nb_lin);
-		free(sdl->weapons);
-		free(sdl);
+		exit_programm(sdl);
+	//	while(1);
 		return (0);
 	}
-
-	ft_putstr("ERROR, MAIN ARGV"); //temp
-
+	ft_putstr("ERROR, MAIN ARGV");
 	return (0);
-
 }

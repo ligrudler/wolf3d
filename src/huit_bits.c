@@ -6,7 +6,7 @@
 /*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 13:33:21 by qlouisia          #+#    #+#             */
-/*   Updated: 2020/03/02 20:08:21 by lgrudler         ###   ########.fr       */
+/*   Updated: 2020/03/04 16:12:56 by lgrudler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,7 @@ int			create_palette(char *tmp, t_bmp *bmp)
 		return (0);
 	while (i < bmp->nb_color_palette * 4)
 	{
-		//bmp->palette[i] = tmp[i + bmp->header_size + 14];
-		//printf("[%d]%hhX %hhX %hhX %hhX",j,tmp[i],tmp[i+1],tmp[i+2],tmp[i+3]);
 		bmp->palette[j] = convert_8bitscolor(tmp[i + 2], tmp[i + 1], tmp[i]);
-		//printf("[%X]\n", bmp->palette[j]);
-		//printf("Palette[%d] = %d | \n",j, bmp->palette[j]);
 		i += 4;
 		j++;
 	}

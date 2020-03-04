@@ -6,7 +6,7 @@
 /*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 21:01:22 by grudler           #+#    #+#             */
-/*   Updated: 2020/03/03 16:44:32 by lgrudler         ###   ########.fr       */
+/*   Updated: 2020/03/04 16:12:21 by lgrudler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ int		ft_parser(int fd, t_sdl *sdl)
 
 	str = NULL;
 	ret = read(fd, buff, 4);
-	// buff[4] = '\0';
 	if (ft_strcmp(buff, CHECKCODE))
 	{
 		ft_putendl("Incorrect Map");

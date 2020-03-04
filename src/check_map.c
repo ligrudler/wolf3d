@@ -6,7 +6,7 @@
 /*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 11:45:33 by grudler           #+#    #+#             */
-/*   Updated: 2020/03/03 14:47:50 by lgrudler         ###   ########.fr       */
+/*   Updated: 2020/03/04 16:10:29 by lgrudler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int		check_close_map(t_sdl *check)
 		ft_putstr("Need a spawn");
 		return (0);
 	}
-	ft_putstr("Map VALID");
+	ft_putendl("Map...[Checked]");
 	return (1);
 }
 

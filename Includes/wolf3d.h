@@ -6,7 +6,7 @@
 /*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:43:42 by grudler           #+#    #+#             */
-/*   Updated: 2020/03/03 17:41:29 by lgrudler         ###   ########.fr       */
+/*   Updated: 2020/03/04 16:24:10 by lgrudler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # include <unistd.h>
 # include <stdbool.h>
 # include <math.h>
-# include <stdio.h>
 # include "SDL.h"
 # include "SDL_ttf.h"
 
@@ -29,7 +28,6 @@
 # define HITBOX 0.3
 # define MOVEDIR 0.05
 # define MAX_FPS 60
-# define ARGB 372645892 // equivalent de SDL_PIXELFORMAT_ARGB8888
 # define CHECKCODE "W3D\n"
 
 typedef struct			s_fps
@@ -92,7 +90,8 @@ typedef struct			s_weapons
 
 typedef struct			s_ttf
 {
-	TTF_Font			*police;
+	TTF_Font			*police1;
+	TTF_Font			*police2;
 	char				*str;
 }						t_ttf;
 
@@ -169,6 +168,7 @@ int						exit8bit(t_bmp *bmp);
 
 int						free_tpars(t_sdl *map, int size);
 void					free_image(t_sdl *sdl);
+void					free_weapons(t_weapons *wp);
 
 /*
 **	fps.c
