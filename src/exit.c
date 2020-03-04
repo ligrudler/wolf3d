@@ -3,14 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 19:19:31 by qlouisia          #+#    #+#             */
-/*   Updated: 2020/03/04 18:57:56 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/03/04 22:13:54 by lgrudler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/wolf3d.h"
+
+void		map_error(char *str)
+{
+	free(str);
+	ft_putendl("Map error");
+	exit(0);
+}
 
 int			free_tpars(t_sdl *map, int size)
 {

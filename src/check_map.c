@@ -6,7 +6,7 @@
 /*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 11:45:33 by grudler           #+#    #+#             */
-/*   Updated: 2020/03/04 16:10:29 by lgrudler         ###   ########.fr       */
+/*   Updated: 2020/03/04 22:11:33 by lgrudler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int		check_plus(t_sdl *check, int line, int column)
 	{
 		if (check->pars.verif == 1)
 		{
-			ft_putstr("Only one spawn\n");
+			ft_putendl("Only one spawn");
 			return (0);
 		}
 		check->pars.spawnx = column;
@@ -47,17 +47,13 @@ int		check_close_map(t_sdl *check)
 		column = -1;
 		while (++column < check->pars.nb_col)
 			if (check_plus(check, line, column) == 0)
-			{
-				ft_putstr("ERROR MAP");
 				return (0);
-			}
 	}
 	if (check->pars.verif == 0)
 	{
-		ft_putstr("Need a spawn");
+		ft_putendl("Need a spawn");
 		return (0);
 	}
-	ft_putendl("Map...[Checked]");
 	return (1);
 }
 

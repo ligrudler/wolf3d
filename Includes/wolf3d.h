@@ -6,7 +6,7 @@
 /*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:43:42 by grudler           #+#    #+#             */
-/*   Updated: 2020/03/04 19:12:58 by lgrudler         ###   ########.fr       */
+/*   Updated: 2020/03/04 22:14:49 by lgrudler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include "SDL.h"
 # include "SDL_ttf.h"
 
-# define BUFF_SIZE 4 //10
+# define BUFF_SIZE 4
 # define WINX 1000
 # define WINY 1000
 # define HITBOX 0.3
@@ -186,6 +186,7 @@ int						exit8bit(t_bmp *bmp);
 int						free_tpars(t_sdl *map, int size);
 void					free_image(t_sdl *sdl);
 void					free_weapons(t_weapons *wp);
+void					map_error(char *str);
 
 /*
 **	fps.c

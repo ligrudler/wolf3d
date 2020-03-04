@@ -6,7 +6,7 @@
 /*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 21:01:22 by grudler           #+#    #+#             */
-/*   Updated: 2020/03/04 16:12:21 by lgrudler         ###   ########.fr       */
+/*   Updated: 2020/03/04 22:13:57 by lgrudler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,27 +54,32 @@ void	stock_in_map(char *str, t_sdl *sdl)
 	}
 }
 
-int		create_map(char *str, t_sdl *sdl) // il faudrait penser a bien tout free (str ex) dans les retour erreur de malloc
+int		create_map(char *str, t_sdl *sdl)
 {
 	int i;
 
 	i = -1;
 	if (check_column_line(str, sdl, i) == 0)
 	{
-		ft_putstr("ERROR COLUMN NUMBER");
-		ft_error();
+		ft_putendl("Error column number");
+		return (0);
 	}
 	if (!(sdl->pars.map = (int **)malloc(sizeof(int *) * sdl->pars.nb_lin)))
 		return (0);
 	while (++i < sdl->pars.nb_lin)
 		if (!(sdl->pars.map[i] = (int *)malloc(sizeof(int) * sdl->pars.nb_col)))
+		{
+			free_tpars(sdl, ++i);
 			return (0);
+		}
 	stock_in_map(str, sdl);
-	if (!check_close_map(sdl))
+	if (!(check_close_map(sdl)))
 	{
-		ft_putendl("Map NOT CLOSED");
+		ft_putendl("Map Not Closed");
+		free_tpars(sdl, i);
 		return (0);
 	}
+	ft_putendl("Map...[Checked]");
 	return (1);
 }
 
@@ -100,12 +105,7 @@ int		ft_parser(int fd, t_sdl *sdl)
 		free(tmp);
 	}
 	if (str == NULL || ret <= -1 || !(create_map(str, sdl)))
-	{
-		free(str);
-		ft_putendl("MAP ERROR");
-		ft_error();
-		return (0);
-	}
+		map_error(str);
 	free(str);
 	return (1);
 }
