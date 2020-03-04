@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:51:44 by grudler           #+#    #+#             */
-/*   Updated: 2020/03/03 17:52:20 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/03/04 15:22:02 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 int exit_programm(t_sdl *sdl)
 {
 		ft_putendl("free screen");
-		if (sdl->fenetre)
+		if (sdl->screen)
 			SDL_FreeSurface((sdl)->screen);
 		ft_putendl("free fenetre");
 		if (sdl->icon)
@@ -33,9 +33,10 @@ int exit_programm(t_sdl *sdl)
 		free_tpars(sdl, sdl->pars.nb_lin);
 		free(sdl->weapons);
 		free(sdl);
+		// TEST LEAKS 
+		//while(1);
 		return (0);
 }
-
 
 int		main(int argc, char **argv)
 {
@@ -61,12 +62,9 @@ int		main(int argc, char **argv)
 			draw(sdl);
 		}
 		exit_programm(sdl);
-		while (1);
+	//	while(1);
 		return (0);
 	}
-
 	ft_putstr("ERROR, MAIN ARGV"); 
-
 	return (0);
-
 }

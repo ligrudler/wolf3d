@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 14:06:02 by grudler           #+#    #+#             */
-/*   Updated: 2020/03/03 17:44:51 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/03/04 15:18:14 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 bool init_weapons (t_weapons *wp)
 {
 	// Test about leaks 
-//	return(0);
+	//return(0);
 
 	wp->frame_nb = 0;
 	wp->delay = 100;
@@ -37,7 +37,7 @@ bool init_wall (t_sdl *sdl)
 {
 	// Test about Leaks
 	//return(0);
-	
+
 	if (!(sdl->txt[0] = load_image("./ressources/GreenWall0.bmp")) ||
 	!(sdl->txt[1] = load_image("./ressources/Blue4.bmp"))||
 	!(sdl->txt[2] = load_image("./ressources/RedBricks0.bmp")) ||
