@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 19:19:31 by qlouisia          #+#    #+#             */
-/*   Updated: 2020/03/04 16:22:01 by lgrudler         ###   ########.fr       */
+/*   Updated: 2020/03/04 17:58:50 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,12 @@ int			free_tpars(t_sdl *map, int size)
 	return (0);
 }
 
-// a reprendre et a ameliorer au fil des images
 void		free_weapons(t_weapons *wp)
 {
 	int i;
 
 	i = 0;
-	while (i < 5)
+	while (i < wp->frame_nb)
 	{
 		exit8bit(wp->frame[i]);
 		i++;
