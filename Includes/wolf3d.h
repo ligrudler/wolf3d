@@ -6,7 +6,7 @@
 /*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:43:42 by grudler           #+#    #+#             */
-/*   Updated: 2020/03/04 17:40:13 by lgrudler         ###   ########.fr       */
+/*   Updated: 2020/03/04 17:42:03 by lgrudler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # include "SDL_ttf.h"
 
 # define BUFF_SIZE 4 //10
-# define WINX 1200
-# define WINY 1200
+# define WINX 1000
+# define WINY 1000
 # define HITBOX 0.3
 # define MOVEDIR 0.05
 # define MAX_FPS 130
