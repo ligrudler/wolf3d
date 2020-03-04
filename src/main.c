@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:51:44 by grudler           #+#    #+#             */
-/*   Updated: 2020/03/04 16:17:42 by lgrudler         ###   ########.fr       */
+/*   Updated: 2020/03/04 18:57:52 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 
 int exit_programm(t_sdl *sdl)
 {
-		ft_putendl("free screen");
+		ft_putendl("screen...[free]");
 		if (sdl->screen)
 			SDL_FreeSurface((sdl)->screen);
-		ft_putendl("free fenetre");
+		ft_putendl("window...[free]");
 		if (sdl->icon)
 			SDL_FreeSurface((sdl)->icon);
 		if (sdl->fenetre)
@@ -28,14 +28,13 @@ int exit_programm(t_sdl *sdl)
 		TTF_CloseFont(sdl->ttf.police2);
 		TTF_Quit();
 		SDL_Quit();
-		ft_putendl("free image");
+		ft_putendl("images...[free]");
 		free_image (sdl);
-		ft_putendl("free pars");
+		ft_putendl("map...[free]");
 		free_tpars(sdl, sdl->pars.nb_lin);
 		free(sdl->weapons);
 		free(sdl);
-		// TEST LEAKS
-		//while(1);
+	//	while (1);
 		return (0);
 }
 
