@@ -6,7 +6,7 @@
 /*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:43:42 by grudler           #+#    #+#             */
-/*   Updated: 2020/03/04 19:02:54 by lgrudler         ###   ########.fr       */
+/*   Updated: 2020/03/04 19:12:58 by lgrudler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -251,6 +251,7 @@ int						init_menu(t_sdl *sdl);
 void					display_menu(t_sdl *sdl, t_bmp *img);
 void					displat_menu_text(t_sdl *sdl);
 void					draw_wepaon(t_sdl *sdl, t_weapons *img);
+void					frame_weapon(t_weapons *img);
 
 /*
 **	raycast.c

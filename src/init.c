@@ -6,59 +6,50 @@
 /*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 14:06:02 by grudler           #+#    #+#             */
-/*   Updated: 2020/03/04 16:24:10 by lgrudler         ###   ########.fr       */
+/*   Updated: 2020/03/04 19:25:33 by lgrudler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/wolf3d.h"
 
-bool init_weapons (t_weapons *wp)
+bool		init_weapons(t_weapons *wp)
 {
-	// Test about leaks
-	//return(0);
-
 	wp->frame_nb = 0;
 	wp->delay = 100;
 	wp->shoot = false;
 	if (!(wp->frame[0] = load_image("./ressources/pistol1.bmp")) ||
-	!(wp->frame[1] = load_image("./ressources/pistol2.bmp"))||
-	!(wp->frame[2] = load_image("./ressources/pistol3.bmp")) ||
-	!(wp->frame[3] = load_image("./ressources/pistol4.bmp")) ||
-	!(wp->frame[4] = load_image("./ressources/pistol5.bmp")))
-		{
-			ft_putendl("Error with Gun Text");
-			return (0);
-		}
-ft_putendl("Weapon_texture...[loaded]");
+		!(wp->frame[1] = load_image("./ressources/pistol2.bmp")) ||
+		!(wp->frame[2] = load_image("./ressources/pistol3.bmp")) ||
+		!(wp->frame[3] = load_image("./ressources/pistol4.bmp")) ||
+		!(wp->frame[4] = load_image("./ressources/pistol5.bmp")))
+	{
+		ft_putendl("Error with Gun Text");
+		return (0);
+	}
+	ft_putendl("Weapon_texture...[loaded]");
 	return (1);
 }
 
-bool init_wall (t_sdl *sdl)
+bool		init_wall(t_sdl *sdl)
 {
-	// Test about Leaks
-	//return(0);
-
 	if (!(sdl->txt[0] = load_image("./ressources/GreenWall0.bmp")) ||
-	!(sdl->txt[1] = load_image("./ressources/Blue4.bmp"))||
-	!(sdl->txt[2] = load_image("./ressources/RedBricks0.bmp")) ||
-	!(sdl->txt[3] = load_image("./ressources/WoodenWall0.bmp")))
-		{
-			ft_putendl("Error with Gun Text");
-			return (0);
-		}
+		!(sdl->txt[1] = load_image("./ressources/Blue4.bmp")) ||
+		!(sdl->txt[2] = load_image("./ressources/RedBricks0.bmp")) ||
+		!(sdl->txt[3] = load_image("./ressources/WoodenWall0.bmp")))
+	{
+		ft_putendl("Error with Gun Text");
+		return (0);
+	}
 	ft_putendl("Wall_texture...[loaded]");
 	return (1);
 }
 
-int init_texture (t_sdl *sdl)
+int			init_texture(t_sdl *sdl)
 {
-	// Test about Leaks
-	//return(0);
-
 	if (!(init_wall(sdl)))
 		return (0);
 	sdl->icon = SDL_LoadBMP("./ressources/icon.bmp");
-	if(!( sdl->weapons = (t_weapons *)malloc(sizeof(t_weapons))))
+	if (!(sdl->weapons = (t_weapons *)malloc(sizeof(t_weapons))))
 		return (0);
 	ft_bzero(sdl->weapons, sizeof(t_weapons));
 	if (init_weapons(sdl->weapons))
@@ -71,35 +62,13 @@ int init_texture (t_sdl *sdl)
 	return (0);
 }
 
-int init_sdl(t_sdl *sdl)
+void		init_variables(t_sdl *sdl)
 {
-	// Test about Leaks
-	//return(0);
-
-	if((SDL_Init(SDL_INIT_VIDEO) < 0) || (!(sdl->fenetre =
-	SDL_CreateWindow("Wolf3d", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WINX,
-	WINY, SDL_WINDOW_SHOWN)))|| !(sdl->screen = SDL_GetWindowSurface(sdl->fenetre)))
-	{
-		ft_putendl("Error Unable to initialize SDL");
-		return (0);
-	}
-	ft_putendl("Window...[Created]");
-	if (! (init_texture(sdl)))
-		return(0);
-	sdl->menu = true;
-	if (sdl->icon)
-		SDL_SetWindowIcon(sdl->fenetre, sdl->icon);
-
-	return (1);
-}
-
-void	init_variables(t_sdl *sdl)
-{
-	sdl->rcst.posx = sdl->pars.spawnx + 0.5; // postion x du joueur
+	sdl->rcst.posx = sdl->pars.spawnx + 0.5;
 	sdl->rcst.posy = sdl->pars.spawny + 0.5;
-	sdl->rcst.dirx = 0; // direction du joueur (ou regarde le joueur)
+	sdl->rcst.dirx = 0;
 	sdl->rcst.diry = -1;
-	sdl->rcst.planx = 0.66; // plan de la camera (ce quon affiche a lecran) Fov de 66 ici
+	sdl->rcst.planx = 0.66;
 	sdl->rcst.plany = 0;
 	sdl->fps.lasttime = 0;
 	sdl->fps.framelimit = 0;
@@ -108,13 +77,13 @@ void	init_variables(t_sdl *sdl)
 	sdl->ttf.police2 = TTF_OpenFont("./ressources/vogue.ttf", 50);
 }
 
-void	init_raycast(t_sdl *sdl, int x)
+void		init_raycast(t_sdl *sdl, int x)
 {
-	sdl->rcst.camerax = 2 * x / (double)WINX - 1; // coordonnés x du plan de la camera que le current x de l'ecran represente
-	sdl->rcst.raydirx = sdl->rcst.dirx + sdl->rcst.planx * sdl->rcst.camerax; //direction des rayons
+	sdl->rcst.camerax = 2 * x / (double)WINX - 1;
+	sdl->rcst.raydirx = sdl->rcst.dirx + sdl->rcst.planx * sdl->rcst.camerax;
 	sdl->rcst.raydiry = sdl->rcst.diry + sdl->rcst.plany * sdl->rcst.camerax;
-	sdl->rcst.mapx = (int)sdl->rcst.posx; // coordonées du carré actuel ou se trouve le rayon
+	sdl->rcst.mapx = (int)sdl->rcst.posx;
 	sdl->rcst.mapy = (int)sdl->rcst.posy;
-	sdl->rcst.deltadistx = fabs(1 / sdl->rcst.raydirx); // distance que le rayon doit traverser pour aller d'un x-side au prochain x ou y-side (calcul simplifié trouvé apres pythagore)
+	sdl->rcst.deltadistx = fabs(1 / sdl->rcst.raydirx);
 	sdl->rcst.deltadisty = fabs(1 / sdl->rcst.raydiry);
 }
