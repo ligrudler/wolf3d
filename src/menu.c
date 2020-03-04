@@ -6,7 +6,7 @@
 /*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 14:23:20 by qlouisia          #+#    #+#             */
-/*   Updated: 2020/03/04 16:17:56 by lgrudler         ###   ########.fr       */
+/*   Updated: 2020/03/04 17:26:07 by lgrudler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void			display_menu(t_sdl *sdl, t_bmp *img)
 		}
 		y++;
 	}
-	displat_menu_text(sdl);
+	// displat_menu_text(sdl);
 }
 
 int				init_menu(t_sdl *sdl)
