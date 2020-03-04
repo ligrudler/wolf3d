@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:43:42 by grudler           #+#    #+#             */
-/*   Updated: 2020/03/04 19:30:00 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/03/04 19:38:22 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,12 +160,6 @@ void					draw(t_sdl *sdl);
 void					draw_sky_ground(t_sdl *sdl);
 
 /*
-**	exit_bmp.c
-*/
-
-int						exit8bit(t_bmp *bmp);
-
-/*
 **	exit.c
 */
 
@@ -201,8 +195,6 @@ void					fps_display(t_sdl *sdl);
 */
 
 uint32_t				convert_8bitscolor(char r, char g, char b);
-void					format_data8bit(char *tmp, t_bmp *bmp);
-int						create_palette(char *tmp, t_bmp *bmp);
 
 /*
 **	init.c
