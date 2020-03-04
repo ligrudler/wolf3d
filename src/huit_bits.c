@@ -6,16 +6,15 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 13:33:21 by qlouisia          #+#    #+#             */
-/*   Updated: 2020/03/04 19:20:24 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/03/04 19:30:26 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Includes/Bmp.h"
+#include "../Includes/bmp.h"
 #include <stdlib.h>
 
 uint32_t	convert_8bitscolor(char r, char g, char b)
 {
-	int nb;
 	int value;
 
 	value = ((255 & 0xFF) << 24) |

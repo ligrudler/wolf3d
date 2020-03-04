@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   exit_bmp.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 16:49:29 by qlouisia          #+#    #+#             */
-/*   Updated: 2020/03/04 16:10:49 by lgrudler         ###   ########.fr       */
+/*   Updated: 2020/03/04 19:30:45 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Includes/Bmp.h"
+#include "../Includes/bmp.h"
 #include <stdlib.h>
 
 int		exit8bit(t_bmp *bmp)

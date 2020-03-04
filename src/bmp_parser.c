@@ -6,12 +6,12 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 14:51:37 by qlouisia          #+#    #+#             */
-/*   Updated: 2020/03/04 17:52:55 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/03/04 19:32:19 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/wolf3d.h"
-#include "../Includes/Bmp.h"
+#include "../Includes/bmp.h"
 #include <fcntl.h>
 
 void		*error_in_bmp(t_bmp *img, char *tmp_data)
@@ -33,8 +33,8 @@ void		get_header_info(t_bmp *ret, char *buff)
 	ret->header_size = *(int*)(buff + 14);
 	ret->image_size = *(int*)(buff + 34);
 	ret->compression = *(int*)(buff + 30);
-	ret->BPP = ret->bpp / 8;
-	ret->size = ret->width * ret->height * ret->BPP;
+	ret->bypp = ret->bpp / 8;
+	ret->size = ret->width * ret->height * ret->bypp;
 }
 
 void		*create_img(t_bmp *ret, int fd, char *buff)
