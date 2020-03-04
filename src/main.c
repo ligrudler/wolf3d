@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:51:44 by grudler           #+#    #+#             */
-/*   Updated: 2020/03/04 15:22:02 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/03/04 15:49:54 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ int exit_programm(t_sdl *sdl)
 			SDL_FreeSurface((sdl)->icon);
 		if (sdl->fenetre)
 			SDL_DestroyWindow(sdl->fenetre);
-		TTF_CloseFont(sdl->police);
+		TTF_CloseFont(sdl->police1);
+		TTF_CloseFont(sdl->police2);
 		TTF_Quit();
 		SDL_Quit();
 		ft_putendl("free image");

@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:43:42 by grudler           #+#    #+#             */
-/*   Updated: 2020/03/03 16:18:37 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/03/04 15:35:08 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,8 @@ typedef struct s_weapons
 
 typedef struct	s_sdl
 {
-	TTF_Font *police;
+	TTF_Font *police1;
+	TTF_Font *police2;
 	int		counter;
 	char	*str;
 

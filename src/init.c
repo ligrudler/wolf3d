@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 14:06:02 by grudler           #+#    #+#             */
-/*   Updated: 2020/03/04 15:18:14 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/03/04 15:40:10 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ int init_sdl(t_sdl *sdl)
 	sdl->menu = true;
 	if (sdl->icon)
 		SDL_SetWindowIcon(sdl->fenetre, sdl->icon);
+
 	return (1);
 }
 
@@ -103,6 +104,8 @@ void	init_variables(t_sdl *sdl)
 	sdl->fps.lastTime = 0;
 	sdl->fps.framelimit = 0;
 	sdl->counter = 0;
+	sdl->police1 = TTF_OpenFont("./ressources/bebasneue-regular.ttf", 50);
+	sdl->police2 = TTF_OpenFont("./ressources/vogue.ttf", 50);
 }
 
 void	init_raycast(t_sdl *sdl, int x)

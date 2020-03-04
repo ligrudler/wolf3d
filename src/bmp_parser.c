@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 14:51:37 by qlouisia          #+#    #+#             */
-/*   Updated: 2020/03/04 15:21:20 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/03/04 15:26:12 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,21 @@ void *error_in_BMP(t_bmp *img, char *tmp_data)
 	exit8bit(img);
 
 	return (NULL);
+}
+
+void get_header_info(t_bmp *ret, char *buff)
+{
+	ret->width = *(uint32_t*)(buff + 18);
+	ret->height = *(uint32_t*)(buff + 22);
+	ret->bpp = *(int*)(buff + 28);
+	ret->px_data_offset = *(int*)(buff + 10);
+	ret->nb_color_palette = *(int*)(buff + 46);
+	ret->important_color_nb = *(int*)(buff + 50);
+	ret->header_size = *(int*)(buff + 14);
+	ret->image_size = *(int*)(buff + 34);
+	ret->compression = *(int*)(buff + 30);
+	ret->BPP = ret->bpp / 8;
+	ret->size = ret->width * ret->height * ret->BPP;
 }
 
 t_bmp			*load_image(char *path)
@@ -43,23 +58,12 @@ t_bmp			*load_image(char *path)
 	if (!(ret = (t_bmp *)malloc(sizeof(t_bmp))))
 		return (NULL);
 	ft_bzero(ret, sizeof(t_bmp));
-	//read Header and get informations
 	ft_bzero(buff, sizeof(char) * BUFFSIZE);
 	if ((read(fd, buff, BUFFSIZE) < -1))
 		 return (error_in_BMP(ret,NULL));
 	if (buff[0] != 'B' && buff[1] != 'M')
 		return (error_in_BMP(ret,NULL));
-	ret->width = *(uint32_t*)(buff + 18);
-	ret->height = *(uint32_t*)(buff + 22);
-	ret->bpp = *(int*)(buff + 28);
-	ret->px_data_offset = *(int*)(buff + 10);
-	ret->nb_color_palette = *(int*)(buff + 46);
-	ret->important_color_nb = *(int*)(buff + 50);
-	ret->header_size = *(int*)(buff + 14);
-	ret->image_size = *(int*)(buff + 34);
-	ret->compression = *(int*)(buff + 30);
-	ret->BPP = ret->bpp / 8;
-	ret->size = ret->width * ret->height * ret->BPP;
+	get_header_info(ret, buff);
 	if (ret->bpp <= 8)
 		if (!(create_palette(buff, ret)))
 			return (error_in_BMP(ret,NULL)); 

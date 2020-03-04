@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   menu.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 14:23:20 by qlouisia          #+#    #+#             */
-/*   Updated: 2020/03/02 20:51:49 by lgrudler         ###   ########.fr       */
+/*   Updated: 2020/03/04 15:52:45 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,12 @@ void			displat_menu_text(t_sdl *sdl)
 	SDL_Rect	position;
 	SDL_Color	red = {255,0,0};
 
-	sdl->police = TTF_OpenFont("./ressources/vogue.ttf", 50);
-	texte = TTF_RenderText_Blended(sdl->police, "Press space !", red);
+	texte = TTF_RenderText_Blended(sdl->police2, "Press space !", red);
 
 	position.x = WINX / 1.8;
 	position.y = WINY / 1.3;
 	SDL_BlitSurface(texte, NULL, sdl->screen, &position);
+	SDL_FreeSurface(texte);
 }
 
 void			display_menu(t_sdl *sdl, t_bmp *img)
@@ -95,7 +95,7 @@ void			display_menu(t_sdl *sdl, t_bmp *img)
 		}
 		y++;
 	}
-//	displat_menu_text(sdl);
+	displat_menu_text(sdl);
 }
 
 int				init_menu(t_sdl *sdl)
