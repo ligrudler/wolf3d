@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:43:42 by grudler           #+#    #+#             */
-/*   Updated: 2020/03/04 19:38:22 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/03/04 19:41:44 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include "SDL.h"
 # include "SDL_ttf.h"
 
-# define BUFF_SIZE 4 //10
+# define BUFF_SIZE 4
 # define WINX 1000
 # define WINY 1000
 # define HITBOX 0.3
@@ -86,6 +86,8 @@ typedef struct			s_weapons
 	int					delay;
 	int					frame_nb;
 	bool				shoot;
+	uint32_t			color;
+	uint32_t			ref_col;
 }						t_weapons;
 
 typedef struct			s_ttf
@@ -95,6 +97,17 @@ typedef struct			s_ttf
 	char				*str;
 	char				*tmp;
 }						t_ttf;
+
+typedef struct			s_menu
+{
+	int					x;
+	int					y;
+	int					x_p;
+	int					y_p;
+	uint32_t			color;
+	float				scale_x;
+	float				scale_y;
+}						t_menu;
 
 typedef struct			s_sdl
 {
@@ -120,6 +133,7 @@ typedef struct			s_sdl
 	SDL_Surface			*icon;
 	t_weapons			*weapons;
 	t_fps				fps;
+	t_menu				men;
 }						t_sdl;
 
 /*
@@ -229,6 +243,7 @@ int						init_menu(t_sdl *sdl);
 void					display_menu(t_sdl *sdl, t_bmp *img);
 void					displat_menu_text(t_sdl *sdl);
 void					draw_wepaon(t_sdl *sdl, t_weapons *img);
+void					frame_weapon(t_weapons *img);
 
 /*
 **	raycast.c
