@@ -6,7 +6,7 @@
 /*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 09:48:56 by grudler           #+#    #+#             */
-/*   Updated: 2020/03/04 17:33:40 by lgrudler         ###   ########.fr       */
+/*   Updated: 2020/03/04 20:03:02 by lgrudler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	fps_display(t_sdl *sdl)
 {
 	SDL_Surface		*texte;
 	SDL_Rect		position;
-	const SDL_Color	font_color = {255, 255, 0};
+	const SDL_Color	font_color = {255, 255, 0, 0};
 
 	if (sdl->counter % 10 == 0)
 	{

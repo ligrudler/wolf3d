@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   huit_bits.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 13:33:21 by qlouisia          #+#    #+#             */
-/*   Updated: 2020/03/04 19:20:24 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/03/04 20:01:36 by lgrudler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 uint32_t	convert_8bitscolor(char r, char g, char b)
 {
-	int nb;
 	int value;
 
 	value = ((255 & 0xFF) << 24) |
