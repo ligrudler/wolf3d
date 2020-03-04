@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 14:06:02 by grudler           #+#    #+#             */
-/*   Updated: 2020/03/04 16:24:10 by lgrudler         ###   ########.fr       */
+/*   Updated: 2020/03/04 19:03:23 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 bool init_weapons (t_weapons *wp)
 {
 	// Test about leaks
-	//return(0);
 
 	wp->frame_nb = 0;
 	wp->delay = 100;
@@ -52,8 +51,7 @@ bool init_wall (t_sdl *sdl)
 
 int init_texture (t_sdl *sdl)
 {
-	// Test about Leaks
-	//return(0);
+
 
 	if (!(init_wall(sdl)))
 		return (0);
@@ -61,6 +59,7 @@ int init_texture (t_sdl *sdl)
 	if(!( sdl->weapons = (t_weapons *)malloc(sizeof(t_weapons))))
 		return (0);
 	ft_bzero(sdl->weapons, sizeof(t_weapons));
+
 	if (init_weapons(sdl->weapons))
 	{
 		ft_putendl("Textures...[Loaded]");
