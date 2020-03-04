@@ -6,7 +6,7 @@
 /*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:43:42 by grudler           #+#    #+#             */
-/*   Updated: 2020/03/04 16:24:10 by lgrudler         ###   ########.fr       */
+/*   Updated: 2020/03/04 17:42:03 by lgrudler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@
 # include "SDL_ttf.h"
 
 # define BUFF_SIZE 4 //10
-# define WINX 800
-# define WINY 800
+# define WINX 1000
+# define WINY 1000
 # define HITBOX 0.3
 # define MOVEDIR 0.05
-# define MAX_FPS 60
+# define MAX_FPS 130
 # define CHECKCODE "W3D\n"
 
 typedef struct			s_fps
@@ -93,10 +93,13 @@ typedef struct			s_ttf
 	TTF_Font			*police1;
 	TTF_Font			*police2;
 	char				*str;
+	char				*tmp;
 }						t_ttf;
 
 typedef struct			s_sdl
 {
+	char				*str;
+	char				*tmp;
 	int					counter;
 	SDL_Window			*fenetre;
 	SDL_Event			evenements;

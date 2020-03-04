@@ -6,7 +6,7 @@
 /*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:51:44 by grudler           #+#    #+#             */
-/*   Updated: 2020/03/04 16:17:42 by lgrudler         ###   ########.fr       */
+/*   Updated: 2020/03/04 18:35:44 by lgrudler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int exit_programm(t_sdl *sdl)
 			SDL_FreeSurface((sdl)->icon);
 		if (sdl->fenetre)
 			SDL_DestroyWindow(sdl->fenetre);
+		if (sdl->str)
+			free(sdl->str);
 		TTF_CloseFont(sdl->ttf.police1);
 		TTF_CloseFont(sdl->ttf.police2);
 		TTF_Quit();
@@ -35,7 +37,7 @@ int exit_programm(t_sdl *sdl)
 		free(sdl->weapons);
 		free(sdl);
 		// TEST LEAKS
-		//while(1);
+		// while(1);
 		return (0);
 }
 
@@ -63,7 +65,7 @@ int		main(int argc, char **argv)
 			draw(sdl);
 		}
 		exit_programm(sdl);
-	//	while(1);
+		// while(1);
 		return (0);
 	}
 	ft_putstr("ERROR, MAIN ARGV");

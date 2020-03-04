@@ -6,7 +6,7 @@
 /*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 16:19:49 by lgrudler          #+#    #+#             */
-/*   Updated: 2020/03/04 16:23:15 by lgrudler         ###   ########.fr       */
+/*   Updated: 2020/03/04 18:35:44 by lgrudler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,6 @@ void	draw(t_sdl *sdl)
 		draw_wepaon(sdl, sdl->weapons);
 		fps_display(sdl);
 	}
-	else
-		display_menu(sdl, sdl->menu_img);
 	SDL_UpdateWindowSurface(sdl->fenetre);
 }
 

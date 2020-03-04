@@ -6,7 +6,7 @@
 /*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 14:23:20 by qlouisia          #+#    #+#             */
-/*   Updated: 2020/03/04 16:17:56 by lgrudler         ###   ########.fr       */
+/*   Updated: 2020/03/04 18:35:41 by lgrudler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,14 +102,8 @@ int				init_menu(t_sdl *sdl)
 {
 	if (!(sdl->menu_img = load_image("./ressources/wol.bmp")))
 		return(0);
-	// centrer l'image en fonction de la taille de la fenetre
 	sdl->padding_x = (WINX - sdl->menu_img->width) / 2;
 	sdl->padding_y = (WINY - sdl->menu_img->height) / 2;
-	// refactoriser pour n'afficher l'image qu'une fois
-	/*
 	display_menu(sdl, sdl->menu_img);
-	SDL_BlitSurface(sdl->img, NULL, sdl->screen, NULL);
-	SDL_UpdateWindowSurface(sdl->fenetre);
-	*/
 	return (1);
 }
