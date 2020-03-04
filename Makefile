@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+         #
+#    By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/20 16:56:04 by lgrudler          #+#    #+#              #
-#    Updated: 2020/03/04 19:40:57 by qlouisia         ###   ########.fr        #
+#    Updated: 2020/03/04 22:17:56 by lgrudler         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ MAGENTA= \033[35m
 ################################################################################
 NAME= wolf3d
 CC= gcc
-CFLAGS= -g3 `sdl2-config --cflags` #-Wall -Wextra -Werror
+CFLAGS= -g3 `sdl2-config --cflags` -Wall -Wextra -Werror
 SRC_DIR= src/
 SRC= main.c\
 	ft_parser.c\

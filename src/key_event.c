@@ -6,7 +6,7 @@
 /*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/06 11:25:38 by grudler           #+#    #+#             */
-/*   Updated: 2020/03/04 19:15:14 by lgrudler         ###   ########.fr       */
+/*   Updated: 2020/03/04 20:04:32 by lgrudler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,7 @@ void	event(t_sdl *sdl)
 			sdl->key[sdl->evenements.key.keysym.scancode] = 0;
 	}
 	if (sdl->evenements.type == SDL_QUIT || sdl->key[SDL_SCANCODE_ESCAPE])
-	{
 		sdl->end = 1;
-		printf("exit by action\n");
-	}
 	if (sdl->key[SDL_SCANCODE_SPACE] && sdl->menu == true)
 		sdl->menu = false;
 	else

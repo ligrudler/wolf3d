@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:43:42 by grudler           #+#    #+#             */
-/*   Updated: 2020/03/04 19:41:44 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/03/04 22:17:40 by lgrudler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,6 +180,7 @@ void					draw_sky_ground(t_sdl *sdl);
 int						free_tpars(t_sdl *map, int size);
 void					free_image(t_sdl *sdl);
 void					free_weapons(t_weapons *wp);
+void					map_error(char *str);
 
 /*
 **	fps.c

@@ -6,7 +6,7 @@
 /*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 14:23:20 by qlouisia          #+#    #+#             */
-/*   Updated: 2020/03/04 19:06:55 by lgrudler         ###   ########.fr       */
+/*   Updated: 2020/03/04 20:02:53 by lgrudler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void			displat_menu_text(t_sdl *sdl)
 {
 	SDL_Surface		*texte;
 	SDL_Rect		position;
-	const SDL_Color	red = {255, 0, 0};
+	const SDL_Color	red = {255, 0, 0, 0};
 
 	texte = TTF_RenderText_Blended(sdl->ttf.police2, "Press space !", red);
 	position.x = WINX / 1.8;
