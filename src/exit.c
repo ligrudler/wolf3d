@@ -3,18 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 19:19:31 by qlouisia          #+#    #+#             */
-/*   Updated: 2020/03/04 22:13:54 by lgrudler         ###   ########.fr       */
+/*   Updated: 2020/03/05 09:33:57 by grudler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/wolf3d.h"
 
-void		map_error(char *str)
+void		map_error(t_sdl *sdl, char *str)
 {
 	free(str);
+	free(sdl);
 	ft_putendl("Map error");
 	exit(0);
 }

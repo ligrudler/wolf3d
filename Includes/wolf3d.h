@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:43:42 by grudler           #+#    #+#             */
-/*   Updated: 2020/03/04 22:17:40 by lgrudler         ###   ########.fr       */
+/*   Updated: 2020/03/05 09:34:15 by grudler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # include "SDL_ttf.h"
 
 # define BUFF_SIZE 4
-# define WINX 1000
-# define WINY 1000
+# define WINX 800
+# define WINY 800
 # define HITBOX 0.3
 # define MOVEDIR 0.05
 # define MAX_FPS 130
@@ -180,7 +180,7 @@ void					draw_sky_ground(t_sdl *sdl);
 int						free_tpars(t_sdl *map, int size);
 void					free_image(t_sdl *sdl);
 void					free_weapons(t_weapons *wp);
-void					map_error(char *str);
+void					map_error(t_sdl *sdl, char *str);
 
 /*
 **	fps.c

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parser.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 21:01:22 by grudler           #+#    #+#             */
-/*   Updated: 2020/03/04 22:13:57 by lgrudler         ###   ########.fr       */
+/*   Updated: 2020/03/05 09:31:55 by grudler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,10 @@ int		create_map(char *str, t_sdl *sdl)
 		return (0);
 	}
 	if (!(sdl->pars.map = (int **)malloc(sizeof(int *) * sdl->pars.nb_lin)))
+	{
+		free(sdl->pars.map);
 		return (0);
+	}
 	while (++i < sdl->pars.nb_lin)
 		if (!(sdl->pars.map[i] = (int *)malloc(sizeof(int) * sdl->pars.nb_col)))
 		{
@@ -105,7 +108,7 @@ int		ft_parser(int fd, t_sdl *sdl)
 		free(tmp);
 	}
 	if (str == NULL || ret <= -1 || !(create_map(str, sdl)))
-		map_error(str);
+		map_error(sdl, str);
 	free(str);
 	return (1);
 }
