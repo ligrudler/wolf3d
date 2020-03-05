@@ -3,14 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   hud.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 09:48:56 by grudler           #+#    #+#             */
-/*   Updated: 2020/03/04 20:03:02 by lgrudler         ###   ########.fr       */
+/*   Updated: 2020/03/05 12:07:12 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/wolf3d.h"
+
+/*
+**                 #######################################
+**                 ############## fps_display ############
+**                 #######################################
+**
+** Display the number of fps (frame per second), of our programm.
+** the number is update 1/10 frame
+*/
 
 void	fps_display(t_sdl *sdl)
 {

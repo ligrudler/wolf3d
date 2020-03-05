@@ -3,14 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 14:12:37 by grudler           #+#    #+#             */
-/*   Updated: 2020/03/02 20:14:00 by lgrudler         ###   ########.fr       */
+/*   Updated: 2020/03/05 11:21:58 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/wolf3d.h"
+
+/*
+**                 #######################################
+**                 ############ convert argb ############
+**                 #######################################
+**
+** Function to load all images needed for the game : 
+** success = return 1 | fail = return 0 
+** 1) first all wall textures 
+** 2) then the icon (dock icon)
+** 3) after create the weapons structure to store all data 
+** 4) load weapons textures 
+** 
+*/
+
 
 uint32_t	convert_argb(unsigned int a, unsigned int r, unsigned int g,
 	unsigned int b)

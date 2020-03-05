@@ -3,15 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   huit_bits.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 13:33:21 by qlouisia          #+#    #+#             */
-/*   Updated: 2020/03/04 22:17:41 by lgrudler         ###   ########.fr       */
+/*   Updated: 2020/03/05 11:45:58 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/bmp.h"
 #include <stdlib.h>
+
+/*
+**                 #######################################
+**                 ######### convert 8bits color #########
+**                 #######################################
+**
+** Convert R,G,B color in char (format use in BMP) to a uint32 color
+** use in display
+*/
 
 uint32_t	convert_8bitscolor(char r, char g, char b)
 {
@@ -23,6 +32,14 @@ uint32_t	convert_8bitscolor(char r, char g, char b)
 			(((int)b & 0xFF) << 0);
 	return (value);
 }
+
+/*
+**                 #######################################
+**                 ########### format_data8bit ###########
+**                 #######################################
+**
+** In BMP, pixels[0] = Lower left, we want to have it in Upper Left
+*/
 
 void		format_data8bit(char *tmp, t_bmp *bmp)
 {
@@ -46,6 +63,15 @@ void		format_data8bit(char *tmp, t_bmp *bmp)
 		y--;
 	}
 }
+
+/*
+**                 #######################################
+**                 ########### create palette ###########
+**                 #######################################
+**
+** Create a palette from the bmp files informations and convert each color 8bit
+** to a 32bits color
+*/
 
 int			create_palette(char *tmp, t_bmp *bmp)
 {

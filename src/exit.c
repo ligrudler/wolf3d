@@ -3,14 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 19:19:31 by qlouisia          #+#    #+#             */
-/*   Updated: 2020/03/05 09:47:42 by grudler          ###   ########.fr       */
+/*   Updated: 2020/03/05 12:04:56 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/wolf3d.h"
+
+/*
+**                 #######################################
+**                 ############### map_error #############
+**                 #######################################
+**
+** Free all allocated data if a error occure in parsing
+*/
 
 void		map_error(t_sdl *sdl, char *str)
 {
@@ -19,6 +27,15 @@ void		map_error(t_sdl *sdl, char *str)
 	ft_putendl("Map error");
 	exit(0);
 }
+
+/*
+**                 #######################################
+**                 ############## free_tpars #############
+**                 #######################################
+**
+** Free all allocated data allocated when parsing the map at the end of
+** the program.
+*/
 
 int			free_tpars(t_sdl *map, int size)
 {
@@ -34,6 +51,14 @@ int			free_tpars(t_sdl *map, int size)
 	return (0);
 }
 
+/*
+**                 #######################################
+**                 ############# free_weapons ############
+**                 #######################################
+**
+** Free all frame loaded in weapons structure.
+*/
+
 void		free_weapons(t_weapons *wp)
 {
 	int i;
@@ -45,6 +70,14 @@ void		free_weapons(t_weapons *wp)
 		i++;
 	}
 }
+
+/*
+**                 #######################################
+**                 ############## free_image #############
+**                 #######################################
+**
+** Free all images loaded (texture + frame)
+*/
 
 void		free_image(t_sdl *sdl)
 {

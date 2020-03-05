@@ -6,12 +6,20 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 16:49:29 by qlouisia          #+#    #+#             */
-/*   Updated: 2020/03/04 19:30:45 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/03/05 11:39:50 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/bmp.h"
 #include <stdlib.h>
+
+/*
+**                 #######################################
+**                 ############### exit8bit ##############
+**                 #######################################
+**
+** Function to free all information on a t_bmp struct
+*/
 
 int		exit8bit(t_bmp *bmp)
 {

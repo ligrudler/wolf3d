@@ -3,14 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:51:44 by grudler           #+#    #+#             */
-/*   Updated: 2020/03/05 09:34:03 by grudler          ###   ########.fr       */
+/*   Updated: 2020/03/05 12:46:14 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/wolf3d.h"
+
+/*
+**                 #######################################
+**                 ############### init_sdl ##############
+**                 #######################################
+** Initialize all graphics :
+** 1) Create the windows
+** 2) Load all textures
+** 3) Load icons
+*/
 
 int		init_sdl(t_sdl *sdl)
 {
@@ -31,6 +41,17 @@ int		init_sdl(t_sdl *sdl)
 	return (1);
 }
 
+/*
+**                 #######################################
+**                 ############## event_loop #############
+**                 #######################################
+** Main event loop,
+** sdl->counter : is for fps display (display 1 frames / 10)
+** event to get inputs
+** fps_limit to limit the tearing of the image
+** draw is all display function
+*/
+
 void	event_loop(t_sdl *sdl)
 {
 	sdl->counter++;
@@ -39,12 +60,19 @@ void	event_loop(t_sdl *sdl)
 	draw(sdl);
 }
 
+/*
+**                 #######################################
+**                 ############# exit_program ############
+**                 #######################################
+** Free all allocations and exit properly the programm
+*/
+
 int		exit_programm(t_sdl *sdl)
 {
-	ft_putendl("free screen");
+	ft_putendl("Screen...[free]");
 	if (sdl->screen)
 		SDL_FreeSurface((sdl)->screen);
-	ft_putendl("free fenetre");
+	ft_putendl("Window...[free]");
 	if (sdl->icon)
 		SDL_FreeSurface((sdl)->icon);
 	if (sdl->fenetre)
@@ -55,14 +83,21 @@ int		exit_programm(t_sdl *sdl)
 	TTF_CloseFont(sdl->ttf.police2);
 	TTF_Quit();
 	SDL_Quit();
-	ft_putendl("free image");
+	ft_putendl("Images...[free]");
 	free_image(sdl);
-	ft_putendl("free pars");
+	ft_putendl("Maps...[free]");
 	free_tpars(sdl, sdl->pars.nb_lin);
 	free(sdl->weapons);
 	free(sdl);
 	return (0);
 }
+
+/*
+**                 #######################################
+**                 ################# main ################
+**                 #######################################
+** 						Main function of wolf3d
+*/
 
 int		main(int argc, char **argv)
 {

@@ -3,14 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   clear.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 15:13:31 by lgrudler          #+#    #+#             */
-/*   Updated: 2020/03/03 15:13:51 by lgrudler         ###   ########.fr       */
+/*   Updated: 2020/03/05 11:22:32 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/wolf3d.h"
+
+/*
+**                 #######################################
+**                 ############# clear screen ############
+**                 #######################################
+**
+** Function to clear the screen, call every time in the display loop
+*/
 
 void	clear_screen(t_sdl *sdl)
 {

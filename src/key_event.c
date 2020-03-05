@@ -3,14 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   key_event.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/06 11:25:38 by grudler           #+#    #+#             */
-/*   Updated: 2020/03/04 20:04:32 by lgrudler         ###   ########.fr       */
+/*   Updated: 2020/03/05 13:03:22 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/wolf3d.h"
+
+/*
+**                 #######################################
+**                 ####### horizontal_deplacement ########
+**                 #######################################
+** Compute the rotation of the player, using matrix of rotation
+**[ cos(a) -sin(a) ]
+**[ sin(a)  cos(a) ]
+*/
 
 void	horizontal_deplacement(t_sdl *sdl)
 {
@@ -39,6 +48,14 @@ void	horizontal_deplacement(t_sdl *sdl)
 	}
 }
 
+/*
+**                 #######################################
+**                 ######## vertical_deplacement #########
+**                 #######################################
+** Check mouvement of the player (forward and backward) and check for
+** collisions.
+*/
+
 void	vertical_deplacement(t_sdl *sdl)
 {
 	if (sdl->key[SDL_SCANCODE_UP])
@@ -64,6 +81,17 @@ void	vertical_deplacement(t_sdl *sdl)
 				sdl->rcst.posy -= sdl->rcst.diry * sdl->move;
 		}
 }
+
+/*
+**                 #######################################
+**                 ################ event ################
+**                 #######################################
+** Handle all inputs :
+** Arrow : move player
+** Esc : quit the programm
+** Left shift : Run
+** Space : shot
+*/
 
 void	event(t_sdl *sdl)
 {

@@ -6,13 +6,21 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 14:51:37 by qlouisia          #+#    #+#             */
-/*   Updated: 2020/03/04 19:32:19 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/03/05 11:38:51 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/wolf3d.h"
 #include "../Includes/bmp.h"
 #include <fcntl.h>
+
+/*
+**                 #######################################
+**                 ############# error in bmp ############
+**                 #######################################
+**
+** Function to free, if a error occure when loading a BMP
+*/
 
 void		*error_in_bmp(t_bmp *img, char *tmp_data)
 {
@@ -21,6 +29,23 @@ void		*error_in_bmp(t_bmp *img, char *tmp_data)
 	exit8bit(img);
 	return (NULL);
 }
+
+/*
+**                 #######################################
+**                 ############ get header info ##########
+**                 #######################################
+**
+** In the header, we get alls informations :
+** width / height of the image
+** bpp = bits per pixels (how is store pixels informations)
+** data offset = where in the files, beginning data
+** nb_color_palette = how many color in the palette
+** header_size = size of the files header
+** image_size =  size of the images (in bits)
+** compression = Method of compression used (not supported)
+** bypp = bytes per pixels
+** size = size of the images
+*/
 
 void		get_header_info(t_bmp *ret, char *buff)
 {
@@ -36,6 +61,18 @@ void		get_header_info(t_bmp *ret, char *buff)
 	ret->bypp = ret->bpp / 8;
 	ret->size = ret->width * ret->height * ret->bypp;
 }
+
+/*
+**                 #######################################
+**                 ############### create img ############
+**                 #######################################
+**
+** call after read files informations ;
+** return NULL if a problem occure, return a non NULL pointer if success
+** 1) Create palette
+** 2) Copy pixels data
+** 3) format pixels data (color in argb and reorganise to pixel[0] : upper left)
+*/
 
 void		*create_img(t_bmp *ret, int fd, char *buff)
 {
@@ -57,6 +94,16 @@ void		*create_img(t_bmp *ret, int fd, char *buff)
 	free(tmp_data);
 	return (ret);
 }
+
+/*
+**                 #######################################
+**                 ############### load img ############
+**                 #######################################
+**
+** call to load a BMP files into a t_bmp struct
+** return (NULL) if error | return a pointer to the struct if success
+** support only 8 bits color
+*/
 
 t_bmp		*load_image(char *path)
 {

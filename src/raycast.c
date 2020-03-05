@@ -3,14 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 15:35:26 by grudler           #+#    #+#             */
-/*   Updated: 2020/03/04 16:23:15 by lgrudler         ###   ########.fr       */
+/*   Updated: 2020/03/05 13:40:24 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/wolf3d.h"
+
+/*
+**                 #######################################
+**                 ####### ray_direction_distance ########
+**                 #######################################
+** DDA 
+*/
 
 void	ray_direction_distance(t_sdl *sdl)
 {
@@ -39,7 +46,12 @@ void	ray_direction_distance(t_sdl *sdl)
 			* sdl->rcst.deltadisty);
 	}
 }
-
+/*
+**                 #######################################
+**                 ############## side_hit ###############
+**                 #######################################
+** DDA 
+*/
 void	side_hit(t_sdl *sdl)
 {
 	int	hit;
@@ -64,6 +76,13 @@ void	side_hit(t_sdl *sdl)
 	}
 }
 
+/*
+**                 #######################################
+**                 ############# ray_lenght ##############
+**                 #######################################
+** DDA 
+*/
+
 void	ray_lenght(t_sdl *sdl)
 {
 	if (sdl->rcst.side == 0)
@@ -73,6 +92,15 @@ void	ray_lenght(t_sdl *sdl)
 		sdl->rcst.raylenght = (sdl->rcst.mapy - sdl->rcst.posy
 			+ (1 - sdl->rcst.stepy) / 2) / sdl->rcst.raydiry;
 }
+
+/*
+**                 #######################################
+**                 ########## find_line_height ###########
+**                 #######################################
+** The principe of raycasting is :
+** Cast a ray for every pixels of the screen until he collide with a wall.
+** Then get the distance and the side hit and compute the size of the wall
+*/
 
 void	find_line_height(t_sdl *sdl)
 {
@@ -84,6 +112,15 @@ void	find_line_height(t_sdl *sdl)
 	if (sdl->rcst.highpix >= WINY)
 		sdl->rcst.highpix = WINY - 1;
 }
+
+/*
+**                 #######################################
+**                 ############### Raycast ###############
+**                 #######################################
+** The principe of raycasting is :
+** Cast a ray for every pixels of the screen until he collide with a wall.
+** Then get the distance and the side hit and compute the size of the wall
+*/
 
 void	raycast(t_sdl *sdl)
 {

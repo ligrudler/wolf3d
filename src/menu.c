@@ -3,14 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   menu.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 14:23:20 by qlouisia          #+#    #+#             */
-/*   Updated: 2020/03/04 20:02:53 by lgrudler         ###   ########.fr       */
+/*   Updated: 2020/03/05 12:52:44 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/wolf3d.h"
+
+/*
+**                 #######################################
+**                 ############# frame_weapon ############
+**                 #######################################
+** Display the animation of the gunshot
+** if shoot is true (a shot is occuring), check a timer and display the good
+** frame
+*/
 
 void			frame_weapon(t_weapons *img)
 {
@@ -32,6 +41,13 @@ void			frame_weapon(t_weapons *img)
 		}
 	}
 }
+
+/*
+**                 #######################################
+**                 ############# draw_weapon ############
+**                 #######################################
+** Compute where to draw the weapons with the window size.
+*/
 
 void			draw_wepaon(t_sdl *sdl, t_weapons *img)
 {
@@ -60,6 +76,14 @@ void			draw_wepaon(t_sdl *sdl, t_weapons *img)
 	frame_weapon(img);
 }
 
+/*
+**                 #######################################
+**                 ########## displat_menu_text ##########
+**                 #######################################
+** Display the text in menu
+*/
+
+
 void			displat_menu_text(t_sdl *sdl)
 {
 	SDL_Surface		*texte;
@@ -72,6 +96,13 @@ void			displat_menu_text(t_sdl *sdl)
 	SDL_BlitSurface(texte, NULL, sdl->screen, &position);
 	SDL_FreeSurface(texte);
 }
+
+/*
+**                 #######################################
+**                 ########## displat_menu_text ##########
+**                 #######################################
+** Display menu image and resize
+*/
 
 void			display_menu(t_sdl *sdl, t_bmp *img)
 {
@@ -94,6 +125,13 @@ void			display_menu(t_sdl *sdl, t_bmp *img)
 	}
 	displat_menu_text(sdl);
 }
+
+/*
+**                 #######################################
+**                 ########## displat_menu_text ##########
+**                 #######################################
+** Load menu image and center it.
+*/
 
 int				init_menu(t_sdl *sdl)
 {

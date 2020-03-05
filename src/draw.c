@@ -3,14 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 16:19:49 by lgrudler          #+#    #+#             */
-/*   Updated: 2020/03/04 18:35:44 by lgrudler         ###   ########.fr       */
+/*   Updated: 2020/03/05 11:58:29 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/wolf3d.h"
+
+/*
+**                 #######################################
+**                 ############## put pixels #############
+**                 #######################################
+**
+** Function to put a pixels in screen images
+*/
 
 void	put_pixels(t_sdl *sdl, uint32_t color, int x, int y)
 {
@@ -20,6 +28,16 @@ void	put_pixels(t_sdl *sdl, uint32_t color, int x, int y)
 	if ((x >= 0 && x < WINX) && (y >= 0 && x < WINY))
 		pixels[x + WINY * y] = color;
 }
+
+/*
+**                 #######################################
+**                 ########### draw_sky_ground ###########
+**                 #######################################
+**
+** Function to draw in the first half of the image a sky color
+** and in the lower part a ground color
+** Call in the beginning of the display loop
+*/
 
 void	draw_sky_ground(t_sdl *sdl)
 {
@@ -49,6 +67,21 @@ void	draw_sky_ground(t_sdl *sdl)
 	}
 }
 
+/*
+**                 #######################################
+**                 ################# draw ################
+**                 #######################################
+**
+** The main display loop :
+** if we are in the game :
+** 1) clear the screen
+** 2) draw sky and ground
+** 3) raycasting
+** 4) draw weapons
+** 5) Display fps
+** 6) update the image to screen
+*/
+
 void	draw(t_sdl *sdl)
 {
 	if (sdl->menu == false)
@@ -61,6 +94,15 @@ void	draw(t_sdl *sdl)
 	}
 	SDL_UpdateWindowSurface(sdl->fenetre);
 }
+
+/*
+**                 #######################################
+**                 ############## draw_faces #############
+**                 #######################################
+**
+** Function to get witch textures affect to witch faces
+** Call by draw_vertical_lines
+*/
 
 void	draw_faces(t_sdl *sdl, int tex_x, double step, int x)
 {
@@ -86,6 +128,14 @@ void	draw_faces(t_sdl *sdl, int tex_x, double step, int x)
 		y++;
 	}
 }
+
+/*
+**                 #######################################
+**                 ########## draw_vertical_line #########
+**                 #######################################
+**
+** Function to draw verticaly every raycasting result, in function of the text
+*/
 
 void	draw_vertical_line(t_sdl *sdl, int x)
 {
