@@ -6,7 +6,7 @@
 /*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 11:45:33 by grudler           #+#    #+#             */
-/*   Updated: 2020/03/05 15:25:49 by lgrudler         ###   ########.fr       */
+/*   Updated: 2020/03/05 16:12:59 by lgrudler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ int		check_plus(t_sdl *check, int line, int column)
 		return (0);
 	else if ((column == 0 || column == check->pars.nb_col - 1)
 		&& check->pars.map[line][column] == 0)
+		return (0);
+	if (check->pars.map[line][column] > 2)
 		return (0);
 	return (1);
 }

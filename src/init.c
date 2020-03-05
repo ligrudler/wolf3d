@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 14:06:02 by grudler           #+#    #+#             */
-/*   Updated: 2020/03/05 11:18:42 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/03/05 16:29:16 by lgrudler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@
 **                 ############## init weapons ##############
 **                 #######################################
 **
-** Function to load wall textures : 
-** success = return true | fail = return false 
-** frame_nb = store the current frame number 
+** Function to load wall textures :
+** success = return true | fail = return false
+** frame_nb = store the current frame number
 ** delay = between 2 frame (millis)
-** shoot = bool to get if a current animation is running 
+** shoot = bool to get if a current animation is running
 */
 
 bool		init_weapons(t_weapons *wp)
@@ -47,9 +47,8 @@ bool		init_weapons(t_weapons *wp)
 **                 ############## init wall ##############
 **                 #######################################
 **
-** Function to load wall textures : 
-** success = return true | fail = return false 
-
+** Function to load wall textures :
+** success = return true | fail = return false
 */
 
 bool		init_wall(t_sdl *sdl)
@@ -71,13 +70,12 @@ bool		init_wall(t_sdl *sdl)
 **                 ############ init textures ############
 **                 #######################################
 **
-** Function to load all images needed for the game : 
-** success = return 1 | fail = return 0 
-** 1) first all wall textures 
+** Function to load all images needed for the game :
+** success = return 1 | fail = return 0
+** 1) first all wall textures
 ** 2) then the icon (dock icon)
-** 3) after create the weapons structure to store all data 
-** 4) load weapons textures 
-** 
+** 3) after create the weapons structure to store all data
+** 4) load weapons textures
 */
 
 int			init_texture(t_sdl *sdl)
@@ -105,11 +103,11 @@ int			init_texture(t_sdl *sdl)
 **
 ** call in the main, to set initial parameter of the raycasting
 ** posx,posy = coordinates of the player position
-** dirx = x coordinate of the direction vector 
+** dirx = x coordinate of the direction vector
 ** diry = y coordinate of the direction vector
 ** To get a FOV of 66 degree, we need to have direction vector > camera plane
-** lasttime = 
-** framelimit = 
+** lasttime =
+** framelimit =
 ** police1 = Menu Font
 ** polie2 = FPS display Font
 */
@@ -134,14 +132,18 @@ void		init_variables(t_sdl *sdl)
 **                 ############# init raycast ############
 **                 #######################################
 **
-** Init all variables needed for raycasting, call in the beginning of each ray casting
-** camerax = x coordinate on the camera plane  right side = [1] | center[0] |left [-1]
-** raydirx = coordinate vector x of the ray 
-** raydiry = coordinate vector y of the ray 
+** Init all variables needed for raycasting, call in the beginning
+** of each ray casting
+** camerax = x coordinate on the camera plane  right side = [1] |
+** center[0] |left [-1]
+** raydirx = coordinate vector x of the ray
+** raydiry = coordinate vector y of the ray
 ** mapx = coordinate x of the cell where i am
 ** mapy = coordinate y of the cell where i am
-** deltadistx = the distance that the ray need to travel to reach the next x side
-** deltadistx = the distance that the ray need to travel to reach the next x side
+** deltadistx = the distance that the ray need to travel
+** to reach the next x side
+** deltadistx = the distance that the ray need to travel
+** to reach the next x side
 ** to compute we using a simplification of pythagoras formula (much faster)
 */
 

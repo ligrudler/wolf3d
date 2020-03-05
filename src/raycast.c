@@ -6,7 +6,7 @@
 /*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 15:35:26 by grudler           #+#    #+#             */
-/*   Updated: 2020/03/05 15:25:46 by lgrudler         ###   ########.fr       */
+/*   Updated: 2020/03/05 16:26:18 by lgrudler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,8 @@ void	find_line_height(t_sdl *sdl)
 **                 ############### Raycast ###############
 **                 #######################################
 ** The principe of raycasting is :
-** Cast a ray for each horizontal pixel of the screen until he collide with a wall.
+** Cast a ray for each horizontal pixel of the screen until he collide
+** with a wall.
 ** Then get the distance and the side hit and compute the size of the wall
 */
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:43:42 by grudler           #+#    #+#             */
-/*   Updated: 2020/03/05 09:34:15 by grudler          ###   ########.fr       */
+/*   Updated: 2020/03/05 16:30:37 by lgrudler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # define MOVEDIR 0.05
 # define MAX_FPS 130
 # define CHECKCODE "W3D\n"
+# define E_MP "You should have a closed map, only 1 spawn and use only 0,1,2."
 
 typedef struct			s_fps
 {
