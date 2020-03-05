@@ -6,11 +6,20 @@
 /*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 11:45:33 by grudler           #+#    #+#             */
-/*   Updated: 2020/03/04 22:11:33 by lgrudler         ###   ########.fr       */
+/*   Updated: 2020/03/05 15:25:49 by lgrudler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/wolf3d.h"
+
+/*
+**                 #######################################
+**                 ############## check_plus #############
+**                 #######################################
+**
+** Return error if more than one spawn exist.
+** Return error if the map isn't closed by walls.
+*/
 
 int		check_plus(t_sdl *check, int line, int column)
 {
@@ -36,6 +45,15 @@ int		check_plus(t_sdl *check, int line, int column)
 	return (1);
 }
 
+/*
+**                 #######################################
+**                 ########### check_close_map ###########
+**                 #######################################
+**
+** Return error if the map is not closed by walls.
+** Return error if no spawn exists.
+*/
+
 int		check_close_map(t_sdl *check)
 {
 	int line;
@@ -56,6 +74,15 @@ int		check_close_map(t_sdl *check)
 	}
 	return (1);
 }
+
+/*
+**                 #######################################
+**                 ########## check_column_line ##########
+**                 #######################################
+**
+** Calculate number of line and number of column in the map.
+** Return error if the number of column is different in another line.
+*/
 
 int		check_column_line(char *str, t_sdl *sdl, int i)
 {

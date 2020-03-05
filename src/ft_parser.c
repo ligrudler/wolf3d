@@ -3,14 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parser.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 21:01:22 by grudler           #+#    #+#             */
-/*   Updated: 2020/03/05 09:47:41 by grudler          ###   ########.fr       */
+/*   Updated: 2020/03/05 15:49:18 by lgrudler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/wolf3d.h"
+
+/*
+**                 #######################################
+**                 ############ file_valid_name ##########
+**                 #######################################
+**
+** Check if the file has the correct extension.
+*/
 
 int		file_valid_name(char *file, char *ref)
 {
@@ -28,6 +36,14 @@ int		file_valid_name(char *file, char *ref)
 	}
 	return (i >= 0 ? 1 : 0);
 }
+
+/*
+**                 #######################################
+**                 ############# stock_in_map ############
+**                 #######################################
+**
+** Transform our string into a double array.
+*/
 
 void	stock_in_map(char *str, t_sdl *sdl)
 {
@@ -54,6 +70,14 @@ void	stock_in_map(char *str, t_sdl *sdl)
 	}
 }
 
+/*
+**                 #######################################
+**                 ############## create_map #############
+**                 #######################################
+**
+** Create and allocate memory of a double array which will contain our map.
+*/
+
 int		create_map(char *str, t_sdl *sdl)
 {
 	int i;
@@ -69,7 +93,7 @@ int		create_map(char *str, t_sdl *sdl)
 	while (++i < sdl->pars.nb_lin)
 		if (!(sdl->pars.map[i] = (int *)malloc(sizeof(int) * sdl->pars.nb_col)))
 		{
-			free_tpars(sdl, ++i);
+			free_tpars(sdl, i);
 			return (0);
 		}
 	stock_in_map(str, sdl);
@@ -82,6 +106,15 @@ int		create_map(char *str, t_sdl *sdl)
 	ft_putendl("Map...[Checked]");
 	return (1);
 }
+
+/*
+**                 #######################################
+**                 ############## ft_parser ##############
+**                 #######################################
+**
+** Check if the file containing the 2D map is conform.
+** Stock the file in a double array in order to work with.
+*/
 
 int		ft_parser(int fd, t_sdl *sdl)
 {

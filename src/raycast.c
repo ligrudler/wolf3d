@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lgrudler <lgrudler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 15:35:26 by grudler           #+#    #+#             */
-/*   Updated: 2020/03/05 13:40:24 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/03/05 15:25:46 by lgrudler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 **                 #######################################
 **                 ####### ray_direction_distance ########
 **                 #######################################
-** DDA 
+** DDA Digital Differential Analizer
+** Initialize variables for DDA algorithm.
 */
 
 void	ray_direction_distance(t_sdl *sdl)
@@ -46,12 +47,15 @@ void	ray_direction_distance(t_sdl *sdl)
 			* sdl->rcst.deltadisty);
 	}
 }
+
 /*
 **                 #######################################
 **                 ############## side_hit ###############
 **                 #######################################
-** DDA 
+** DDA
+** Check if a wall is hit by executing the DDA algorithm.
 */
+
 void	side_hit(t_sdl *sdl)
 {
 	int	hit;
@@ -80,7 +84,7 @@ void	side_hit(t_sdl *sdl)
 **                 #######################################
 **                 ############# ray_lenght ##############
 **                 #######################################
-** DDA 
+** Calculate ray's lenght from player positon until it hits a wall.
 */
 
 void	ray_lenght(t_sdl *sdl)
@@ -97,9 +101,8 @@ void	ray_lenght(t_sdl *sdl)
 **                 #######################################
 **                 ########## find_line_height ###########
 **                 #######################################
-** The principe of raycasting is :
-** Cast a ray for every pixels of the screen until he collide with a wall.
-** Then get the distance and the side hit and compute the size of the wall
+** Compute wall's height and deduct the highest pixel
+** and the lowest pixel of the line to display.
 */
 
 void	find_line_height(t_sdl *sdl)
@@ -118,7 +121,7 @@ void	find_line_height(t_sdl *sdl)
 **                 ############### Raycast ###############
 **                 #######################################
 ** The principe of raycasting is :
-** Cast a ray for every pixels of the screen until he collide with a wall.
+** Cast a ray for each horizontal pixel of the screen until he collide with a wall.
 ** Then get the distance and the side hit and compute the size of the wall
 */
 
