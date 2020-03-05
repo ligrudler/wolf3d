@@ -6,7 +6,7 @@
 /*   By: grudler <grudler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 21:01:22 by grudler           #+#    #+#             */
-/*   Updated: 2020/03/05 09:31:55 by grudler          ###   ########.fr       */
+/*   Updated: 2020/03/05 09:47:41 by grudler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,7 @@ int		create_map(char *str, t_sdl *sdl)
 		return (0);
 	}
 	if (!(sdl->pars.map = (int **)malloc(sizeof(int *) * sdl->pars.nb_lin)))
-	{
-		free(sdl->pars.map);
 		return (0);
-	}
 	while (++i < sdl->pars.nb_lin)
 		if (!(sdl->pars.map[i] = (int *)malloc(sizeof(int) * sdl->pars.nb_col)))
 		{
